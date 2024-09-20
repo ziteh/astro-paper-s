@@ -68,6 +68,13 @@
     @apply hidden;
   }
 
+  .toc {
+    @apply 2xl:block fixed right-24 top-16 mt-8 hidden w-64;
+    li {
+      @apply overflow-hidden truncate whitespace-nowrap;
+    }
+  }
+
   /* ===== scrollbar ===== */
   html {
     overflow-y: scroll;
