@@ -241,6 +241,74 @@ const nextPost =
   }
   updateScrollProgress();
 
+  function updateTocActiveStatus() {
+    let headingElements = [];
+    let tocLinks = [];
+    let lastVisibleId = null;
+    let ticking = false;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const article = document.getElementById("article");
+      if (!article) {
+        return;
+      }
+
+      headingElements = Array.from(article.querySelectorAll("h1, h2, h3, h4"));
+      tocLinks = document.querySelectorAll(".toc a");
+
+      // Initial update
+      if (headingElements.length > 0) {
+        lastVisibleId = headingElements[0].id;
+        updateTocStatus(lastVisibleId);
+      }
+    });
+
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          let currentId = null;
+
+          for (const heading of headingElements) {
+            const { top } = heading.getBoundingClientRect();
+            // If the heading is in the viewport
+            if (top >= 0 && top < window.innerHeight / 2) {
+              currentId = heading.id;
+              break;
+            }
+          }
+
+          // If there is no visible heading, use the last visible one
+          if (!currentId && lastVisibleId) {
+            currentId = lastVisibleId;
+          }
+
+          if (currentId !== lastVisibleId) {
+            updateTocStatus(currentId);
+            lastVisibleId = currentId; // Update the last visible ID
+          }
+
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    });
+
+    function updateTocStatus(id) {
+      tocLinks.forEach(link => {
+        const linkId = link.getAttribute("href").slice(1); // Remove '#'
+        if (linkId === id) {
+          link.classList.add("text-blue-500");
+          link.classList.remove("text-orange-500");
+        } else {
+          link.classList.add("text-orange-500");
+          link.classList.remove("text-blue-500");
+        }
+      });
+    }
+  }
+  updateTocActiveStatus();
+
   /** Attaches links to headings in the document,
    *  allowing sharing of sections easily */
   function addHeadingLinks() {
