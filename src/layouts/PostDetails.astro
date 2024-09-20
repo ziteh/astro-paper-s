@@ -8,6 +8,9 @@ import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
+import { experimental_AstroContainer } from "astro/container";
+import { getTocFromHtml } from "@utils/toc";
+import ToC from "@components/ToC";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -28,6 +31,12 @@ const {
 } = post.data;
 
 const { Content } = await post.render();
+
+// https://docs.astro.build/en/reference/container-reference/#rendertostring
+const container = await experimental_AstroContainer.create();
+const htmlContent = await container.renderToString(Content); // get rendered HTML
+const toc = getTocFromHtml(htmlContent);
+// const toc = getTocFromMarkdown(post.body);
 
 const ogImageUrl = typeof ogImage === "string" ? ogImage : ogImage?.src;
 const ogUrl = new URL(
@@ -83,6 +92,9 @@ const nextPost =
       size="lg"
       className="my-2"
     />
+
+    <ToC toc={toc} />
+
     <article id="article" class="prose mx-auto mt-8 max-w-3xl">
       <Content />
     </article>
