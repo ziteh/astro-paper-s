@@ -97,6 +97,7 @@ const nextPost =
       <Content />
     </article>
 
+    <!-- Sideber -->
     <div class="sidebar">
       <ToC toc={toc} />
       <button
@@ -116,11 +117,12 @@ const nextPost =
       {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
     </ul>
 
-    <div
+    <!-- ShareLinks -->
+    <!-- <div
       class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
     >
       <ShareLinks />
-    </div>
+    </div> -->
 
     <hr class="my-6 border-dashed" />
 
