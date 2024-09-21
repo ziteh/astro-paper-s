@@ -23,6 +23,7 @@ const blog = defineCollection({
       description: z.string(),
       subtitle: z.string().optional(),
       canonicalURL: z.string().optional(),
+      toc: z.boolean().default(true),
     }),
 });
 

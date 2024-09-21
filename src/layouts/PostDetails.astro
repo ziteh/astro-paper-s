@@ -29,6 +29,7 @@ const {
   date,
   updated,
   tags,
+  toc,
 } = post.data;
 
 const { Content } = await post.render();
@@ -36,7 +37,7 @@ const { Content } = await post.render();
 // https://docs.astro.build/en/reference/container-reference/#rendertostring
 const container = await experimental_AstroContainer.create();
 const htmlContent = await container.renderToString(Content); // get rendered HTML
-const toc = getTocFromHtml(htmlContent);
+const tocTree = getTocFromHtml(htmlContent);
 // const toc = getTocFromMarkdown(post.body);
 
 const ogImageUrl = typeof ogImage === "string" ? ogImage : ogImage?.src;
@@ -99,7 +100,7 @@ const nextPost =
 
     <!-- Sideber -->
     <div class="sidebar">
-      <ToC toc={toc} />
+      {toc && <ToC toc={tocTree} />}
       <button
         id="back-to-top"
         class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
