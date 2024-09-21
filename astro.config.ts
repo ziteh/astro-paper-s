@@ -17,9 +17,10 @@ export default defineConfig({
   ],
   markdown: {
     rehypePlugins: [rehypeSlug],
+    syntaxHighlight: "shiki",
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
-      themes: { light: "min-light", dark: "night-owl" },
+      themes: { light: "one-light", dark: "one-dark-pro" },
       wrap: true,
     },
   },
