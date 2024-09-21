@@ -23,6 +23,7 @@ const {
   title,
   author,
   description,
+  subtitle,
   ogImage,
   canonicalURL,
   date,
@@ -89,12 +90,8 @@ const nextPost =
       {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
     </ul>
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
-    <Datetime
-      date={date}
-      updated={updated}
-      size="lg"
-      className="my-2"
-    />
+    {subtitle && <h2 class="my-2">{subtitle}</h2>}
+    <Datetime date={date} updated={updated} size="lg" className="my-2" />
 
     <article id="article" class="prose mx-auto mt-8 max-w-3xl">
       <Content />
