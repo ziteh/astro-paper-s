@@ -29,6 +29,7 @@ const {
   date,
   updated,
   tags,
+  categories,
   toc,
   comments,
 } = post.data;
@@ -89,6 +90,7 @@ const nextPost =
   </div> -->
   <main id="main-content" class="mt-4">
     <ul class="my-1">
+      {categories && categories.map(cat => <span>{cat}</span>)}
       {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
     </ul>
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
