@@ -11,6 +11,7 @@ import { SITE } from "@config";
 import { experimental_AstroContainer } from "astro/container";
 import { getTocFromHtml } from "@utils/toc";
 import ToC from "@components/ToC";
+import Disqus from "@components/Disqus.astro";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -32,6 +33,7 @@ const {
   categories,
   toc,
   comments,
+  slug,
 } = post.data;
 
 const { Content } = await post.render();
@@ -190,7 +192,8 @@ const nextPost =
       }
     </div>
 
-    {comments && <span>Comment</span>}
+    <!-- Comments -->
+    {comments && <Disqus slug={slug} title={title} />}
   </main>
   <Footer />
 </Layout>
