@@ -30,6 +30,7 @@ const {
   updated,
   tags,
   toc,
+  comments,
 } = post.data;
 
 const { Content } = await post.render();
@@ -186,6 +187,8 @@ const nextPost =
         )
       }
     </div>
+
+    {comments && <span>Comment</span>}
   </main>
   <Footer />
 </Layout>
