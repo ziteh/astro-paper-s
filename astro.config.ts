@@ -25,6 +25,9 @@ export default defineConfig({
       wrap: true,
     },
   },
+  redirects: {
+    "/archives": "/posts",
+  },
   vite: {
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
