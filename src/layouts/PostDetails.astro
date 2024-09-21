@@ -72,7 +72,7 @@ const nextPost =
 <Layout {...layoutProps}>
   <Header />
 
-  <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
+  <!-- <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
     <button
       class="focus-outline mb-2 mt-8 flex hover:opacity-75"
       onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
@@ -83,8 +83,11 @@ const nextPost =
         ></path>
       </svg><span>Go back</span>
     </button>
-  </div>
+  </div> -->
   <main id="main-content">
+    <ul class="my-1">
+      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
+    </ul>
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
     <Datetime
       pubDatetime={pubDatetime}
@@ -112,10 +115,6 @@ const nextPost =
         <span>Back to Top</span>
       </button>
     </div>
-
-    <ul class="my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
-    </ul>
 
     <!-- ShareLinks -->
     <!-- <div
