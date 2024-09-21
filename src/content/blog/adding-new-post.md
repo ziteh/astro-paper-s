@@ -1,6 +1,6 @@
 ---
 author: Sat Naing
-pubDatetime: 2022-09-23T15:22:00Z
+date: 2022-09-23T15:22:00Z
 modDatetime: 2023-12-21T09:12:47.400Z
 title: Adding new posts in AstroPaper theme
 slug: adding-new-posts-in-astropaper-theme
@@ -39,7 +39,7 @@ Here is the list of frontmatter property for each post.
 
 > Tip! You can get ISO 8601 datetime by running `new Date().toISOString()` in the console. Make sure you remove quotes though.
 
-Only `title`, `description` and `pubDatetime` fields in frontmatter must be specified.
+Only `title`, `description` and `date` fields in frontmatter must be specified.
 
 Title and description (excerpt) are important for search engine optimization (SEO) and thus AstroPaper encourages to include these in blog posts.
 
@@ -68,7 +68,7 @@ Here is the sample frontmatter for a post.
 ---
 title: The title of the post
 author: your name
-pubDatetime: 2022-09-21T05:17:19Z
+date: 2022-09-21T05:17:19Z
 slug: the-title-of-the-post
 featured: true
 draft: false

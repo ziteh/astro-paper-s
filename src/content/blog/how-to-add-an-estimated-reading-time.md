@@ -1,7 +1,7 @@
 ---
 title: How to add an estimated reading time in AstroPaper
 author: Sat Naing
-pubDatetime: 2023-07-21T10:11:06.130Z
+date: 2023-07-21T10:11:06.130Z
 modDatetime: 2024-01-03T14:53:25Z
 slug: how-to-add-estimated-reading-time
 featured: false
@@ -173,7 +173,7 @@ const {
   description,
   ogImage,
   readingTime, // we can now directly access readingTime from frontmatter
-  pubDatetime,
+  date,
   modDatetime,
   tags } = post.data;
 
@@ -199,10 +199,10 @@ const getSortedPosts = async (posts: CollectionEntry<"blog">[]) => {
     .sort(
       (a, b) =>
         Math.floor(
-          new Date(b.data.modDatetime ?? b.data.pubDatetime).getTime() / 1000
+          new Date(b.data.modDatetime ?? b.data.date).getTime() / 1000
         ) -
         Math.floor(
-          new Date(a.data.modDatetime ?? a.data.pubDatetime).getTime() / 1000
+          new Date(a.data.modDatetime ?? a.data.date).getTime() / 1000
         )
     );
 };
@@ -292,7 +292,7 @@ export default function Datetime({
   return (
     // other codes
     <span className={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
-      <FormattedDatetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
+      <FormattedDatetime date={date} modDatetime={modDatetime} />
       <span> ({readingTime})</span> {/* display reading time */}
     </span>
     // other codes
@@ -306,11 +306,11 @@ file: Card.tsx
 
 ```ts
 export default function Card({ href, frontmatter, secHeading = true }: Props) {
-  const { title, pubDatetime, modDatetime description, readingTime } = frontmatter;
+  const { title, date, modDatetime description, readingTime } = frontmatter;
   return (
     ...
     <Datetime
-      pubDatetime={pubDatetime}
+      date={date}
       modDatetime={modDatetime}
       readingTime={readingTime}
     />
@@ -326,7 +326,7 @@ file: PostDetails.tsx
 <main id="main-content">
   <h1 class="post-title">{title}</h1>
   <Datetime
-    pubDatetime={pubDatetime}
+    date={date}
     modDatetime={modDatetime}
     size="lg"
     className="my-2"

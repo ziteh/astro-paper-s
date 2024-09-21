@@ -1,6 +1,6 @@
 ---
 author: Simon Smale
-pubDatetime: 2024-01-03T20:40:08Z
+date: 2024-01-03T20:40:08Z
 modDatetime: 2024-01-08T18:59:05Z
 title: How to use Git Hooks to set Created and Modified Dates
 featured: false
@@ -12,7 +12,7 @@ canonicalURL: https://smale.codes/posts/setting-dates-via-git-hooks/
 description: How to use Git Hooks to set your Created and Modified Dates on AstroPaper
 ---
 
-In this post I will explain how to use the pre-commit Git hook to automate the input of the created (`pubDatetime`) and modified (`modDatetime`) in the AstroPaper blog theme frontmatter
+In this post I will explain how to use the pre-commit Git hook to automate the input of the created (`date`) and modified (`modDatetime`) in the AstroPaper blog theme frontmatter
 
 ## Table of contents
 
@@ -95,7 +95,7 @@ To know the draft staus of the file, we need its frontmatter. In the following c
 
 Now we have the value for `draft` we are going to do 1 of 3 things, set the modDatetime to now (when draft is false `if [ "$draft" = "false" ]; then`), clear the modDatetime and set draft to false (when draft is set to first `if [ "$draft" = "first" ]; then`), or nothing (in any other case).
 
-The next part with the sed command is a bit magical to me as I don't often use it, it was copied from [another blog post on doing something similar](https://mademistakes.com/notes/adding-last-modified-timestamps-with-git/). In essence, it is looking inside the frontmatter tags (`---`) of the file to find the `pubDatetime:` key, getting the full line and replacing it with the `pubDatetime: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/"` same key again and the current datetime formatted correctly.
+The next part with the sed command is a bit magical to me as I don't often use it, it was copied from [another blog post on doing something similar](https://mademistakes.com/notes/adding-last-modified-timestamps-with-git/). In essence, it is looking inside the frontmatter tags (`---`) of the file to find the `date:` key, getting the full line and replacing it with the `date: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/"` same key again and the current datetime formatted correctly.
 
 This replacement is in the context of the whole file so we put that into a temporary file (`> tmp`), then we move (`mv`) the new file into the location of the old file, overwriting it. This is then added to git ready to be committed as if we made the change ourselves.
 
@@ -109,12 +109,12 @@ For the `sed` to work the frontmatter needs to already have the `modDatetime` ke
 
 ### Adding the Date for new files
 
-Adding the date for a new file is the same process as above, but this time we are looking for lines that have been added (`A`) and we are going to replace the `pubDatetime` value.
+Adding the date for a new file is the same process as above, but this time we are looking for lines that have been added (`A`) and we are going to replace the `date` value.
 
 ```shell
-# New files, add/update the pubDatetime
+# New files, add/update the date
 git diff --cached --name-status | egrep -i "^(A).*\.(md)$" | while read a b; do
-  cat $b | sed "/---.*/,/---.*/s/^pubDatetime:.*$/pubDatetime: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/" > tmp
+  cat $b | sed "/---.*/,/---.*/s/^date:.*$/date: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/" > tmp
   mv tmp $b
   git add $b
 done
@@ -124,7 +124,7 @@ done
 
 #### Improvement - Only Loop Once
 
-We could use the `a` variable to switch inside the loop and either update the `modDatetime` or add the `pubDatetime` in one loop.
+We could use the `a` variable to switch inside the loop and either update the `modDatetime` or add the `date` in one loop.
 
 ---
 
@@ -148,7 +148,7 @@ const blog = defineCollection({
   schema: ({ image }) =>
     z.object({
       author: z.string().default(SITE.author),
-      pubDatetime: z.date(),
+      date: z.date(),
 -     modDatetime: z.date().optional(),
 +     modDatetime: z.date().optional().nullable(),
       title: z.string(),
@@ -179,7 +179,7 @@ export interface Props {
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
-  pubDatetime?: Date;
+  date?: Date;
   modDatetime?: Date | null;
 }
 ```
@@ -190,7 +190,7 @@ export interface Props {
 
 ```typescript
 interface DatetimesProps {
-  pubDatetime: string | Date;
+  date: string | Date;
   modDatetime: string | Date | undefined | null;
 }
 ```

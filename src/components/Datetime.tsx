@@ -1,7 +1,7 @@
 import { LOCALE } from "@config";
 
 interface DatetimesProps {
-  pubDatetime: string | Date;
+  date: string | Date;
   modDatetime: string | Date | undefined | null;
 }
 
@@ -11,7 +11,7 @@ interface Props extends DatetimesProps {
 }
 
 export default function Datetime({
-  pubDatetime,
+  date,
   modDatetime,
   size = "sm",
   className = "",
@@ -31,12 +31,9 @@ export default function Datetime({
         <path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path>
       </svg> */}
       <span className={`${size === "sm" ? "text-sm" : "text-base"}`}>
-        <FormattedDatetime
-          pubDatetime={pubDatetime}
-          modDatetime={modDatetime}
-        />
+        <FormattedDatetime date={date} modDatetime={modDatetime} />
       </span>
-      {modDatetime && modDatetime > pubDatetime ? (
+      {modDatetime && modDatetime > date ? (
         <span className={`${size === "sm" ? "text-sm" : "text-base"}`}>
           Updated
         </span>
@@ -47,30 +44,30 @@ export default function Datetime({
   );
 }
 
-const FormattedDatetime = ({ pubDatetime, modDatetime }: DatetimesProps) => {
+const FormattedDatetime = ({ date, modDatetime }: DatetimesProps) => {
   const myDatetime = new Date(
-    modDatetime && modDatetime > pubDatetime ? modDatetime : pubDatetime
+    modDatetime && modDatetime > date ? modDatetime : date
   );
 
-  // const date = myDatetime.toLocaleDateString(LOCALE.langTag, {
+  // const fmtDate = myDatetime.toLocaleDateString(LOCALE.langTag, {
   //   year: "numeric",
   //   month: "numeric",
   //   day: "numeric",
   // });
-  const date = `${myDatetime.getFullYear()}/${myDatetime.getMonth() + 1}/${myDatetime.getDate()}`;
+  const fmtDate = `${myDatetime.getFullYear()}/${myDatetime.getMonth() + 1}/${myDatetime.getDate()}`;
 
-  // const time = myDatetime.toLocaleTimeString(LOCALE.langTag, {
+  // const fmtTime = myDatetime.toLocaleTimeString(LOCALE.langTag, {
   //   hour: "2-digit",
   //   minute: "2-digit",
   // });
-  const time = `${myDatetime.getHours()}:${myDatetime.getMinutes()}`;
+  const fmtTime = `${myDatetime.getHours()}:${myDatetime.getMinutes()}`;
 
   return (
     <>
-      <time dateTime={myDatetime.toISOString()}>{date}</time>
+      <time dateTime={myDatetime.toISOString()}>{fmtDate}</time>
       <span aria-hidden="true"> </span>
       <span className="sr-only">&nbsp;at&nbsp;</span>
-      <span className="text-nowrap">{time}</span>
+      <span className="text-nowrap">{fmtTime}</span>
     </>
   );
 };

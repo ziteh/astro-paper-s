@@ -25,7 +25,7 @@ const {
   description,
   ogImage,
   canonicalURL,
-  pubDatetime,
+  date,
   modDatetime,
   tags,
 } = post.data;
@@ -48,7 +48,7 @@ const layoutProps = {
   title: `${title} | ${SITE.title}`,
   author,
   description,
-  pubDatetime,
+  date,
   modDatetime,
   canonicalURL,
   ogImage: ogUrl,
@@ -90,7 +90,7 @@ const nextPost =
     </ul>
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
     <Datetime
-      pubDatetime={pubDatetime}
+      date={date}
       modDatetime={modDatetime}
       size="lg"
       className="my-2"
