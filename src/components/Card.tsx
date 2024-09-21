@@ -6,9 +6,15 @@ export interface Props {
   href?: string;
   frontmatter: CollectionEntry<"blog">["data"];
   secHeading?: boolean;
+  fallbackDescription?: string;
 }
 
-export default function Card({ href, frontmatter, secHeading = true }: Props) {
+export default function Card({
+  href,
+  frontmatter,
+  secHeading = true,
+  fallbackDescription = "",
+}: Props) {
   const { title, date, updated, description } = frontmatter;
 
   const headerProps = {
@@ -29,7 +35,7 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
         )}
       </a>
       <Datetime date={date} updated={updated} />
-      <p>{description}</p>
+      <p>{description ? description : fallbackDescription}</p>
     </li>
   );
 }

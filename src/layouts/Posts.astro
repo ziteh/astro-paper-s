@@ -21,8 +21,12 @@ const { page } = Astro.props;
   <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
     <ul>
       {
-        page.data.map(({ data, slug }) => (
-          <Card href={`/posts/${slug}/`} frontmatter={data} />
+        page.data.map(({ data, slug, body }) => (
+          <Card
+            href={`/posts/${slug}/`}
+            frontmatter={data}
+            fallbackDescription={body.substring(0, SITE.genDescriptionCount)}
+          />
         ))
       }
     </ul>

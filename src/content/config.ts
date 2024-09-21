@@ -21,7 +21,7 @@ const blog = defineCollection({
         })
         .or(z.string())
         .optional(),
-      description: z.string(),
+      description: z.string().optional(),
       subtitle: z.string().optional().nullable(),
       canonicalURL: z.string().optional(),
       toc: z.boolean().default(true),

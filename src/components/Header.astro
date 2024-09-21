@@ -2,6 +2,8 @@
 import { LOGO_IMAGE, SITE } from "@config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
+import { SOCIALS } from "@config";
+import socialIcons from "@assets/socialIcons";
 
 export interface Props {
   activeNav?: "posts" | "tags" | "categories" | "about" | "search";
@@ -95,6 +97,20 @@ const { activeNav } = Astro.props;
                 ></path>
               </svg>
               <span class="sr-only">Search</span>
+            </LinkButton>
+          </li>
+          <li>
+            <LinkButton
+              href={SOCIALS.filter(s => s.name === "Github").map(
+                s => s.href
+              )[0]}
+              className="focus-outline flex p-3 sm:p-1"
+              ariaLabel="github"
+              title="Github"
+              external={true}
+            >
+              <Fragment set:html={socialIcons["Github"]} />
+              <span class="sr-only">GitHub</span>
             </LinkButton>
           </li>
           {

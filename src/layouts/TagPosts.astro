@@ -28,8 +28,12 @@ const { page, tag, tagName } = Astro.props;
     <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
     <ul>
       {
-        page.data.map(({ data, slug }) => (
-          <Card href={`/posts/${slug}/`} frontmatter={data} />
+        page.data.map(({ data, slug, body }) => (
+          <Card
+            href={`/posts/${slug}/`}
+            frontmatter={data}
+            fallbackDescription={body.substring(0, SITE.genDescriptionCount)}
+          />
         ))
       }
     </ul>

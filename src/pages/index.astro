@@ -95,12 +95,16 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           <h2>Recent Posts</h2>
           <ul>
             {recentPosts.map(
-              ({ data, slug }, index) =>
+              ({ data, slug, body }, index) =>
                 index < SITE.postPerIndex && (
                   <Card
                     href={`/posts/${slug}/`}
                     frontmatter={data}
                     secHeading={false}
+                    fallbackDescription={body.substring(
+                      0,
+                      SITE.genDescriptionCount
+                    )}
                   />
                 )
             )}
