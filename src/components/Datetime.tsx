@@ -2,7 +2,7 @@ import { LOCALE } from "@config";
 
 interface DatetimesProps {
   date: string | Date;
-  modDatetime: string | Date | undefined | null;
+  updated: string | Date | undefined | null;
 }
 
 interface Props extends DatetimesProps {
@@ -12,7 +12,7 @@ interface Props extends DatetimesProps {
 
 export default function Datetime({
   date,
-  modDatetime,
+  updated,
   size = "sm",
   className = "",
 }: Props) {
@@ -31,9 +31,9 @@ export default function Datetime({
         <path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path>
       </svg> */}
       <span className={`${size === "sm" ? "text-sm" : "text-base"}`}>
-        <FormattedDatetime date={date} modDatetime={modDatetime} />
+        <FormattedDatetime date={date} updated={updated} />
       </span>
-      {modDatetime && modDatetime > date ? (
+      {updated && updated > date ? (
         <span className={`${size === "sm" ? "text-sm" : "text-base"}`}>
           Updated
         </span>
@@ -44,9 +44,9 @@ export default function Datetime({
   );
 }
 
-const FormattedDatetime = ({ date, modDatetime }: DatetimesProps) => {
+const FormattedDatetime = ({ date, updated }: DatetimesProps) => {
   const myDatetime = new Date(
-    modDatetime && modDatetime > date ? modDatetime : date
+    updated && updated > date ? updated : date
   );
 
   // const fmtDate = myDatetime.toLocaleDateString(LOCALE.langTag, {

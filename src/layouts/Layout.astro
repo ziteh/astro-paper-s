@@ -13,7 +13,7 @@ export interface Props {
   ogImage?: string;
   canonicalURL?: string;
   date?: Date;
-  modDatetime?: Date | null;
+  updated?: Date | null;
   scrollSmooth?: boolean;
 }
 
@@ -25,7 +25,7 @@ const {
   ogImage = SITE.ogImage,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
   date,
-  modDatetime,
+  updated,
   scrollSmooth = false,
 } = Astro.props;
 
@@ -40,7 +40,7 @@ const structuredData = {
   headline: `${title}`,
   image: `${socialImageURL}`,
   datePublished: `${date?.toISOString()}`,
-  ...(modDatetime && { dateModified: modDatetime.toISOString() }),
+  ...(updated && { dateModified: updated.toISOString() }),
   author: [
     {
       "@type": "Person",
@@ -86,10 +86,10 @@ const structuredData = {
       )
     }
     {
-      modDatetime && (
+      updated && (
         <meta
           property="article:modified_time"
-          content={modDatetime.toISOString()}
+          content={updated.toISOString()}
         />
       )
     }

@@ -2,7 +2,7 @@
 title: How to add an estimated reading time in AstroPaper
 author: Sat Naing
 date: 2023-07-21T10:11:06.130Z
-modDatetime: 2024-01-03T14:53:25Z
+updated: 2024-01-03T14:53:25Z
 slug: how-to-add-estimated-reading-time
 featured: false
 draft: false
@@ -174,7 +174,7 @@ const {
   ogImage,
   readingTime, // we can now directly access readingTime from frontmatter
   date,
-  modDatetime,
+  updated,
   tags } = post.data;
 
 // other codes
@@ -199,10 +199,10 @@ const getSortedPosts = async (posts: CollectionEntry<"blog">[]) => {
     .sort(
       (a, b) =>
         Math.floor(
-          new Date(b.data.modDatetime ?? b.data.date).getTime() / 1000
+          new Date(b.data.updated ?? b.data.date).getTime() / 1000
         ) -
         Math.floor(
-          new Date(a.data.modDatetime ?? a.data.date).getTime() / 1000
+          new Date(a.data.updated ?? a.data.date).getTime() / 1000
         )
     );
 };
@@ -292,7 +292,7 @@ export default function Datetime({
   return (
     // other codes
     <span className={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
-      <FormattedDatetime date={date} modDatetime={modDatetime} />
+      <FormattedDatetime date={date} updated={updated} />
       <span> ({readingTime})</span> {/* display reading time */}
     </span>
     // other codes
@@ -306,12 +306,12 @@ file: Card.tsx
 
 ```ts
 export default function Card({ href, frontmatter, secHeading = true }: Props) {
-  const { title, date, modDatetime description, readingTime } = frontmatter;
+  const { title, date, updated description, readingTime } = frontmatter;
   return (
     ...
     <Datetime
       date={date}
-      modDatetime={modDatetime}
+      updated={updated}
       readingTime={readingTime}
     />
     ...
@@ -327,7 +327,7 @@ file: PostDetails.tsx
   <h1 class="post-title">{title}</h1>
   <Datetime
     date={date}
-    modDatetime={modDatetime}
+    updated={updated}
     size="lg"
     className="my-2"
     readingTime={readingTime}
