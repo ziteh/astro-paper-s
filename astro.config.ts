@@ -3,6 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import rehypeSlug from "rehype-slug";
+import rehypeFigure from "@microflash/rehype-figure";
 import { SITE } from "./src/config";
 
 // https://astro.build/config
@@ -16,7 +17,7 @@ export default defineConfig({
     sitemap(),
   ],
   markdown: {
-    rehypePlugins: [rehypeSlug],
+    rehypePlugins: [rehypeSlug, rehypeFigure],
     syntaxHighlight: "shiki",
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes

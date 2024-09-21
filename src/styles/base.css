@@ -68,6 +68,10 @@
     @apply hidden;
   }
 
+  figcaption {
+    text-align: center;
+  }
+
   .sidebar {
     @apply fixed right-24 top-16 mt-8 hidden w-64 lg:block;
   }
