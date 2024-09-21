@@ -68,10 +68,13 @@
     @apply hidden;
   }
 
+  .sidebar {
+    @apply fixed right-24 top-16 mt-8 hidden w-64 lg:block;
+  }
+
   .toc {
-    @apply lg:block fixed right-24 top-16 mt-8 hidden w-64;
     li {
-      @apply overflow-hidden truncate whitespace-nowrap;
+      @apply ml-4 overflow-hidden truncate whitespace-nowrap;
     }
   }
 

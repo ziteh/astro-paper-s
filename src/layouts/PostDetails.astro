@@ -97,15 +97,8 @@ const nextPost =
       <Content />
     </article>
 
-    <ToC toc={toc} />
-
-    <ul class="my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
-    </ul>
-
-    <div
-      class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
-    >
+    <div class="sidebar">
+      <ToC toc={toc} />
       <button
         id="back-to-top"
         class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
@@ -117,7 +110,15 @@ const nextPost =
         </svg>
         <span>Back to Top</span>
       </button>
+    </div>
 
+    <ul class="my-8">
+      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
+    </ul>
+
+    <div
+      class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
+    >
       <ShareLinks />
     </div>
 

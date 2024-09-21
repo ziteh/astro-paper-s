@@ -7,7 +7,7 @@ interface Props {
 function TreeNode({ item }: { item: TocTree }) {
   return (
     <div className={`toc-lv-${item.level}`}>
-      <li key={item.id} style={{ marginLeft: `${(item.level - 1) * 1.25}rem` }}>
+      <li key={item.id}>
         <a href={`#${item.id}`}>{item.text}</a>
         {item.children.length > 0 && <SubTree toc={item.children} />}
       </li>
