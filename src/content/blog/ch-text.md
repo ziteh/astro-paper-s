@@ -4,7 +4,6 @@ subtitle: 副標題
 description: "AstroPaper v4: ensuring a smoother and more feature-rich blogging experience."
 date: 2024-09-21T09:30:41.816Z
 slug: ch-text
-featured: true
 tags:
   - release
 comments: true
