@@ -4,21 +4,20 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
-import Tag from "@components/Tag.astro";
-import getUniqueTags from "@utils/getUniqueTags";
+import getUniqueCategories from "@utils/getUniqueCategories";
 import { SITE } from "@config";
 
 const posts = await getCollection("blog");
 
-let tags = getUniqueTags(posts);
+let categories = getUniqueCategories(posts);
 ---
 
 <Layout title={`Categories | ${SITE.title}`}>
   <Header activeNav="categories" />
   <Main pageTitle="Categories" pageDesc="All the categories.">
-    <!-- <ul>
-      {tags.map(({ tag }) => <Tag {tag} size="lg" />)}
-    </ul> -->
+    <ul>
+      {categories.map(({ name }) => <span>{name}</span>)}
+    </ul>
   </Main>
   <Footer />
 </Layout>
