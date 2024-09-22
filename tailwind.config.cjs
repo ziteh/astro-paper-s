@@ -1,5 +1,3 @@
-import { literal } from 'astro:schema';
-
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
     if (opacityValue !== undefined) {
@@ -63,6 +61,8 @@ module.exports = {
             },
             code: {
               color: false,
+              fontStyle: "normal",
+              fontWeight: "inherit",
             },
             h1: {
               fontSize: '2rem',
