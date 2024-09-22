@@ -6,13 +6,12 @@ import Tag from "@components/Tag.astro";
 import Datetime from "@components/Datetime";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
-import ShareLinks from "@components/ShareLinks.astro";
+// import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
 import { experimental_AstroContainer } from "astro/container";
 import { getTocFromHtml } from "@utils/toc";
 import ToC from "@components/ToC";
 import Disqus from "@components/Disqus.astro";
-
 import { _t } from "lang/lang";
 
 // 根據環境變量設定語言
@@ -126,7 +125,14 @@ const nextPost =
             >
               <path d="M4 11h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm10 0h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zM4 21h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm13 0c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4z" />
             </svg>
-            <span class="text-sm">{categories}</span>
+            {categories.map((cat: string) => (
+              <a
+                href={`/categories/${slugifyStr(cat)}`}
+                class="text-sm hover:text-skin-accent"
+              >
+                {cat}
+              </a>
+            ))}
           </div>
         )
       }
