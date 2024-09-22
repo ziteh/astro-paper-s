@@ -91,13 +91,54 @@ const nextPost =
     </button>
   </div> -->
   <main id="main-content" class="mt-4">
-    <ul class="my-1">
-      {categories && categories.map(cat => <span>{cat}</span>)}
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
+    <ul
+      class="my-1 flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0"
+    >
+      {
+        categories.length > 0 && (
+          <div class="flex items-center space-x-0.5 opacity-80">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              class="mt-0.5 h-4 w-4"
+            >
+              <path d="M4 11h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm10 0h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zM4 21h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm13 0c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4z" />
+            </svg>
+            <span class="text-sm">{categories}</span>
+          </div>
+        )
+      }
+      {
+        tags.length > 0 && (
+          <div class="flex items-center space-x-0.5 opacity-80">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              class="mt-1 h-4 w-4"
+            >
+              <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8 8a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828l-8-8zM7 9a2 2 0 1 1 .001-4.001A2 2 0 0 1 7 9z" />
+            </svg>
+            {tags.map(tag => (
+              <Tag tag={slugifyStr(tag)} />
+            ))}
+          </div>
+        )
+      }
     </ul>
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
     {subtitle && <h2 class="my-2">{subtitle}</h2>}
-    <Datetime date={date} updated={updated} size="lg" className="my-2" />
+    <div class="flex">
+      <Datetime
+        date={date}
+        updated={updated}
+        size="lg"
+        className="my-2 ml-auto"
+      />
+    </div>
 
     <article id="article" class="prose mx-auto mt-8 max-w-3xl">
       <Content />
