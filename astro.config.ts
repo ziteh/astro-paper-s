@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import rehypeSlug from "rehype-slug";
 import rehypeFigure from "@microflash/rehype-figure";
 import rehypePrettyCode from "rehype-pretty-code";
+import { transformerCopyButton } from "@rehype-pretty/transformers";
 import { SITE } from "./src/config";
 
 const rehypePrettyCodeOption = {
@@ -13,6 +14,12 @@ const rehypePrettyCodeOption = {
     dark: "one-dark-pro",
   },
   keepBackground: false,
+  transformers: [
+    transformerCopyButton({
+      visibility: "hover",
+      feedbackDuration: 700,
+    }),
+  ],
 };
 
 // https://astro.build/config

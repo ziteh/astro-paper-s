@@ -14,6 +14,9 @@ dependencies:
   '@microflash/rehype-figure':
     specifier: ^2.1.1
     version: 2.1.1
+  '@rehype-pretty/transformers':
+    specifier: ^0.13.2
+    version: 0.13.2
   '@resvg/resvg-js':
     specifier: ^2.6.2
     version: 2.6.2
@@ -1015,6 +1018,11 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dev: true
+
+  /@rehype-pretty/transformers@0.13.2:
+    resolution: {integrity: sha512-p2ciQSwqy5Ip8aNUa9q6rdS/hJZXrxHYYfDVOHvKOsBu3t9HDmQ65YX6r9Qbl19vi160OAxmGF7MIoCRDJrRhg==}
+    engines: {node: '>=18'}
+    dev: false
 
   /@resvg/resvg-js-android-arm-eabi@2.6.2:
     resolution: {integrity: sha512-FrJibrAk6v29eabIPgcTUMPXiEz8ssrAk7TXxsiZzww9UTQ1Z5KAbFJs+Z0Ez+VZTYgnE5IQJqBcoSiMebtPHA==}
