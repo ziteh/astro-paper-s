@@ -27,8 +27,8 @@ function SubTree({ toc }: Props) {
 
 export default function ToC({ toc }: Props) {
   return (
-    <div className="toc">
+    <nav className="toc">
       <SubTree toc={toc} />
-    </div>
+    </nav>
   );
 }
