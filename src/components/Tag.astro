@@ -7,11 +7,7 @@ export interface Props {
 const { tag, size = "sm" } = Astro.props;
 ---
 
-<li
-  class={`inline-block ${
-    size === "sm" ? "my-1 underline-offset-4" : "my-3 mx-1 underline-offset-8"
-  }`}
->
+<li class={`inline-block ${size === "sm" ? "my-1" : "my-3"}`}>
   <a
     href={`/tags/${tag}/`}
     transition:name={tag}
