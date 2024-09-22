@@ -364,8 +364,9 @@ const nextPost =
   /** Attaches links to headings in the document,
    *  allowing sharing of sections easily */
   function addHeadingLinks() {
+    const article = document.getElementById("article");
     const headings = Array.from(
-      document.querySelectorAll("h2, h3, h4, h5, h6")
+      article.querySelectorAll("h1, h2, h3, h4, h5, h6")
     );
     for (const heading of headings) {
       heading.classList.add("group");
