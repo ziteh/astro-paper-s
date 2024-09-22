@@ -6,6 +6,7 @@ import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import getUniqueCategories from "@utils/getUniqueCategories";
 import { SITE } from "@config";
+import { _t } from "lang/lang";
 
 const posts = await getCollection("blog");
 
@@ -14,7 +15,7 @@ let categories = getUniqueCategories(posts);
 
 <Layout title={`Categories | ${SITE.title}`}>
   <Header activeNav="categories" />
-  <Main pageTitle="Categories" pageDesc="All the categories.">
+  <Main pageTitle={_t.categories} pageDesc={_t.categoriesDesc}>
     <ul>
       {categories.map(({ name }) => <span>{name}</span>)}
     </ul>

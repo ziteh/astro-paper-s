@@ -2,6 +2,7 @@ import Fuse from "fuse.js";
 import { useEffect, useRef, useState, useMemo, type FormEvent } from "react";
 import Card from "@components/Card";
 import type { CollectionEntry } from "astro:content";
+import { _t } from "lang/lang";
 
 export type SearchItem = {
   title: string;
@@ -84,7 +85,7 @@ export default function SearchBar({ searchList }: Props) {
         </span>
         <input
           className="block w-full rounded border border-skin-fill/40 bg-skin-fill py-3 pl-10 pr-3 placeholder:italic focus:border-skin-accent focus:outline-none"
-          placeholder="Search for anything..."
+          placeholder={_t.searchPlaceholder}
           type="text"
           name="search"
           value={inputVal}
@@ -97,11 +98,7 @@ export default function SearchBar({ searchList }: Props) {
 
       {inputVal.length > 1 && (
         <div className="mt-8">
-          Found {searchResults?.length}
-          {searchResults?.length && searchResults?.length === 1
-            ? " result"
-            : " results"}{" "}
-          for '{inputVal}'
+          {_t.searchResult(searchResults?.length || 0, inputVal)}
         </div>
       )}
 

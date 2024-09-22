@@ -13,6 +13,12 @@ import { getTocFromHtml } from "@utils/toc";
 import ToC from "@components/ToC";
 import Disqus from "@components/Disqus.astro";
 
+import { _t } from "lang/lang";
+
+// 根據環境變量設定語言
+// const lang: Language = (import.meta.env.LANG as Language) || 'en'; // 确保 lang 是 Language 类型
+// const t = translations[lang];
+
 export interface Props {
   post: CollectionEntry<"blog">;
   posts: CollectionEntry<"blog">[];
@@ -143,7 +149,6 @@ const nextPost =
         )
       }
     </ul>
-
     <a href={`/posts/${slug}`}>
       <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
     </a>
@@ -176,7 +181,7 @@ const nextPost =
             d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
           ></path>
         </svg>
-        <span>Back to Top</span>
+        <span>{_t.backToTop}</span>
       </button>
       <button
         id="md-share-btn"
@@ -192,7 +197,7 @@ const nextPost =
             d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"
           ></path><path d="M6 12h6v2H6zm0 4h6v2H6z"></path></svg
         >
-        <span>Copy Markdown Link</span>
+        <span>{_t.copyMdLink}</span>
       </button>
     </div>
 

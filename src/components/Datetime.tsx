@@ -1,4 +1,5 @@
 import { LOCALE } from "@config";
+import { _t } from "lang/lang";
 
 interface DatetimesProps {
   date: string | Date;
@@ -35,10 +36,10 @@ export default function Datetime({
       </span>
       {updated && updated > date ? (
         <span className={`${size === "sm" ? "text-sm" : "text-base"}`}>
-          Updated
+          {_t.date.updated}
         </span>
       ) : (
-        <span className="sr-only">Published</span>
+        <span className="sr-only">{_t.date.published}</span>
       )}
     </div>
   );
