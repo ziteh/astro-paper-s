@@ -26,6 +26,7 @@ const blog = defineCollection({
       canonicalURL: z.string().optional(),
       toc: z.boolean().default(true),
       comments: z.boolean().default(true),
+      math: z.boolean().default(false),
     }),
 });
 

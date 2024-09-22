@@ -2,6 +2,8 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import rehypeFigure from "@microflash/rehype-figure";
 import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
@@ -33,7 +35,12 @@ export default defineConfig({
   ],
   markdown: {
     syntaxHighlight: false, // Use rehype-pretty-code
-    rehypePlugins: [rehypeFigure, [rehypePrettyCode, rehypePrettyCodeOption]],
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [
+      rehypeFigure,
+      rehypeKatex,
+      [rehypePrettyCode, rehypePrettyCodeOption],
+    ],
   },
   redirects: {
     "/archives": "/posts",

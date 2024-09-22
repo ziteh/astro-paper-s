@@ -82,6 +82,10 @@
     }
   }
 
+  .katex {
+    @apply text-skin-base;
+  }
+
   /* ===== scrollbar ===== */
   html {
     overflow-y: scroll;
