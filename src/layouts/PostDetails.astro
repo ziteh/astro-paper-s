@@ -152,7 +152,7 @@ const nextPost =
     <!-- Sideber -->
     <div class="sidebar">
       {toc && <ToC toc={tocTree} />}
-      <hr class="mt-2 border-skin-line" aria-hidden={true} />
+      <hr class="mt-2 opacity-60" aria-hidden={true} />
       <button
         id="back-to-top"
         aria-label="Back to Top"
@@ -257,7 +257,13 @@ const nextPost =
     </div>
 
     <!-- Comments -->
-    {comments && <Disqus slug={slug} title={title} />}
+    {
+      comments && (
+        <div class="my-8">
+          <Disqus slug={slug} title={title} />
+        </div>
+      )
+    }
   </main>
   <Footer />
 </Layout>
