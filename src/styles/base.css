@@ -161,6 +161,14 @@
   }
 
   /* Apply Dark Theme (if multi-theme specified) */
+  html[data-theme="light"] pre:has(code),
+  html[data-theme="light"] pre:has(code) span {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
+    font-style: var(--shiki-light-font-style) !important;
+    font-weight: var(--shiki-light-font-weight) !important;
+    text-decoration: var(--shiki-light-text-decoration) !important;
+  }
   html[data-theme="dark"] pre:has(code),
   html[data-theme="dark"] pre:has(code) span {
     color: var(--shiki-dark) !important;

@@ -14,7 +14,7 @@ const rehypePrettyCodeOption = {
     light: "one-light",
     dark: "one-dark-pro",
   },
-  keepBackground: false,
+  keepBackground: true,
   transformers: [
     transformerCopyButton({
       visibility: "hover",
