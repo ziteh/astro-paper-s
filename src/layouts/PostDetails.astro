@@ -303,14 +303,17 @@ const nextPost =
     });
 
     function updateTocStatus(id) {
+      const activedClass = "!text-skin-accent";
+      const unactivedClass = "!opacity-80";
+
       tocLinks.forEach(link => {
         const linkId = link.getAttribute("href").slice(1); // Remove '#'
         if (linkId === id) {
-          link.classList.add("text-blue-500");
-          link.classList.remove("text-orange-500");
+          link.classList.add(activedClass);
+          link.classList.remove(unactivedClass);
         } else {
-          link.classList.add("text-orange-500");
-          link.classList.remove("text-blue-500");
+          link.classList.add(unactivedClass);
+          link.classList.remove(activedClass);
         }
       });
     }
