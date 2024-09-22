@@ -33,8 +33,9 @@ const {
   categories,
   toc,
   comments,
-  slug,
 } = post.data;
+
+const { slug } = post;
 
 const { Content } = await post.render();
 
@@ -130,7 +131,9 @@ const nextPost =
       }
     </ul>
 
-    <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
+    <a href={`/posts/${slug}`}>
+      <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
+    </a>
     {subtitle && <h2 class="post-subtitle">{subtitle}</h2>}
 
     <div class="flex">
