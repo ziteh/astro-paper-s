@@ -16,6 +16,10 @@ export function getTocFromHtml(content: string): TocTree[] {
     const text = $(element).text();
     const id = $(element).attr("id") || getAnchorText(text);
 
+    if (id === "footnote-label") {
+      return;
+    }
+
     const newItem: TocTree = { id, text, level, children: [] };
 
     // If there are existing items, find the appropriate parent
