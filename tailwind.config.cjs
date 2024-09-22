@@ -90,6 +90,9 @@ module.exports = {
               lineHeight: '1rem',
               fontStyle: "italic",
             },
+            blockquote: {
+              fontWeight:"italic",
+            },
             "blockquote p:first-of-type::before": {
               content: "none",
             },
