@@ -45,22 +45,20 @@ export default function Datetime({
 }
 
 const FormattedDatetime = ({ date, updated }: DatetimesProps) => {
-  const myDatetime = new Date(
-    updated && updated > date ? updated : date
-  );
+  const myDatetime = new Date(updated && updated > date ? updated : date);
 
   // const fmtDate = myDatetime.toLocaleDateString(LOCALE.langTag, {
   //   year: "numeric",
   //   month: "numeric",
   //   day: "numeric",
   // });
-  const fmtDate = `${myDatetime.getFullYear()}/${myDatetime.getMonth() + 1}/${myDatetime.getDate()}`;
+  const fmtDate = `${myDatetime.getFullYear()}/${String(myDatetime.getMonth() + 1).padStart(2, "0")}/${String(myDatetime.getDate()).padStart(2, "0")}`;
 
   // const fmtTime = myDatetime.toLocaleTimeString(LOCALE.langTag, {
   //   hour: "2-digit",
   //   minute: "2-digit",
   // });
-  const fmtTime = `${myDatetime.getHours()}:${myDatetime.getMinutes()}`;
+  const fmtTime = `${String(myDatetime.getHours()).padStart(2, "0")}:${String(myDatetime.getMinutes()).padStart(2, "0")}`;
 
   return (
     <>
