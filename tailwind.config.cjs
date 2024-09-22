@@ -49,8 +49,22 @@ module.exports = {
         transparent: "transparent",
       },
       fontFamily: {
-        body:["Noto Sans", "Noto Sans TC", "sans-serif"],
-        mono: ["Fira Mono", "monospace"],
+        body: ["Noto Sans", "Noto Sans TC", "sans-serif"],
+        mono: [
+          "Fira Mono",
+          "Menlo", // macOS, iOS
+          "SF Mono", // iOS
+          "Monaco", // macOS
+          "Ubuntu Mono", // Linux
+          "DejaVu Sans Mono", // Linux
+          "Liberation Mono", // Linux
+          "Roboto Mono", // Android
+          "Consolas", // Windows
+          "Courier New", // Windows
+          "Courier", // macOS, iOS
+          "Noto Sans TC", // Chinese fallback
+          "monospace"
+        ],
       },
 
       typography: {
@@ -91,7 +105,7 @@ module.exports = {
               fontStyle: "italic",
             },
             blockquote: {
-              fontWeight:"italic",
+              fontWeight: "italic",
             },
             "blockquote p:first-of-type::before": {
               content: "none",
