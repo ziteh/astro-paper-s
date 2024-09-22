@@ -6,10 +6,11 @@ import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
+// import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
-import { SITE, SOCIALS } from "@config";
+import { SITE } from "@config";
 import { _t } from "lang/lang";
+import getDescription from "@utils/getDescription";
 
 const posts = await getCollection("blog");
 
@@ -17,7 +18,7 @@ const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
-const socialCount = SOCIALS.filter(social => social.active).length;
+// const socialCount = SOCIALS.filter(social => social.active).length;
 ---
 
 <Layout>
@@ -102,10 +103,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
                     href={`/posts/${slug}/`}
                     frontmatter={data}
                     secHeading={false}
-                    fallbackDescription={body.substring(
-                      0,
-                      SITE.genDescriptionCount
-                    )}
+                    fallbackDescription={getDescription(body)}
                   />
                 )
             )}

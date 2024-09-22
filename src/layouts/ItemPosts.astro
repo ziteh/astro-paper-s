@@ -8,6 +8,7 @@ import Pagination from "@components/Pagination.astro";
 import { SITE } from "@config";
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
+import getDescription from "@utils/getDescription";
 
 export interface Props {
   page: Page<CollectionEntry<"blog">>;
@@ -35,7 +36,7 @@ const { page, item, itemName, pageTitle, pageDesc, activeNav } = Astro.props;
           <Card
             href={`/posts/${slug}/`}
             frontmatter={data}
-            fallbackDescription={body.substring(0, SITE.genDescriptionCount)}
+            fallbackDescription={getDescription(body)}
           />
         ))
       }

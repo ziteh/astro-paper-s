@@ -9,6 +9,7 @@ import { SITE } from "@config";
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { _t } from "lang/lang";
+import getDescription from "@utils/getDescription";
 
 export interface Props {
   page: Page<CollectionEntry<"blog">>;
@@ -26,7 +27,7 @@ const { page } = Astro.props;
           <Card
             href={`/posts/${slug}/`}
             frontmatter={data}
-            fallbackDescription={body.substring(0, SITE.genDescriptionCount)}
+            fallbackDescription={getDescription(body)}
           />
         ))
       }
