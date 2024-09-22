@@ -1,10 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import TagPosts from "@layouts/TagPosts.astro";
+import ItemPosts from "@layouts/ItemPosts.astro";
 import getUniqueTags from "@utils/getUniqueTags";
 import getPostsByTag from "@utils/getPostsByTag";
 import type { GetStaticPathsOptions } from "astro";
 import { SITE } from "@config";
+import { _t } from "lang/lang";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getCollection("blog");
@@ -26,4 +27,11 @@ const { tag } = params;
 const { page, tagName } = Astro.props;
 ---
 
-<TagPosts {page} {tag} {tagName} />
+<ItemPosts
+  {page}
+  activeNav="tags"
+  item={tag}
+  itemName={tagName}
+  pageTitle={_t.tag}
+  pageDesc={_t.tagDesc(tag)}
+/>

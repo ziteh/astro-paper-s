@@ -8,25 +8,27 @@ import Pagination from "@components/Pagination.astro";
 import { SITE } from "@config";
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
-import { _t } from "lang/lang";
 
 export interface Props {
   page: Page<CollectionEntry<"blog">>;
-  tag: string;
-  tagName: string;
+  item: string;
+  itemName: string;
+  pageTitle: string;
+  pageDesc: string;
+  activeNav: string;
 }
 
-const { page, tag, tagName } = Astro.props;
+const { page, item, itemName, pageTitle, pageDesc, activeNav } = Astro.props;
 ---
 
-<Layout title={`Tag: ${tagName} | ${SITE.title}`}>
-  <Header activeNav="tags" />
+<Layout title={`Tag: ${itemName} | ${SITE.title}`}>
+  <Header activeNav={activeNav} />
   <Main
-    pageTitle={[_t.tag, tagName]}
-    titleTransition={tag}
-    pageDesc={_t.tagDesc(tagName)}
+    pageTitle={[pageTitle, itemName]}
+    titleTransition={item}
+    pageDesc={pageDesc}
   >
-    <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
+    <h1 slot="title" transition:name={item}>{`Tag:${item}`}</h1>
     <ul>
       {
         page.data.map(({ data, slug, body }) => (

@@ -10,6 +10,9 @@ const translations = {
     tagDesc: (tag: string) => `All the articles with the tag "${tag}".`,
     categories: "Categories",
     categoriesDesc: "All the categories.",
+    category: "Category: ",
+    categoryDesc: (category: string) =>
+      `All the articles in the category "${category}".`,
     search: "Search",
     searchDesc: "Search any article ...",
     searchPlaceholder: "Search for anything...",
@@ -44,6 +47,8 @@ const translations = {
     tagDesc: (tag: string) => `所有帶有標籤「${tag}」的文章。`,
     categories: "分類",
     categoriesDesc: "所有文章的分類。",
+    category: "分類：",
+    categoryDesc: (category: string) => `所有屬於分類「${category}」的文章。`,
     search: "搜尋",
     searchDesc: "搜尋文章 ...",
     searchPlaceholder: "搜尋任何內容...",
