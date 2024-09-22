@@ -90,6 +90,12 @@ module.exports = {
               lineHeight: '1rem',
               fontStyle: "italic",
             },
+            "blockquote p:first-of-type::before": {
+              content: "none",
+            },
+            "blockquote p:last-of-type::after": {
+              content: "none",
+            },
           },
         },
       },
