@@ -79,10 +79,7 @@ const structuredData = {
     <!-- Article Published/Modified time -->
     {
       date && (
-        <meta
-          property="article:published_time"
-          content={date.toISOString()}
-        />
+        <meta property="article:published_time" content={date.toISOString()} />
       )
     }
     {
@@ -111,7 +108,7 @@ const structuredData = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Noto+Sans+TC:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Noto+Sans:wght@300..800&family=Noto+Sans+TC:wght@300..800&display=swap"
       rel="preload"
       as="style"
       onload="this.onload=null; this.rel='stylesheet';"

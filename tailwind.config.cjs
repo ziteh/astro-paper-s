@@ -49,7 +49,7 @@ module.exports = {
         transparent: "transparent",
       },
       fontFamily: {
-        body:["Noto Sans TC", "sans-serif"],
+        body:["Noto Sans", "Noto Sans TC", "sans-serif"],
         mono: ["Fira Mono", "monospace"],
       },
 
