@@ -170,35 +170,44 @@ const nextPost =
     <!-- Sideber -->
     <div class="sidebar">
       {toc && <ToC toc={tocTree} />}
-      <hr class="mt-2 opacity-60" aria-hidden={true} />
-      <button
-        id="back-to-top"
-        aria-label="Back to Top"
-        class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rotate-90">
-          <path
-            d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
-          ></path>
-        </svg>
-        <span>{_t.backToTop}</span>
-      </button>
-      <button
-        id="md-share-btn"
-        aria-label="Copy Markdown link"
-        class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          ><path
-            d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"
-          ></path><path d="M6 12h6v2H6zm0 4h6v2H6z"></path></svg
+      <hr class="my-4 opacity-80" aria-hidden={true} />
+      <div class="flex flex-col items-start space-y-0 opacity-80">
+        <button
+          id="back-to-top"
+          aria-label={_t.backToTop}
+          class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
         >
-        <span>{_t.copyMdLink}</span>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            class="h-5 w-5"
+            ><path
+              d="m12 6.879-7.061 7.06 2.122 2.122L12 11.121l4.939 4.94 2.122-2.122z"
+            ></path></svg
+          >
+          <span class="text-sm">{_t.backToTop}</span>
+        </button>
+        <button
+          id="md-share-btn"
+          aria-label={_t.copyMdLink}
+          title="[Title](https://)"
+          class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            class="h-5 w-5"
+            ><path
+              d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"
+            ></path><path d="M6 12h6v2H6zm0 4h6v2H6z"></path></svg
+          >
+          <span class="text-sm">{_t.copyMdLink}</span>
+        </button>
+      </div>
     </div>
 
     <!-- ShareLinks -->
