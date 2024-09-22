@@ -114,6 +114,39 @@
   [data-theme="dark"] pre:has(code) {
     /* @apply border border-skin-line; */
   }
+
+  /* Line numbers for rehype-pretty-code, https://github.com/rehype-pretty/rehype-pretty-code/issues/99#issuecomment-1685217913 */
+  code {
+    counter-reset: line;
+  }
+  code > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply mr-4 inline-block w-4 text-right text-gray-500;
+  }
+  /* code[data-line-numbers] {
+    counter-reset: line;
+  }
+  code[data-line-numbers] > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply mr-4 inline-block w-4 text-right text-gray-500;
+  } */
+
+  /* Multi-theme for rehype-pretty-code */
+  code[data-theme*=" "],
+  code[data-theme*=" "] span {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+  }
+  @media (prefers-color-scheme: dark) {
+    code[data-theme*=" "],
+    code[data-theme*=" "] span {
+      color: var(--shiki-dark);
+      background-color: var(--shiki-dark-bg);
+    }
+  }
+
   code,
   blockquote {
     word-wrap: break-word;

@@ -4,7 +4,16 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import rehypeSlug from "rehype-slug";
 import rehypeFigure from "@microflash/rehype-figure";
+import rehypePrettyCode from "rehype-pretty-code";
 import { SITE } from "./src/config";
+
+const rehypePrettyCodeOption = {
+  theme: {
+    light: "one-light",
+    dark: "one-dark-pro",
+  },
+  keepBackground: false,
+};
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,13 +26,12 @@ export default defineConfig({
     sitemap(),
   ],
   markdown: {
-    rehypePlugins: [rehypeSlug, rehypeFigure],
-    syntaxHighlight: "shiki",
-    shikiConfig: {
-      // For more themes, visit https://shiki.style/themes
-      themes: { light: "one-light", dark: "one-dark-pro" },
-      wrap: true,
-    },
+    syntaxHighlight: false, // Use rehype-pretty-code
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeFigure,
+      [rehypePrettyCode, rehypePrettyCodeOption],
+    ],
   },
   redirects: {
     "/archives": "/posts",
