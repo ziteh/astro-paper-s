@@ -129,8 +129,10 @@ const nextPost =
         )
       }
     </ul>
+
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
-    {subtitle && <h2 class="my-2">{subtitle}</h2>}
+    {subtitle && <h2 class="post-subtitle">{subtitle}</h2>}
+
     <div class="flex">
       <Datetime
         date={date}
@@ -244,7 +246,10 @@ const nextPost =
     @apply mx-auto w-full max-w-3xl px-4 pb-12;
   }
   .post-title {
-    @apply text-2xl font-semibold text-skin-accent;
+    @apply mb-4 text-4xl font-semibold text-skin-accent;
+  }
+  .post-subtitle {
+    @apply text-xl;
   }
 </style>
 

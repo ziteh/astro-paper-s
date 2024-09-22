@@ -1,3 +1,5 @@
+import { literal } from 'astro:schema';
+
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
     if (opacityValue !== undefined) {
@@ -61,6 +63,32 @@ module.exports = {
             },
             code: {
               color: false,
+            },
+            h1: {
+              fontSize: '2rem',
+              lineHeight: '2rem',
+            },
+            h2: {
+              fontSize: '1.5rem',
+              lineHeight: '1.5rem',
+            },
+            h3: {
+              fontSize: '1.25rem',
+              lineHeight: '1.25rem',
+              // fontStyle: "normal",
+            },
+            h4: {
+              fontSize: '1.15rem',
+              // lineHeight: '1.75rem',
+            },
+            h5: {
+              fontSize: '1.05rem',
+              lineHeight: '1.05rem',
+            },
+            h6: {
+              fontSize: '1rem',
+              lineHeight: '1rem',
+              fontStyle: "italic",
             },
           },
         },
