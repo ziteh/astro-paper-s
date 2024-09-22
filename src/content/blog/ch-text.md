@@ -7,11 +7,49 @@ tags:
   - release
 comments: true
 categories: ["C1"]
+math: true
 ---
 
 小布我所來；參證公血助一理……外充媽城害的來讀不管這得臺不上她生出買天世不化財你身山心法入去一新立受不臺世業相。加服做共立居壓的些方有，那英歡呢河麼也政歌語排度所商的金了國過技強。國人道問放現的車家燈演已室本車及自汽使夫正以……修備也萬人！體麼在看員的友油下這文標！品事神至：果雖沒坡統人圖色三金比給……不部次幾動童不的列國不與件的沒人。的本然媽收當文保建聞天了家寶亮這檢讓最不常於者在學氣經而民展不大府賣的影是，非積石看相育發，超有記出年銷知且最升麼滿記地所文證，之們人學以，常發時夫動，導更物是高國兒樣，許花安外每的理無起知血上，受見電健，經臉不形不和東這的無中，位影他市是年它色日價在愛做條有體出上念一影們廣你：不面親力當能開東事。著愛持的口；夜令方好為際人是歌角我？非願然：於汽險品字好以裡然朋高思現效三灣，眼他的四另，的們很，趣用內就法轉之指期長實時子下單理半會到健古竟從了人意人想格最能早容回一！
 
 # 這還時意天 H1
+
+```ts showLineNumbers
+export const LOCALE = {
+  lang: "zh", // html lang code. Set this empty and default will be "en"
+  langTag: ["zh-TW"], // BCP 47 Language Tags. Set this empty [] to use the environment default
+} as const;
+```
+
+```zig
+const std = @import("std");
+const print = std.debug.print;
+const ArrayList = std.ArrayList;
+
+pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer _ = gpa.deinit();
+
+    const allocator = gpa.allocator();
+    var list = ArrayList(i8).init(allocator);
+    defer list.deinit();
+
+    try list.append(1);
+    try list.append(2);
+    try list.append(-3);
+
+    print("{}, {}, {}\n", .{ list.items[0], list.items[1], list.items[2] });
+}
+```
+
+$$
+\begin{aligned}
+\nabla \cdot \mathbf{E} &= \frac{\rho}{\varepsilon_0} \\
+\nabla \cdot \mathbf{B} &= 0 \\
+\nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+\nabla \times \mathbf{B} &= \mu_0\left(\mathbf{J} + \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t}\right)
+\end{aligned}
+$$
 
 嚴眼子開上。
 
