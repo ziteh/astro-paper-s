@@ -73,7 +73,7 @@
   }
 
   .sidebar {
-    @apply fixed right-24 top-24 mt-8 hidden w-64 lg:block;
+    @apply fixed right-24 top-32 m-2 hidden w-64 2xl:block;
   }
 
   .toc {
