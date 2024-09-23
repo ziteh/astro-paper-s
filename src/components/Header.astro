@@ -100,20 +100,6 @@ const { activeNav } = Astro.props;
               <span class="sr-only">Search</span>
             </LinkButton>
           </li>
-          <li>
-            <LinkButton
-              href={SOCIALS.filter(s => s.name === "Github").map(
-                s => s.href
-              )[0]}
-              className="focus-outline flex p-3 sm:p-1"
-              ariaLabel="github page"
-              title="Github"
-              external={true}
-            >
-              <Fragment set:html={socialIcons["Github"]} />
-              <span class="sr-only">GitHub</span>
-            </LinkButton>
-          </li>
           {
             SITE.lightAndDarkMode && (
               <li>
