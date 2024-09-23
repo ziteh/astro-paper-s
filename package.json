@@ -25,6 +25,7 @@
     "lodash.kebabcase": "^4.1.1",
     "rehype-katex": "^7.0.1",
     "rehype-pretty-code": "^0.14.0",
+    "rehype-rewrite": "^4.0.2",
     "remark": "^15.0.1",
     "remark-math": "^6.0.0",
     "satori": "^0.11.0",

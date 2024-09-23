@@ -6,6 +6,8 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeFigure from "@microflash/rehype-figure";
 import rehypePrettyCode from "rehype-pretty-code";
+import remarkRewrite from "rehype-rewrite";
+import type { Root, RootContent } from "hast";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import { SITE } from "./src/config";
 
@@ -21,6 +23,18 @@ const rehypePrettyCodeOption = {
       feedbackDuration: 700,
     }),
   ],
+};
+
+const rehypeRewriteOption = {
+  rewrite: (node: Root | RootContent) => {
+    // Add loading="lazy" to all images
+    if (node.type === "element" && node.tagName === "img") {
+      node.properties = {
+        ...node.properties,
+        loading: "lazy",
+      };
+    }
+  },
 };
 
 // https://astro.build/config
@@ -40,6 +54,7 @@ export default defineConfig({
       rehypeFigure,
       rehypeKatex,
       [rehypePrettyCode, rehypePrettyCodeOption],
+      [remarkRewrite, rehypeRewriteOption],
     ],
   },
   redirects: {
