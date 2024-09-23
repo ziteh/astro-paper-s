@@ -10,7 +10,6 @@ import { SITE } from "@config";
 import { _t } from "lang/lang";
 
 const posts = await getCollection("blog");
-
 let tags = getUniqueTags(posts);
 ---
 
@@ -18,7 +17,11 @@ let tags = getUniqueTags(posts);
   <Header activeNav="tags" />
   <Main pageTitle={_t.tags} pageDesc={_t.tagsDesc}>
     <ul>
-      {tags.map(({ tag }) => <Tag {tag} size="lg" />)}
+      {
+        tags.map(({ tag, tagName, count }) => (
+          <Tag {tag} {tagName} {count} size="lg" />
+        ))
+      }
     </ul>
   </Main>
   <Footer />

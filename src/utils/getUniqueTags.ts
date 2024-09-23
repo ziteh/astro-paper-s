@@ -5,18 +5,36 @@ import postFilter from "./postFilter";
 interface Tag {
   tag: string;
   tagName: string;
+  count: number;
 }
 
 const getUniqueTags = (posts: CollectionEntry<"blog">[]) => {
-  const tags: Tag[] = posts
+  const tagCountMap = new Map<string, Tag>();
+
+  posts
     .filter(postFilter)
     .flatMap(post => post.data.tags)
-    .map(tag => ({ tag: slugifyStr(tag), tagName: tag }))
-    .filter(
-      (value, index, self) =>
-        self.findIndex(tag => tag.tag === value.tag) === index
-    )
-    .sort((tagA, tagB) => tagA.tag.localeCompare(tagB.tag));
+    .forEach(tag => {
+      const slugTag = slugifyStr(tag);
+      if (tagCountMap.has(slugTag)) {
+        // Tag existing
+        const existingTag = tagCountMap.get(slugTag)!;
+        existingTag.count += 1;
+      } else {
+        // New Tag
+        tagCountMap.set(slugTag, {
+          tag: slugTag,
+          tagName: tag,
+          count: 1,
+        });
+      }
+    });
+
+  // 將 Map 轉換為數組並按 tag 名字排序
+  const tags = Array.from(tagCountMap.values()).sort((tagA, tagB) =>
+    tagA.tag.localeCompare(tagB.tag)
+  );
+
   return tags;
 };
 
