@@ -58,7 +58,7 @@ export default defineConfig({
     ],
   },
   redirects: {
-    "/archives": "/posts",
+    "/archives": "/archives/page",
   },
   vite: {
     optimizeDeps: {

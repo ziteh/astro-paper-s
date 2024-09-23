@@ -2,6 +2,10 @@ const USED_LANG: keyof typeof translations = "zhTW";
 
 const translations = {
   en: {
+    archives: {
+      title: "Archives",
+      desc: "All the articles I've posted.",
+    },
     posts: "Posts",
     postsDesc: "All the articles I've posted.",
     tags: "Tags",
@@ -44,6 +48,11 @@ const translations = {
     },
   },
   zhTW: {
+    archives: {
+      title: "歸檔",
+      titleSingular: "歸檔",
+      desc: "所有文章。",
+    },
     posts: "文章",
     postsDesc: "我發過的所有文章。",
     tags: "標籤",
