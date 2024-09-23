@@ -33,6 +33,11 @@ const translations = {
       next: "Next",
       previous: "Prev",
     },
+    page404: {
+      pageNotFound: "Page Not Found",
+      toHome: "Go back home",
+      toSearch: "Try Search",
+    },
     license: {
       copyright: "Copyright",
       statement: "All rights reserved",
@@ -68,6 +73,11 @@ const translations = {
     page: {
       next: "下一頁",
       previous: "上一頁",
+    },
+    page404: {
+      pageNotFound: "頁面不存在",
+      toHome: "回主畫面",
+      toSearch: "嘗試搜尋",
     },
     license: {
       copyright: "版權所有",
