@@ -16,11 +16,19 @@ let categories = getUniqueCategories(posts);
 <Layout title={`${_t.categories} | ${SITE.title}`}>
   <Header activeNav="categories" />
   <Main pageTitle={_t.categories} pageDesc={_t.categoriesDesc}>
-    <ul>
+    <ul class="flex flex-col space-y-6">
       {
-        categories.map(({ category, categoryName }) => (
+        categories.map(({ category, categoryName, count }) => (
           <li>
-            <a href={`/categories/${category}`}>{categoryName}</a>
+            <a
+              href={`/categories/${category}`}
+              class="text-skin-accent hover:underline"
+            >
+              {categoryName}
+            </a>
+            <span class="rounded-full bg-skin-card/60 px-2 py-0.5">
+              {count}
+            </span>
           </li>
         ))
       }
