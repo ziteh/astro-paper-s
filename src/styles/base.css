@@ -82,6 +82,13 @@
     }
   }
 
+  .copy-code {
+    @apply absolute right-1 top-1 rounded bg-skin-card px-2 py-1 text-xs font-medium leading-4 text-skin-base opacity-0 transition-opacity duration-300;
+  }
+  pre:hover .copy-code {
+    @apply opacity-80;
+  }
+
   .katex {
     @apply text-skin-base;
   }

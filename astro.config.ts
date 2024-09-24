@@ -12,17 +12,18 @@ import { transformerCopyButton } from "@rehype-pretty/transformers";
 import { SITE } from "./src/config";
 
 const rehypePrettyCodeOption = {
+  // More themes: https://shiki.style/themes
   theme: {
     light: "one-light",
     dark: "one-dark-pro",
   },
   keepBackground: true,
-  transformers: [
-    transformerCopyButton({
-      visibility: "hover",
-      feedbackDuration: 700,
-    }),
-  ],
+  // transformers: [
+  //   transformerCopyButton({
+  //     visibility: "hover",
+  //     feedbackDuration: 700,
+  //   }),
+  // ],
 };
 
 const rehypeRewriteOption = {
