@@ -129,11 +129,7 @@ const structuredData = {
       )
     }
 
-    {
-      // Astro View Transitions animations feature
-      // Learn more: https://docs.astro.build/en/guides/view-transitions/
-      SITE.enableViewTransitions && <ViewTransitions />
-    }
+    <ViewTransitions />
 
     <script is:inline src="/toggle-theme.js" async></script>
   </head>
