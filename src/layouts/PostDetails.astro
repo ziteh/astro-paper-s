@@ -53,6 +53,8 @@ const layoutProps = {
   canonicalURL,
   ogImage: ogUrl,
   scrollSmooth: true,
+  enableToc: toc,
+  enableMath: math,
 };
 
 /* ========== Prev/Next Posts ========== */
@@ -70,37 +72,6 @@ const nextPost =
 ---
 
 <Layout {...layoutProps}>
-  {
-    toc && (
-      <>
-        <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.29.0/tocbot.min.js"
-          integrity="sha512-+9XzRSJjnUN2OI106uAbbVZ3f+z1ncIRZFOr56hEdaxbQeZ8i1+B7OVjdF8tG4YhgxM/rWP73K2SiG93x6UJoQ=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.29.0/tocbot.min.css"
-          integrity="sha512-4q0OX9NAYcRTFEfy9nTK0AV9N7MxM665neDXEW3CjAj1pXc6+8Bcd6ryXl6cY8mTBBXt0aXepnSDLLQZSuJRww=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
-        />
-      </>
-    )
-  }
-  {
-    math && (
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"
-        integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-      />
-    )
-  }
-
   <Header />
 
   <!-- <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
@@ -150,7 +121,7 @@ const nextPost =
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              class="mt-1 h-4 w-4 opacity-80"
+              class="h-4 w-4 opacity-80"
             >
               <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8 8a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828l-8-8zM7 9a2 2 0 1 1 .001-4.001A2 2 0 0 1 7 9z" />
             </svg>
