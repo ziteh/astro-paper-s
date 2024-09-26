@@ -67,7 +67,11 @@ export default defineConfig({
     },
   },
   scopedStyleStrategy: "where",
+  prefetch: {
+    prefetchAll: true,
+  },
   experimental: {
     contentLayer: true,
   },
+  compressHTML: true,
 });
