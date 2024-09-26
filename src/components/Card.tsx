@@ -38,7 +38,7 @@ export default function Card({
         </div>
         {subtitle && <h6 className="text-sm">{subtitle}</h6>}
         <p className="hover:text-skin-accent">
-          {description ? description : fallbackDescription + " ..."}
+          {description ? description : fallbackDescription}
         </p>
       </a>
       <div className="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
