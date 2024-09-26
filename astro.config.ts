@@ -1,3 +1,4 @@
+import { SITE } from "./src/config";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
@@ -8,8 +9,7 @@ import rehypeFigure from "@microflash/rehype-figure";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkRewrite from "rehype-rewrite";
 import type { Root, RootContent } from "hast";
-import { transformerCopyButton } from "@rehype-pretty/transformers";
-import { SITE } from "./src/config";
+// import { transformerCopyButton } from "@rehype-pretty/transformers";
 
 const rehypePrettyCodeOption = {
   // More themes: https://shiki.style/themes
