@@ -41,9 +41,9 @@ export default function Card({
           {description ? description : fallbackDescription}
         </p>
       </a>
-      <div className="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
+      <div className="flex flex-col flex-wrap space-y-2 md:flex-row md:space-y-0">
         {/* Datetime */}
-        <div className="flex items-center space-x-0.5">
+        <div className="mr-4 flex items-center space-x-0.5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -58,7 +58,7 @@ export default function Card({
 
         {/* Categories */}
         {categories.length > 0 && (
-          <div className="flex items-center space-x-0.5 opacity-80">
+          <div className="mr-4 flex items-center space-x-0.5 opacity-80">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
