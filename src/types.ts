@@ -10,7 +10,10 @@ export type Site = {
   lightAndDarkMode: boolean;
   postPerIndex: number;
   postPerPage: number;
+  postPerArchive: number;
   scheduledPostMargin: number;
+  genDescriptionCount: number;
+  enableTransitionName: boolean;
 };
 
 export type SocialObjects = {

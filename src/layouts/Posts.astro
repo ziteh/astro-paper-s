@@ -8,6 +8,8 @@ import Card from "@components/Card";
 import { SITE } from "@config";
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
+import { _t } from "lang/lang";
+import getDescription from "@utils/getDescription";
 
 export interface Props {
   page: Page<CollectionEntry<"blog">>;
@@ -16,13 +18,17 @@ export interface Props {
 const { page } = Astro.props;
 ---
 
-<Layout title={`Posts | ${SITE.title}`}>
+<Layout title={`${_t.posts} | ${SITE.title}`}>
   <Header activeNav="posts" />
-  <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
+  <Main pageTitle={_t.posts} pageDesc={_t.postsDesc}>
     <ul>
       {
-        page.data.map(({ data, slug }) => (
-          <Card href={`/posts/${slug}/`} frontmatter={data} />
+        page.data.map(({ data, slug, body }) => (
+          <Card
+            href={`/posts/${slug}/`}
+            frontmatter={data}
+            fallbackDescription={getDescription(body)}
+          />
         ))
       }
     </ul>

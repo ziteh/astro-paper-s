@@ -6,8 +6,10 @@ import Tag from "@components/Tag.astro";
 import Datetime from "@components/Datetime";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
-import ShareLinks from "@components/ShareLinks.astro";
+// import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
+import Disqus from "@components/Disqus.astro";
+import { _t } from "lang/lang";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -20,12 +22,19 @@ const {
   title,
   author,
   description,
+  subtitle,
   ogImage,
   canonicalURL,
-  pubDatetime,
-  modDatetime,
+  date,
+  updated,
   tags,
+  categories,
+  toc,
+  comments,
+  math,
 } = post.data;
+
+const { slug } = post;
 
 const { Content } = await post.render();
 
@@ -39,11 +48,13 @@ const layoutProps = {
   title: `${title} | ${SITE.title}`,
   author,
   description,
-  pubDatetime,
-  modDatetime,
+  date,
+  updated,
   canonicalURL,
   ogImage: ogUrl,
   scrollSmooth: true,
+  enableToc: toc,
+  enableMath: math,
 };
 
 /* ========== Prev/Next Posts ========== */
@@ -63,7 +74,7 @@ const nextPost =
 <Layout {...layoutProps}>
   <Header />
 
-  <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
+  <!-- <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
     <button
       class="focus-outline mb-2 mt-8 flex hover:opacity-75"
       onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
@@ -74,42 +85,132 @@ const nextPost =
         ></path>
       </svg><span>Go back</span>
     </button>
-  </div>
-  <main id="main-content">
-    <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
-    <Datetime
-      pubDatetime={pubDatetime}
-      modDatetime={modDatetime}
-      size="lg"
-      className="my-2"
-    />
-    <article id="article" class="prose mx-auto mt-8 max-w-3xl">
+  </div> -->
+  <main id="main-content" class="mt-4">
+    <ul
+      class="my-1 flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0"
+    >
+      {
+        categories.length > 0 && (
+          <div class="flex items-center space-x-0.5 opacity-80">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              class="mt-0.5 h-4 w-4"
+            >
+              <path d="M4 11h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm10 0h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zM4 21h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm13 0c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4z" />
+            </svg>
+            {categories.map((cat: string) => (
+              <a
+                href={`/categories/${slugifyStr(cat)}`}
+                class="text-sm hover:text-skin-accent"
+              >
+                {cat}
+              </a>
+            ))}
+          </div>
+        )
+      }
+      {
+        tags.length > 0 && (
+          <div class="flex items-center space-x-0.5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              class="h-4 w-4 opacity-80"
+            >
+              <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8 8a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828l-8-8zM7 9a2 2 0 1 1 .001-4.001A2 2 0 0 1 7 9z" />
+            </svg>
+            <ul>
+              {tags.map((tag: string) => (
+                <Tag tag={slugifyStr(tag)} tagName={tag} />
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </ul>
+    <a href={`/posts/${slug}`}>
+      <h1
+        transition:name={SITE.enableTransitionName
+          ? slugifyStr(title)
+          : undefined}
+        class="post-title"
+      >
+        {title}
+      </h1>
+    </a>
+    {subtitle && <h2 class="post-subtitle">{subtitle}</h2>}
+
+    <div class="flex">
+      <Datetime
+        date={date}
+        updated={updated}
+        size="lg"
+        className="my-2 ml-auto"
+        isPost={true}
+      />
+    </div>
+
+    <article id="article" class="js-toc-content prose mx-auto mt-8 max-w-3xl">
       <Content />
     </article>
 
-    <ul class="my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
-    </ul>
+    <!-- Sideber -->
+    <aside class="sidebar">
+      <div class="js-toc"></div>
+      <hr class="my-4 opacity-80" aria-hidden={true} />
+      <div class="flex flex-col items-start space-y-0 opacity-80">
+        <button
+          id="back-to-top"
+          aria-label={_t.backToTop}
+          class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            class="h-5 w-5"
+            ><path
+              d="m12 6.879-7.061 7.06 2.122 2.122L12 11.121l4.939 4.94 2.122-2.122z"
+            ></path></svg
+          >
+          <span class="text-sm">{_t.backToTop}</span>
+        </button>
+        <button
+          id="md-share-btn"
+          aria-label={_t.copyMdLink}
+          title="[Title](https://)"
+          class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            class="h-5 w-5"
+            ><path
+              d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"
+            ></path><path d="M6 12h6v2H6zm0 4h6v2H6z"></path></svg
+          >
+          <span class="text-sm">{_t.copyMdLink}</span>
+        </button>
+      </div>
+    </aside>
 
-    <div
+    <!-- ShareLinks -->
+    <!-- <div
       class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
     >
-      <button
-        id="back-to-top"
-        class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rotate-90">
-          <path
-            d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
-          ></path>
-        </svg>
-        <span>Back to Top</span>
-      </button>
-
       <ShareLinks />
-    </div>
+    </div> -->
 
-    <hr class="my-6 border-dashed" />
+    <hr class="my-6 border-solid" />
 
     <!-- Previous/Next Post Buttons -->
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -137,8 +238,8 @@ const nextPost =
               </>
             </svg>
             <div>
-              <span>Previous Post</span>
-              <div class="text-sm text-skin-accent/85">{prevPost.title}</div>
+              {/* <span>Previous Post</span> */}
+              <div class="text-sm text-skin-accent">{prevPost.title}</div>
             </div>
           </a>
         )
@@ -150,8 +251,8 @@ const nextPost =
             class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"
           >
             <div>
-              <span>Next Post</span>
-              <div class="text-sm text-skin-accent/85">{nextPost.title}</div>
+              {/* <span>Next Post</span> */}
+              <div class="text-sm text-skin-accent">{nextPost.title}</div>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -174,6 +275,15 @@ const nextPost =
         )
       }
     </div>
+
+    <!-- Comments -->
+    {
+      comments && (
+        <div class="my-8">
+          <Disqus slug={slug} title={title} />
+        </div>
+      )
+    }
   </main>
   <Footer />
 </Layout>
@@ -183,57 +293,87 @@ const nextPost =
     @apply mx-auto w-full max-w-3xl px-4 pb-12;
   }
   .post-title {
-    @apply text-2xl font-semibold text-skin-accent;
+    @apply mb-4 text-4xl font-semibold text-skin-accent;
+  }
+  .post-subtitle {
+    @apply text-xl;
+  }
+  .sidebar {
+    @apply fixed right-24 top-32 m-2 hidden max-h-[clac(100vh-12rem)] w-64 overflow-y-auto text-sm 2xl:block;
+
+    .toc-list-item {
+      @apply overflow-hidden truncate whitespace-nowrap text-skin-base/80;
+    }
+    .is-active-link {
+      @apply text-skin-accent;
+    }
+    .toc-link::before {
+      @apply !hidden;
+    }
   }
 </style>
 
 <script is:inline data-astro-rerun>
+  if (tocbot) {
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: ".js-toc",
+      // Where to grab the headings to build the table of contents.
+      contentSelector: ".js-toc-content",
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: "h1, h2, h3",
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+  }
+
   /** Create a progress indicator
    *  at the top */
-  function createProgressBar() {
-    // Create the main container div
-    const progressContainer = document.createElement("div");
-    progressContainer.className =
-      "progress-container fixed top-0 z-10 h-1 w-full bg-skin-fill";
+  // function createProgressBar() {
+  //   // Create the main container div
+  //   const progressContainer = document.createElement("div");
+  //   progressContainer.className =
+  //     "progress-container fixed top-0 z-10 h-1 w-full bg-skin-fill";
 
-    // Create the progress bar div
-    const progressBar = document.createElement("div");
-    progressBar.className = "progress-bar h-1 w-0 bg-skin-accent";
-    progressBar.id = "myBar";
+  //   // Create the progress bar div
+  //   const progressBar = document.createElement("div");
+  //   progressBar.className = "progress-bar h-1 w-0 bg-skin-accent";
+  //   progressBar.id = "myBar";
 
-    // Append the progress bar to the progress container
-    progressContainer.appendChild(progressBar);
+  //   // Append the progress bar to the progress container
+  //   progressContainer.appendChild(progressBar);
 
-    // Append the progress container to the document body or any other desired parent element
-    document.body.appendChild(progressContainer);
-  }
-  createProgressBar();
+  //   // Append the progress container to the document body or any other desired parent element
+  //   document.body.appendChild(progressContainer);
+  // }
+  // createProgressBar();
 
   /** Update the progress bar
    *  when user scrolls */
-  function updateScrollProgress() {
-    document.addEventListener("scroll", () => {
-      const winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-      const height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      if (document) {
-        const myBar = document.getElementById("myBar");
-        if (myBar) {
-          myBar.style.width = scrolled + "%";
-        }
-      }
-    });
-  }
-  updateScrollProgress();
+  // function updateScrollProgress() {
+  //   document.addEventListener("scroll", () => {
+  //     const winScroll =
+  //       document.body.scrollTop || document.documentElement.scrollTop;
+  //     const height =
+  //       document.documentElement.scrollHeight -
+  //       document.documentElement.clientHeight;
+  //     const scrolled = (winScroll / height) * 100;
+  //     if (document) {
+  //       const myBar = document.getElementById("myBar");
+  //       if (myBar) {
+  //         myBar.style.width = scrolled + "%";
+  //       }
+  //     }
+  //   });
+  // }
+  // updateScrollProgress();
 
   /** Attaches links to headings in the document,
    *  allowing sharing of sections easily */
   function addHeadingLinks() {
+    const article = document.getElementById("article");
     const headings = Array.from(
-      document.querySelectorAll("h2, h3, h4, h5, h6")
+      article.querySelectorAll("h1, h2, h3, h4, h5, h6")
     );
     for (const heading of headings) {
       heading.classList.add("group");
@@ -262,8 +402,7 @@ const nextPost =
       wrapper.style.position = "relative";
 
       const copyButton = document.createElement("button");
-      copyButton.className =
-        "copy-code absolute right-3 -top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
+      copyButton.className = "copy-code";
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
@@ -292,6 +431,16 @@ const nextPost =
     }
   }
   attachCopyButtons();
+
+  function attachMarkdownShareButtons() {
+    const btn = document.querySelector("#md-share-btn");
+    btn?.addEventListener("click", async () => {
+      const title = document.title.replace(/[[\]]/g, " ");
+      const url = window.location.href.replace(/#.*$/g, ""); // Remove anchors
+      await navigator.clipboard.writeText(`[${title}](${url})`);
+    });
+  }
+  attachMarkdownShareButtons();
 
   /** Scrolls the document to the top when
    * the "Back to Top" button is clicked. */

@@ -1,8 +1,8 @@
 ---
 title: How to add an estimated reading time in AstroPaper
 author: Sat Naing
-pubDatetime: 2023-07-21T10:11:06.130Z
-modDatetime: 2024-01-03T14:53:25Z
+date: 2023-07-21T10:11:06.130Z
+updated: 2024-01-03T14:53:25Z
 slug: how-to-add-estimated-reading-time
 featured: false
 draft: false
@@ -173,8 +173,8 @@ const {
   description,
   ogImage,
   readingTime, // we can now directly access readingTime from frontmatter
-  pubDatetime,
-  modDatetime,
+  date,
+  updated,
   tags } = post.data;
 
 // other codes
@@ -198,12 +198,8 @@ const getSortedPosts = async (posts: CollectionEntry<"blog">[]) => {
     .filter(({ data }) => !data.draft)
     .sort(
       (a, b) =>
-        Math.floor(
-          new Date(b.data.modDatetime ?? b.data.pubDatetime).getTime() / 1000
-        ) -
-        Math.floor(
-          new Date(a.data.modDatetime ?? a.data.pubDatetime).getTime() / 1000
-        )
+        Math.floor(new Date(b.data.updated ?? b.data.date).getTime() / 1000) -
+        Math.floor(new Date(a.data.updated ?? a.data.date).getTime() / 1000)
     );
 };
 
@@ -292,7 +288,7 @@ export default function Datetime({
   return (
     // other codes
     <span className={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
-      <FormattedDatetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
+      <FormattedDatetime date={date} updated={updated} />
       <span> ({readingTime})</span> {/* display reading time */}
     </span>
     // other codes
@@ -306,12 +302,12 @@ file: Card.tsx
 
 ```ts
 export default function Card({ href, frontmatter, secHeading = true }: Props) {
-  const { title, pubDatetime, modDatetime description, readingTime } = frontmatter;
+  const { title, date, updated description, readingTime } = frontmatter;
   return (
     ...
     <Datetime
-      pubDatetime={pubDatetime}
-      modDatetime={modDatetime}
+      date={date}
+      updated={updated}
       readingTime={readingTime}
     />
     ...
@@ -326,8 +322,8 @@ file: PostDetails.tsx
 <main id="main-content">
   <h1 class="post-title">{title}</h1>
   <Datetime
-    pubDatetime={pubDatetime}
-    modDatetime={modDatetime}
+    date={date}
+    updated={updated}
     size="lg"
     className="my-2"
     readingTime={readingTime}

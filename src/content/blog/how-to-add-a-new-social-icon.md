@@ -1,7 +1,7 @@
 ---
 author: Simon Smale
-pubDatetime: 2024-01-08T18:16:00.000Z
-modDatetime:
+date: 2024-01-08T18:16:00.000Z
+updated:
 title: How to add a new Social Icon to AstroPaper
 featured: false
 draft: false

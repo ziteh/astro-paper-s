@@ -15,28 +15,30 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@v4
 
-      - name: "🔧 Setup Node.js ${{ matrix.node-version }}"
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
+          node-version: 20
+          cache: "pnpm"
 
       - name: "📦 Install dependencies"
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: "🔎 Lint code"
-        run: npm run lint
+        run: pnpm run lint
 
       - name: "📝 Checking code format"
-        run: npm run format:check
+        run: pnpm run format:check
 
       - name: "🚀 Build the project"
-        run: npm run build
+        run: pnpm run build

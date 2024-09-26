@@ -1,10 +1,13 @@
 ---
 import { LOGO_IMAGE, SITE } from "@config";
-import Hr from "./Hr.astro";
+// import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
+// import { SOCIALS } from "@config";
+// import socialIcons from "@assets/socialIcons";
+import { _t } from "lang/lang";
 
 export interface Props {
-  activeNav?: "posts" | "tags" | "about" | "search";
+  activeNav?: "posts" | "tags" | "categories" | "about" | "search";
 }
 
 const { activeNav } = Astro.props;
@@ -55,19 +58,35 @@ const { activeNav } = Astro.props;
           </svg>
         </button>
         <ul id="menu-items" class="display-none sm:flex">
-          <li>
+          <!-- <li>
             <a href="/posts/" class={activeNav === "posts" ? "active" : ""}>
-              Posts
+              {_t.posts}
+            </a>
+          </li> -->
+          <li>
+            <a href="/tags/" class={activeNav === "tags" ? "active" : ""}>
+              {_t.tags}
             </a>
           </li>
           <li>
-            <a href="/tags/" class={activeNav === "tags" ? "active" : ""}>
-              Tags
+            <a
+              href="/categories/"
+              class={activeNav === "categories" ? "active" : ""}
+            >
+              {_t.categories}
+            </a>
+          </li>
+          <li>
+            <a
+              href="/archives/page/"
+              class={activeNav === "posts" ? "active" : ""}
+            >
+              {_t.archives.title}
             </a>
           </li>
           <li>
             <a href="/about/" class={activeNav === "about" ? "active" : ""}>
-              About
+              {_t.about}
             </a>
           </li>
           <li>
@@ -76,8 +95,8 @@ const { activeNav } = Astro.props;
               className={`focus-outline p-3 sm:p-1 ${
                 activeNav === "search" ? "active" : ""
               } flex`}
-              ariaLabel="search"
-              title="Search"
+              ariaLabel={_t.search}
+              title={_t.search}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +114,7 @@ const { activeNav } = Astro.props;
                 <button
                   id="theme-btn"
                   class="focus-outline"
-                  title="Toggles light & dark"
+                  title={_t.themeBtn}
                   aria-label="auto"
                   aria-live="polite"
                 >
@@ -113,7 +132,11 @@ const { activeNav } = Astro.props;
       </nav>
     </div>
   </div>
-  <Hr />
+
+  <div class="mx-auto w-full">
+    <hr class="border-skin-line" aria-hidden={true} />
+  </div>
+  <!-- <Hr /> -->
 </header>
 
 <style>
@@ -121,10 +144,10 @@ const { activeNav } = Astro.props;
     @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
   }
   .nav-container {
-    @apply mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row;
+    @apply mx-auto flex max-w-6xl flex-col items-center justify-between sm:flex-row;
   }
   .top-nav-wrap {
-    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
+    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-4;
   }
   .logo {
     @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
@@ -156,7 +179,7 @@ const { activeNav } = Astro.props;
     @apply col-span-1;
   }
   nav a.active {
-    @apply underline decoration-wavy decoration-2 underline-offset-4;
+    @apply text-skin-accent;
   }
   nav a.active svg {
     @apply fill-skin-accent;

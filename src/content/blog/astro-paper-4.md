@@ -1,6 +1,6 @@
 ---
 author: Sat Naing
-pubDatetime: 2024-01-04T09:30:41.816Z
+date: 2024-01-04T09:30:41.816Z
 title: AstroPaper 4.0
 slug: "astro-paper-v4"
 featured: true
@@ -33,7 +33,7 @@ The `postSlug` in the blog content schema is no longer available in AstroPaper v
 ```bash
 ---
 author: Sat Naing
-pubDatetime: 2024-01-01T04:35:33.428Z
+date: 2024-01-01T04:35:33.428Z
 title: AstroPaper 4.0
 slug: "astro-paper-v4" # if slug is not specified, it will be 'astro-paper-4' (file name).
 # slug: "" ❌ cannot be an empty string
@@ -62,7 +62,7 @@ Keep readers informed about the latest updates by displaying the modified dateti
 
 ![Last Modified Date feature in AstroPaper](https://github.com/satnaing/astro-paper/assets/53733092/cc89585e-148e-444d-9da1-0d496e867175)
 
-You can add a `modDatetime` to your blog post if you've made modifications. Now, the sorting behavior of the posts is slightly different. All posts are sorted by both `pubDatetime` and `modDatetime`. If a post has both a `pubDatetime` and `modDatetime`, its sorting position will be determined by the `modDatetime`. If not, only `pubDatetime` will be considered to determine the post's sorting order.
+You can add a `updated` to your blog post if you've made modifications. Now, the sorting behavior of the posts is slightly different. All posts are sorted by both `date` and `updated`. If a post has both a `date` and `updated`, its sorting position will be determined by the `updated`. If not, only `date` will be considered to determine the post's sorting order.
 
 ### Implement Back-to-Top Button [#188](https://github.com/satnaing/astro-paper/pull/188)
 

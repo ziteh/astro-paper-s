@@ -4,6 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
+import { _t } from "lang/lang";
 ---
 
 <Layout title={`404 Not Found | ${SITE.title}`}>
@@ -13,13 +14,16 @@ import LinkButton from "@components/LinkButton.astro";
     <div class="not-found-wrapper">
       <h1>404</h1>
       <span aria-hidden="true">¯\_(ツ)_/¯</span>
-      <p>Page Not Found</p>
-      <LinkButton
-        href="/"
-        className="my-6 text-lg underline decoration-dashed underline-offset-8"
-      >
-        Go back home
-      </LinkButton>
+      <p>{_t.page404.pageNotFound}</p>
+
+      <div class="flex flex-row space-x-12">
+        <LinkButton href="/" className="my-6 text-lg hover:underline"
+          >{_t.page404.toHome}</LinkButton
+        >
+        <LinkButton href="/search/" className="my-6 text-lg hover:underline"
+          >{_t.page404.toSearch}</LinkButton
+        >
+      </div>
     </div>
   </main>
 

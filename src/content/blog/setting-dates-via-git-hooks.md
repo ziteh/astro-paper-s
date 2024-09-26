@@ -1,7 +1,7 @@
 ---
 author: Simon Smale
-pubDatetime: 2024-01-03T20:40:08Z
-modDatetime: 2024-01-08T18:59:05Z
+date: 2024-01-03T20:40:08Z
+updated: 2024-01-08T18:59:05Z
 title: How to use Git Hooks to set Created and Modified Dates
 featured: false
 draft: false
@@ -12,7 +12,7 @@ canonicalURL: https://smale.codes/posts/setting-dates-via-git-hooks/
 description: How to use Git Hooks to set your Created and Modified Dates on AstroPaper
 ---
 
-In this post I will explain how to use the pre-commit Git hook to automate the input of the created (`pubDatetime`) and modified (`modDatetime`) in the AstroPaper blog theme frontmatter
+In this post I will explain how to use the pre-commit Git hook to automate the input of the created (`date`) and modified (`updated`) in the AstroPaper blog theme frontmatter
 
 ## Table of contents
 
@@ -38,12 +38,12 @@ Navigating to the `hooks/pre-commit` file, we are going to add one or both of th
 
 UPDATE:
 
-This section has been updated with a new version of the hook that is smarter. It will now not increment the `modDatetime` until the post is published. On the first publish, set the draft status to `first` and watch the magic happen.
+This section has been updated with a new version of the hook that is smarter. It will now not increment the `updated` until the post is published. On the first publish, set the draft status to `first` and watch the magic happen.
 
 ---
 
 ```shell
-# Modified files, update the modDatetime
+# Modified files, update the updated
 git diff --cached --name-status |
 grep -i '^M.*\.md$' |
 while read _ file; do
@@ -52,13 +52,13 @@ while read _ file; do
   draft=$(echo "$frontmatter" | awk '/^draft: /{print $2}')
   if [ "$draft" = "false" ]; then
     echo "$file modDateTime updated"
-    cat $file | sed "/---.*/,/---.*/s/^modDatetime:.*$/modDatetime: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/" > tmp
+    cat $file | sed "/---.*/,/---.*/s/^updated:.*$/updated: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/" > tmp
     mv tmp $file
     git add $file
   fi
   if [ "$draft" = "first" ]; then
     echo "First release of $file, draft set to false and modDateTime removed"
-    cat $file | sed "/---.*/,/---.*/s/^modDatetime:.*$/modDatetime:/" | sed "/---.*/,/---.*/s/^draft:.*$/draft: false/" > tmp
+    cat $file | sed "/---.*/,/---.*/s/^updated:.*$/updated:/" | sed "/---.*/,/---.*/s/^draft:.*$/draft: false/" > tmp
     mv tmp $file
     git add $file
   fi
@@ -93,9 +93,9 @@ To know the draft staus of the file, we need its frontmatter. In the following c
   draft=$(echo "$frontmatter" | awk '/^draft: /{print $2}')
 ```
 
-Now we have the value for `draft` we are going to do 1 of 3 things, set the modDatetime to now (when draft is false `if [ "$draft" = "false" ]; then`), clear the modDatetime and set draft to false (when draft is set to first `if [ "$draft" = "first" ]; then`), or nothing (in any other case).
+Now we have the value for `draft` we are going to do 1 of 3 things, set the updated to now (when draft is false `if [ "$draft" = "false" ]; then`), clear the updated and set draft to false (when draft is set to first `if [ "$draft" = "first" ]; then`), or nothing (in any other case).
 
-The next part with the sed command is a bit magical to me as I don't often use it, it was copied from [another blog post on doing something similar](https://mademistakes.com/notes/adding-last-modified-timestamps-with-git/). In essence, it is looking inside the frontmatter tags (`---`) of the file to find the `pubDatetime:` key, getting the full line and replacing it with the `pubDatetime: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/"` same key again and the current datetime formatted correctly.
+The next part with the sed command is a bit magical to me as I don't often use it, it was copied from [another blog post on doing something similar](https://mademistakes.com/notes/adding-last-modified-timestamps-with-git/). In essence, it is looking inside the frontmatter tags (`---`) of the file to find the `date:` key, getting the full line and replacing it with the `date: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/"` same key again and the current datetime formatted correctly.
 
 This replacement is in the context of the whole file so we put that into a temporary file (`> tmp`), then we move (`mv`) the new file into the location of the old file, overwriting it. This is then added to git ready to be committed as if we made the change ourselves.
 
@@ -103,18 +103,18 @@ This replacement is in the context of the whole file so we put that into a tempo
 
 #### NOTE
 
-For the `sed` to work the frontmatter needs to already have the `modDatetime` key in the frontmatter. There are some other changes you will need to make for the app to build with a blank date, see [further down](#empty-moddatetime-changes)
+For the `sed` to work the frontmatter needs to already have the `updated` key in the frontmatter. There are some other changes you will need to make for the app to build with a blank date, see [further down](#empty-moddatetime-changes)
 
 ---
 
 ### Adding the Date for new files
 
-Adding the date for a new file is the same process as above, but this time we are looking for lines that have been added (`A`) and we are going to replace the `pubDatetime` value.
+Adding the date for a new file is the same process as above, but this time we are looking for lines that have been added (`A`) and we are going to replace the `date` value.
 
 ```shell
-# New files, add/update the pubDatetime
+# New files, add/update the date
 git diff --cached --name-status | egrep -i "^(A).*\.(md)$" | while read a b; do
-  cat $b | sed "/---.*/,/---.*/s/^pubDatetime:.*$/pubDatetime: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/" > tmp
+  cat $b | sed "/---.*/,/---.*/s/^date:.*$/date: $(date -u "+%Y-%m-%dT%H:%M:%SZ")/" > tmp
   mv tmp $b
   git add $b
 done
@@ -124,7 +124,7 @@ done
 
 #### Improvement - Only Loop Once
 
-We could use the `a` variable to switch inside the loop and either update the `modDatetime` or add the `pubDatetime` in one loop.
+We could use the `a` variable to switch inside the loop and either update the `updated` or add the `date` in one loop.
 
 ---
 
@@ -136,7 +136,7 @@ If your IDE supports snippets then there is the option to create a custom snippe
   <source src="https://github.com/satnaing/astro-paper/assets/17761689/e13babbc-2d78-405d-8758-ca31915e41b0" type="video/mp4">
 </video>
 
-## Empty `modDatetime` changes
+## Empty `updated` changes
 
 To allow Astro to compile the markdown and do its thing, it needs to know what is expected in the frontmatter. It does this via the config in `src/content/config.ts`
 
@@ -148,9 +148,9 @@ const blog = defineCollection({
   schema: ({ image }) =>
     z.object({
       author: z.string().default(SITE.author),
-      pubDatetime: z.date(),
--     modDatetime: z.date().optional(),
-+     modDatetime: z.date().optional().nullable(),
+      date: z.date(),
+-     updated: z.date().optional(),
++     updated: z.date().optional().nullable(),
       title: z.string(),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
@@ -179,8 +179,8 @@ export interface Props {
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
-  pubDatetime?: Date;
-  modDatetime?: Date | null;
+  date?: Date;
+  updated?: Date | null;
 }
 ```
 
@@ -190,7 +190,7 @@ export interface Props {
 
 ```typescript
 interface DatetimesProps {
-  pubDatetime: string | Date;
-  modDatetime: string | Date | undefined | null;
+  date: string | Date;
+  updated: string | Date | undefined | null;
 }
 ```
