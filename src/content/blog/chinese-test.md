@@ -28,8 +28,8 @@ git loooooooooooooooooooooooooong longgggggggggggggggggg aaaaaaaaaaaaaaaaaaaaaaa
 
 ```ts showLineNumbers
 export const LOCALE = {
-// 中文註解
-//🚧❌🌐🖥️✔️🛒
+  // 中文註解
+  //🚧❌🌐🖥️✔️🛒
 
   lang: "zh", // html lang code. Set this empty and default will be "en"
   langTag: ["zh-TW"], // BCP 47 Language Tags. Set this empty [] to use the environment default

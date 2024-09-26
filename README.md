@@ -5,7 +5,7 @@ AstroPaper-S is a fork of [satnaing/astro-paper v4.5.0](https://github.com/satna
 Main changes:
 
 - [Hexo](https://github.com/hexojs/hexo) compatibility, includes routing and markdown frontmatter.
-- Auto-generated post descriptions, based on  word count or until the `<!--more-->` tag.
+- Auto-generated post descriptions, based on word count or until the `<!--more-->` tag.
 - Table of contents with [tocbot](https://tscanlin.github.io/tocbot/).
 - Code block syntax highlighter with [rehype-pretty-code](https://github.com/rehype-pretty/rehype-pretty-code).
 - Added `loading="lazy"` attribute to `<img>` tags and added `<figcaption>`.

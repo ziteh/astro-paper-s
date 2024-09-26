@@ -198,12 +198,8 @@ const getSortedPosts = async (posts: CollectionEntry<"blog">[]) => {
     .filter(({ data }) => !data.draft)
     .sort(
       (a, b) =>
-        Math.floor(
-          new Date(b.data.updated ?? b.data.date).getTime() / 1000
-        ) -
-        Math.floor(
-          new Date(a.data.updated ?? a.data.date).getTime() / 1000
-        )
+        Math.floor(new Date(b.data.updated ?? b.data.date).getTime() / 1000) -
+        Math.floor(new Date(a.data.updated ?? a.data.date).getTime() / 1000)
     );
 };
 

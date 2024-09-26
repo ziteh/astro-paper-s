@@ -212,7 +212,7 @@ const socialIcons = {
         ></path><path
           d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
         ></path><circle cx="6" cy="18" r="2"></circle>
-      </svg>`
+      </svg>`,
 };
 
 export default socialIcons;
