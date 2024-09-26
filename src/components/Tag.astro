@@ -1,4 +1,6 @@
 ---
+import { SITE } from "@config";
+
 export interface Props {
   tag: string;
   tagName: string;
@@ -12,7 +14,7 @@ const { tag, tagName, count, size = "sm" } = Astro.props;
 <li class={`inline-block ${size === "sm" ? "my-1" : "my-3"}`}>
   <a
     href={`/tags/${tag}/`}
-    transition:name={tag}
+    transition:name={SITE.enableTransitionName ? tag : undefined}
     class={`${size === "sm" ? "text-sm" : "text-lg"} group`}
   >
     <!-- <svg

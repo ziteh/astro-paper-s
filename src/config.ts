@@ -13,6 +13,7 @@ export const SITE: Site = {
   postPerArchive: 10,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
   genDescriptionCount: 150,
+  enableTransitionName: false,
 };
 
 export const LOCALE = {

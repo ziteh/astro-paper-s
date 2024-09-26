@@ -1,5 +1,6 @@
 ---
 // import Breadcrumbs from "@components/Breadcrumbs.astro";
+import { SITE } from "@config";
 
 interface StringTitleProp {
   pageTitle: string;
@@ -23,7 +24,11 @@ const { props } = Astro;
     "titleTransition" in props ? (
       <h1>
         {props.pageTitle[0]}
-        <span transition:name={props.titleTransition}>
+        <span
+          transition:name={
+            SITE.enableTransitionName ? props.titleTransition : undefined
+          }
+        >
           {props.pageTitle[1]}
         </span>
       </h1>

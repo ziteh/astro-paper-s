@@ -13,6 +13,7 @@ export type Site = {
   postPerArchive: number;
   scheduledPostMargin: number;
   genDescriptionCount: number;
+  enableTransitionName: boolean;
 };
 
 export type SocialObjects = {

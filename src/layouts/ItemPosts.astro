@@ -29,7 +29,12 @@ const { page, item, itemName, pageTitle, pageDesc, activeNav } = Astro.props;
     titleTransition={item}
     pageDesc={pageDesc}
   >
-    <h1 slot="title" transition:name={item}>{`Tag:${item}`}</h1>
+    <h1
+      slot="title"
+      transition:name={SITE.enableTransitionName ? item : undefined}
+    >
+      {`Tag:${item}`}
+    </h1>
     <ul>
       {
         page.data.map(({ data, slug, body }) => (
