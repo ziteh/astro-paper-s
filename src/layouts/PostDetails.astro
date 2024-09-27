@@ -90,7 +90,7 @@ const nextPost =
     <ul class="my-1 flex flex-col flex-wrap space-y-2 md:flex-row md:space-y-0">
       {
         categories.length > 0 && (
-          <div class="mr-4 flex items-center space-x-0.5 opacity-80">
+          <li class="mr-4 flex items-center space-x-0.5 opacity-80">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -101,19 +101,23 @@ const nextPost =
               <path d="M4 11h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm10 0h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zM4 21h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm13 0c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4z" />
             </svg>
             {categories.map((cat: string) => (
-              <a
-                href={`/categories/${slugifyStr(cat)}`}
-                class="text-sm hover:text-skin-accent"
-              >
-                {cat}
-              </a>
+              <ul>
+                <li>
+                  <a
+                    href={`/categories/${slugifyStr(cat)}`}
+                    class="text-sm hover:text-skin-accent"
+                  >
+                    {cat}
+                  </a>
+                </li>
+              </ul>
             ))}
-          </div>
+          </li>
         )
       }
       {
         tags.length > 0 && (
-          <div class="flex items-center space-x-0.5">
+          <li class="flex items-center space-x-0.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -128,7 +132,7 @@ const nextPost =
                 <Tag tag={slugifyStr(tag)} tagName={tag} />
               ))}
             </ul>
-          </div>
+          </li>
         )
       }
     </ul>
