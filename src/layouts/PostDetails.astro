@@ -168,7 +168,7 @@ const nextPost =
       {
         toc && (
           <div>
-            <div class="js-toc" />
+            <div id="toc-container" class="js-toc" />
             <hr class="my-4 opacity-80" aria-hidden={true} />
           </div>
         )
@@ -323,19 +323,6 @@ const nextPost =
 </style>
 
 <script is:inline data-astro-rerun>
-  if (tocbot) {
-    tocbot.init({
-      // Where to render the table of contents.
-      tocSelector: ".js-toc",
-      // Where to grab the headings to build the table of contents.
-      contentSelector: ".js-toc-content",
-      // Which headings to grab inside of the contentSelector element.
-      headingSelector: "h1, h2, h3",
-      // For headings inside relative or absolute positioned containers within content.
-      hasInnerContainers: true,
-    });
-  }
-
   /** Create a progress indicator
    *  at the top */
   // function createProgressBar() {
@@ -399,7 +386,39 @@ const nextPost =
       heading.appendChild(link);
     }
   }
-  addHeadingLinks();
+
+  function attachTocScript() {
+    const tocbotScript = document.createElement("script");
+    tocbotScript.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.29.0/tocbot.min.js";
+    tocbotScript.integrity =
+      "sha512-+9XzRSJjnUN2OI106uAbbVZ3f+z1ncIRZFOr56hEdaxbQeZ8i1+B7OVjdF8tG4YhgxM/rWP73K2SiG93x6UJoQ==";
+    tocbotScript.crossOrigin = "anonymous";
+    tocbotScript.referrerPolicy = "no-referrer";
+    tocbotScript.onload = () => {
+      tocbot.init({
+        tocSelector: ".js-toc",
+        contentSelector: ".js-toc-content",
+        headingSelector: "h1, h2, h3",
+        hasInnerContainers: true,
+      });
+      addHeadingLinks();
+    };
+
+    document.body.appendChild(tocbotScript);
+  }
+
+  /** Handle Tocbot */
+  if (document.getElementById("toc-container")) {
+    if (window.tocbot) {
+      tocbot.refresh();
+      addHeadingLinks();
+    } else {
+      attachTocScript();
+    }
+  } else {
+    addHeadingLinks();
+  }
 
   /** Attaches copy buttons to code blocks in the document,
    * allowing users to copy code easily. */
