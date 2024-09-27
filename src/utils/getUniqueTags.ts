@@ -30,7 +30,6 @@ const getUniqueTags = (posts: CollectionEntry<"blog">[]) => {
       }
     });
 
-  // 將 Map 轉換為數組並按 tag 名字排序
   const tags = Array.from(tagCountMap.values()).sort((tagA, tagB) =>
     tagA.tag.localeCompare(tagB.tag)
   );

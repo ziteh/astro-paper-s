@@ -37,7 +37,7 @@ export default function Card({
           )}
         </div>
         {subtitle && <h6 className="text-sm">{subtitle}</h6>}
-        <p className="mb-1 mt-2 hover:text-skin-accent">
+        <p className="mb-1 mt-2 opacity-80 hover:text-skin-accent">
           {description ? description : fallbackDescription}
         </p>
       </a>
