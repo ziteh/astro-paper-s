@@ -14,11 +14,13 @@ export const SITE: Site = {
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
   genDescriptionCount: 150,
   enableTransitionName: false,
+  enableGenOgImage: false,
 };
 
 export const LOCALE = {
   lang: "zh", // html lang code. Set this empty and default will be "en"
   langTag: ["zh-TW"], // BCP 47 Language Tags. Set this empty [] to use the environment default
+  langOg: "zh_TW", // Open Graph locale tag, format 'language_TERRITORY'
 } as const;
 
 export const LOGO_IMAGE = {

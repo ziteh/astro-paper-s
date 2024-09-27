@@ -11,6 +11,8 @@ export interface Props {
   profile?: string;
   description?: string;
   ogImage?: string;
+  ogLocale?: string;
+  ogType?: string;
   canonicalURL?: string;
   date?: Date;
   updated?: Date | null;
@@ -25,6 +27,8 @@ const {
   profile = SITE.profile,
   description = SITE.desc,
   ogImage = SITE.ogImage,
+  ogLocale = LOCALE.langOg,
+  ogType = "website",
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
   date,
   updated,
@@ -78,7 +82,9 @@ const structuredData = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:image" content={socialImageURL} />
+    <meta property="og:type" content={ogType} />
 
     <!-- Article Published/Modified time -->
     {
