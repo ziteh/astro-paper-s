@@ -80,10 +80,10 @@ Modify `translations` to add new language, and set the desired language using th
 | Property     | Desc                                                                           | Remark                                         |
 | ------------ | ------------------------------------------------------------------------------ | ---------------------------------------------- |
 | author       | Author of the post                                                             | default = `SITE.author`                        |
-| title        | Title of the post                                                              | **required***                                  |
+| title        | Title of the post                                                              | **required\***                                 |
 | subtitle     | Subtitle of the post                                                           | optional                                       |
 | description  | Description of the post. Used in post excerpt and site description of the post | optional, auto-generated if not given          |
-| date         | published datetime in ISO 8601 format                                          | **required***                                  |
+| date         | published datetime in ISO 8601 format                                          | **required\***                                 |
 | updated      | Modified datetime in ISO 8601 format                                           | optional                                       |
 | featured     | Whether or not display this post in featured section of home page              | default = `false`                              |
 | draft        | Mark this post 'unpublished'                                                   | default = `false`                              |
