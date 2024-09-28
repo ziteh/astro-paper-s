@@ -14,6 +14,7 @@ export type Site = {
   scheduledPostMargin: number;
   genDescriptionCount: number;
   enableTransitionName: boolean;
+  enableGenOgImage: boolean;
 };
 
 export type SocialObjects = {

@@ -24,7 +24,7 @@ export default function Card({
   };
 
   return (
-    <li className="my-6">
+    <li className="my-12">
       <a
         href={href}
         // className="inline-block text-lg font-medium text-skin-accent underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
@@ -37,13 +37,13 @@ export default function Card({
           )}
         </div>
         {subtitle && <h6 className="text-sm">{subtitle}</h6>}
-        <p className="hover:text-skin-accent">
-          {description ? description : fallbackDescription + " ..."}
+        <p className="mb-1 mt-2 opacity-80 hover:text-skin-accent">
+          {description ? description : fallbackDescription}
         </p>
       </a>
-      <div className="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
+      <div className="flex flex-col flex-wrap space-y-2 md:flex-row md:space-y-0">
         {/* Datetime */}
-        <div className="flex items-center space-x-0.5">
+        <div className="mr-4 flex items-center space-x-0.5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -58,7 +58,7 @@ export default function Card({
 
         {/* Categories */}
         {categories.length > 0 && (
-          <div className="flex items-center space-x-0.5 opacity-80">
+          <div className="mr-4 flex items-center space-x-0.5 opacity-80">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

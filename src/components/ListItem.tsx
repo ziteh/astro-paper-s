@@ -18,10 +18,10 @@ export interface Props {
 }
 
 export default function ListItem({ href, frontmatter }: Props) {
-  const { title, subtitle, date, updated } = frontmatter;
+  const { title, date, updated } = frontmatter;
 
   return (
-    <li className="my-1">
+    <li className="my-2">
       <a
         href={href}
         className="flex flex-col space-x-4 rounded-md p-2 hover:bg-skin-card/30 sm:flex-row"
@@ -29,8 +29,9 @@ export default function ListItem({ href, frontmatter }: Props) {
         <span className="mr-4 text-skin-accent/80">
           <Datetime date={updated ?? date} />
         </span>
-        <span>{title}</span>
-        <span className="opacity-50">{subtitle}</span>
+        <span className="overflow-hidden truncate whitespace-nowrap">
+          {title}
+        </span>
       </a>
     </li>
   );

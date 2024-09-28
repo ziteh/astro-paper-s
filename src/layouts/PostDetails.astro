@@ -51,7 +51,8 @@ const layoutProps = {
   date,
   updated,
   canonicalURL,
-  ogImage: ogUrl,
+  ogImage: SITE.enableGenOgImage ? ogUrl : undefined,
+  ogType: "article",
   scrollSmooth: true,
   enableToc: toc,
   enableMath: math,
@@ -87,12 +88,10 @@ const nextPost =
     </button>
   </div> -->
   <main id="main-content" class="mt-4">
-    <ul
-      class="my-1 flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0"
-    >
+    <ul class="my-1 flex flex-col flex-wrap space-y-2 md:flex-row md:space-y-0">
       {
         categories.length > 0 && (
-          <div class="flex items-center space-x-0.5 opacity-80">
+          <li class="mr-4 flex items-center space-x-0.5 opacity-80">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -103,19 +102,23 @@ const nextPost =
               <path d="M4 11h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm10 0h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zM4 21h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm13 0c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4z" />
             </svg>
             {categories.map((cat: string) => (
-              <a
-                href={`/categories/${slugifyStr(cat)}`}
-                class="text-sm hover:text-skin-accent"
-              >
-                {cat}
-              </a>
+              <ul>
+                <li>
+                  <a
+                    href={`/categories/${slugifyStr(cat)}`}
+                    class="text-sm hover:text-skin-accent"
+                  >
+                    {cat}
+                  </a>
+                </li>
+              </ul>
             ))}
-          </div>
+          </li>
         )
       }
       {
         tags.length > 0 && (
-          <div class="flex items-center space-x-0.5">
+          <li class="flex items-center space-x-0.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -130,7 +133,7 @@ const nextPost =
                 <Tag tag={slugifyStr(tag)} tagName={tag} />
               ))}
             </ul>
-          </div>
+          </li>
         )
       }
     </ul>
@@ -162,8 +165,14 @@ const nextPost =
 
     <!-- Sideber -->
     <aside class="sidebar">
-      <div class="js-toc"></div>
-      <hr class="my-4 opacity-80" aria-hidden={true} />
+      {
+        toc && (
+          <div>
+            <div id="toc-container" class="js-toc" />
+            <hr class="my-4 opacity-80" aria-hidden={true} />
+          </div>
+        )
+      }
       <div class="flex flex-col items-start space-y-0 opacity-80">
         <button
           id="back-to-top"
@@ -293,7 +302,7 @@ const nextPost =
     @apply mx-auto w-full max-w-3xl px-4 pb-12;
   }
   .post-title {
-    @apply mb-4 text-4xl font-semibold text-skin-accent;
+    @apply mb-4 mt-8 text-4xl font-semibold text-skin-accent;
   }
   .post-subtitle {
     @apply text-xl;
@@ -314,19 +323,6 @@ const nextPost =
 </style>
 
 <script is:inline data-astro-rerun>
-  if (tocbot) {
-    tocbot.init({
-      // Where to render the table of contents.
-      tocSelector: ".js-toc",
-      // Where to grab the headings to build the table of contents.
-      contentSelector: ".js-toc-content",
-      // Which headings to grab inside of the contentSelector element.
-      headingSelector: "h1, h2, h3",
-      // For headings inside relative or absolute positioned containers within content.
-      hasInnerContainers: true,
-    });
-  }
-
   /** Create a progress indicator
    *  at the top */
   // function createProgressBar() {
@@ -381,6 +377,7 @@ const nextPost =
       link.className =
         "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
       link.href = "#" + heading.id;
+      link.ariaLabel = `Link to heading ${heading.innerText}`;
 
       const span = document.createElement("span");
       span.ariaHidden = "true";
@@ -389,7 +386,39 @@ const nextPost =
       heading.appendChild(link);
     }
   }
-  addHeadingLinks();
+
+  function attachTocScript() {
+    const tocbotScript = document.createElement("script");
+    tocbotScript.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.29.0/tocbot.min.js";
+    tocbotScript.integrity =
+      "sha512-+9XzRSJjnUN2OI106uAbbVZ3f+z1ncIRZFOr56hEdaxbQeZ8i1+B7OVjdF8tG4YhgxM/rWP73K2SiG93x6UJoQ==";
+    tocbotScript.crossOrigin = "anonymous";
+    tocbotScript.referrerPolicy = "no-referrer";
+    tocbotScript.onload = () => {
+      tocbot.init({
+        tocSelector: ".js-toc",
+        contentSelector: ".js-toc-content",
+        headingSelector: "h1, h2, h3",
+        hasInnerContainers: true,
+      });
+      addHeadingLinks();
+    };
+
+    document.body.appendChild(tocbotScript);
+  }
+
+  /** Handle Tocbot */
+  if (document.getElementById("toc-container")) {
+    if (window.tocbot) {
+      tocbot.refresh();
+      addHeadingLinks();
+    } else {
+      attachTocScript();
+    }
+  } else {
+    addHeadingLinks();
+  }
 
   /** Attaches copy buttons to code blocks in the document,
    * allowing users to copy code easily. */

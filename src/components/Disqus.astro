@@ -1,5 +1,7 @@
 <!--
-  Src: https://webdesign-sopelnik.de/en/blog/adding-comments-to-your-astro-blog-with-disqus/
+  Src:
+    Artur Sopelnik
+    https://webdesign-sopelnik.de/en/blog/adding-comments-to-your-astro-blog-with-disqus/
 
   Usage:
     import Disqus from "@components/Disqus.astro";
@@ -8,9 +10,6 @@
 <div id="disqus_thread"></div>
 
 <script is:inline>
-  // Please replace shortname
-  const shortname = "YOUR_SHORTNAME";
-
   if (!window.DisqusWidget) {
     window.DisqusWidget = {
       overwriteGlobalSelectors: function () {
@@ -46,7 +45,9 @@
           // DON'T EDIT BELOW THIS LINE
           const d = document,
             s = d.createElement("script");
-          s.src = `https://${shortname}.disqus.com/embed.js`;
+
+          // Please replace SHORTNAME
+          s.src = `https://SHORTNAME.disqus.com/embed.js`;
           s.setAttribute("data-timestamp", String(+new Date()));
           (d.head || d.body).appendChild(s);
         })();
@@ -57,8 +58,8 @@
   }
 </script>
 
-<noscript
-  >Please enable JavaScript to view the <a
+<noscript>
+  Please enable JavaScript to view the <a
     href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a
-  ></noscript
->
+  >
+</noscript>
