@@ -1,7 +1,7 @@
 ---
 title: "中文文章"
 subtitle: "中文顯示效果測試"
-date: 2024-09-28T12:08:00Z
+date: 2024-09-28T12:08:00+08:00
 featured: true
 draft: false
 tags:

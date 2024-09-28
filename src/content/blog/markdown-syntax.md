@@ -1,7 +1,7 @@
 ---
 title: "Markdown Syntax"
 subtitle: "Rendering effect display"
-date: 2024-09-28T12:08:01Z
+date: 2024-09-28T12:08:01+08:00
 featured: true
 draft: false
 tags:

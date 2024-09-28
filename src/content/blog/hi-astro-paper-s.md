@@ -1,6 +1,6 @@
 ---
 title: "Welcome to AstroPaper-S"
-date: 2024-09-28T13:08:00Z
+date: 2024-09-28T13:08:00+08:00
 featured: true
 draft: false
 tags:
