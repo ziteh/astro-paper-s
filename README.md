@@ -1,5 +1,7 @@
 # AstroPaper-S
 
+![](./public/AstroPaperS_1.jpg)
+
 AstroPaper-S is a fork of [satnaing/astro-paper v4.5.0](https://github.com/satnaing/astro-paper), based on [Astro](https://astro.build/).
 
 Main changes:
