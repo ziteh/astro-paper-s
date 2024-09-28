@@ -1,5 +1,7 @@
+// Select the language you want to use
 const USED_LANG: keyof typeof translations = "zhTW";
 
+// Modify this object to add new translations
 const translations = {
   en: {
     archives: {
