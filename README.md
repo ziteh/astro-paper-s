@@ -6,7 +6,7 @@ Main changes:
 
 - [Hexo](https://github.com/hexojs/hexo) compatibility, includes routing and markdown frontmatter.
 - Auto-generated post descriptions, based on word count or until the `<!--more-->` tag.
-- Table of contents with [tocbot](https://tscanlin.github.io/tocbot/).
+- Sidebar table of contents with [tocbot](https://tscanlin.github.io/tocbot/).
 - Code block syntax highlighter with [rehype-pretty-code](https://github.com/rehype-pretty/rehype-pretty-code).
 - Added `loading="lazy"` attribute to `<img>` tags and added `<figcaption>`.
 - Added [Disqus](https://disqus.com/) for comments.
