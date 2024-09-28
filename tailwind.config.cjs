@@ -78,6 +78,9 @@ module.exports = {
               fontStyle: "normal",
               fontWeight: "inherit",
             },
+            strong: {
+              fontWeight: 700,
+            },
             h1: {
               fontSize: '2rem',
               lineHeight: '2rem',
