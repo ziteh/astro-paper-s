@@ -1,6 +1,20 @@
-# AstroPaper-S
+---
+title: "Welcome to AstroPaper-S"
+date: 2024-09-28T13:08:00Z
+featured: true
+draft: false
+tags:
+  - docs
+  - rendering
+categories:
+  - AstroPaper-S
+toc: true
+comments: false
+---
 
-AstroPaper-S is a fork of [satnaing/astro-paper v4.5.0](https://github.com/satnaing/astro-paper), based on [Astro](https://astro.build/).
+**_AstroPaper-S_** is a fork of [satnaing/astro-paper v4.5.0](https://github.com/satnaing/astro-paper), based on [Astro](https://astro.build/).
+
+[GitHub repo](https://github.com/ziteh/astro-paper-s)
 
 Main changes:
 
@@ -33,7 +47,7 @@ pnpm run build
 
 ## Config
 
-[`src/config.ts`](./src/config.ts)
+`src/config.ts`
 
 - `website`: Replace this with your deployed domain
 - `author`: Your name
@@ -50,11 +64,11 @@ pnpm run build
 - `enableTransitionName`: Enable [Astro Naming a transition](https://docs.astro.build/en/guides/view-transitions/#naming-a-transition)
 - `enableGenOgImage`: Enable Open Graph image generation for each posts
 
-> Also see [How to configure AstroPaper theme | AstroPaper](https://astro-paper.pages.dev/posts/how-to-configure-astropaper-theme/)
+> Also see [How to configure AstroPaper theme | AstroPaper](/posts/how-to-configure-astropaper-theme/)
 
 ### Disqus
 
-Please replace your shortname in [`Disqus.astro`](./src/components/Disqus.astro)
+Please replace your shortname in `src/components/Disqus.astro`
 
 ```js
 (function () {
@@ -71,7 +85,7 @@ Please replace your shortname in [`Disqus.astro`](./src/components/Disqus.astro)
 
 ### Static i18n
 
-Look at [`lang.ts`](./src/lang/lang.ts)
+Look at `src/lang/lang.ts`
 
 Modify `translations` to add new language, and set the desired language using the `USED_LANG` constant
 
@@ -96,4 +110,4 @@ Modify `translations` to add new language, and set the desired language using th
 | canonicalURL | Canonical URL (absolute), in case the article already exists on other source   | default = `Astro.site` + `Astro.url.pathname`  |
 | slug         | Slug for the post. This field is optional but CANNOT be an empty string (`""`) | default = slugified file name                  |
 
-> Also see [Adding new posts in AstroPaper theme | AstroPaper](https://astro-paper.pages.dev/posts/adding-new-posts-in-astropaper-theme/) and [`content/config.ts`](./src/content/config.ts)
+> Also see [Adding new posts in AstroPaper theme | AstroPaper](/posts/adding-new-posts-in-astropaper-theme/) and `src/content/config.ts`
