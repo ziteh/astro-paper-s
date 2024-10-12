@@ -256,7 +256,9 @@ const nextPost =
         </div>
       )
     }
-    <div class="flex flex-col items-start space-y-0 opacity-80">
+    <div
+      class="flex flex-col items-start space-y-0 overflow-hidden truncate whitespace-nowrap opacity-80"
+    >
       <button
         id="back-to-top"
         aria-label={_t.backToTop}
@@ -278,7 +280,7 @@ const nextPost =
         id="md-share-btn"
         aria-label={_t.copyMdLink}
         title="[Title](https://)"
-        class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
+        class="overflow-hidden truncate whitespace-nowrap py-1 hover:opacity-75"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -300,7 +302,7 @@ const nextPost =
 
 <style>
   main {
-    @apply mx-auto w-full max-w-3xl px-4 pb-12;
+    @apply mx-auto w-full max-w-2xl px-4 pb-12 xl:max-w-3xl;
   }
   .post-title {
     @apply mb-4 mt-8 text-4xl font-semibold text-skin-accent;
@@ -309,7 +311,7 @@ const nextPost =
     @apply text-xl;
   }
   .sidebar {
-    @apply fixed right-24 top-32 m-2 hidden max-h-[clac(100vh-12rem)] w-64 overflow-y-auto text-sm 2xl:block;
+    @apply fixed right-10 top-32 m-2 hidden max-h-[clac(100vh-12rem)] w-32 overflow-y-auto text-sm lg:block xl:right-24 2xl:w-64;
 
     .toc-list-item {
       @apply overflow-hidden truncate whitespace-nowrap text-skin-base/80;
