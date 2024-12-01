@@ -11,6 +11,7 @@ const starRegex = /\*{1,3}(.*?)\*{1,3}/g;
 const quoteRegex = /> (.*?)[\r\n]/g;
 const headerRegex = /#{1,6} (.*?)[\r\n]/g;
 const codeRegex = /`(.*?)`/g;
+const newlineRegex = /[\r\n]/g;
 
 const getDescription = (markdownContent: string) => {
   // Match everything until `<!-- more -->` tag
@@ -30,7 +31,8 @@ const getDescription = (markdownContent: string) => {
     .replace(imageRegex2, "")
     .replace(linkRefRegex, "")
     .replace(linkRegex2, "$1")
-    .replace(linkRegex, "$1");
+    .replace(linkRegex, "$1")
+    .replace(newlineRegex, "");
   return clean;
 };
 

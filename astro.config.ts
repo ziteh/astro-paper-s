@@ -35,6 +35,26 @@ const rehypeRewriteOption = {
         loading: "lazy",
       };
     }
+
+    // Level up headers, h1 -> h2, h2 -> h3...
+    if (node.type === "element" && node.tagName.startsWith("h")) {
+      const headers = node.tagName.match(/h([1-6])/);
+      if (headers === null) {
+        return
+      }
+
+      const currentLevel = parseInt(headers[1], 10);
+      if (currentLevel === 6) {
+        node.properties = {
+          ...node.properties,
+          class: "italic",
+        }
+      }
+      else {
+        const newLevel = Math.min(currentLevel + 1, 6);
+        node.tagName = `h${newLevel}`;
+      }
+    }
   },
 };
 
