@@ -40,7 +40,7 @@ const rehypeRewriteOption = {
     if (node.type === "element" && node.tagName.startsWith("h")) {
       const headers = node.tagName.match(/h([1-6])/);
       if (headers === null) {
-        return
+        return;
       }
 
       const currentLevel = parseInt(headers[1], 10);
@@ -48,9 +48,8 @@ const rehypeRewriteOption = {
         node.properties = {
           ...node.properties,
           class: "italic",
-        }
-      }
-      else {
+        };
+      } else {
         const newLevel = Math.min(currentLevel + 1, 6);
         node.tagName = `h${newLevel}`;
       }
