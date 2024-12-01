@@ -10,6 +10,7 @@ import { slugifyStr } from "@utils/slugify";
 import { SITE } from "@config";
 import Disqus from "@components/Disqus.astro";
 import { _t } from "lang/lang";
+import getDescription from "@utils/getDescription";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -47,7 +48,7 @@ const ogUrl = new URL(
 const layoutProps = {
   title: `${title} | ${SITE.title}`,
   author,
-  description,
+  description: description || getDescription(post.body),
   date,
   updated,
   canonicalURL,
