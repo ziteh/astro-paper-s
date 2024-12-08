@@ -57,6 +57,23 @@ const rehypeRewriteOption = {
   },
 };
 
+// https://docs.astro.build/en/guides/integrations-guide/sitemap/
+const sitemapOption = {
+  serialize(item) {
+    if (/\/(tags|categories|archives|page|search)/.test(item.url)) {
+      item.priority = 0.2;
+    } else if (/\/posts\/\d+\/?$/.test(item.url)) {
+      item.priority = 0.3;
+    } else if (/\/posts\//.test(item.url)) {
+      item.priority = 0.8;
+    } else {
+      item.priority = 0.5;
+    }
+
+    return item;
+  },
+};
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
@@ -65,7 +82,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     react(),
-    sitemap(),
+    sitemap(sitemapOption),
   ],
   markdown: {
     syntaxHighlight: false, // Use rehype-pretty-code
