@@ -184,3 +184,10 @@
     @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline;
   }
 }
+
+kbd {
+  @apply bg-skin-card text-skin-base;
+}
+.prose kbd {
+  @apply bg-skin-card font-mono text-skin-base;
+}

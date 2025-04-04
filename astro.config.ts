@@ -54,6 +54,28 @@ const rehypeRewriteOption = {
         node.tagName = `h${newLevel}`;
       }
     }
+
+    // Open external link in new tab
+    if (
+      node.type === "element" &&
+      node.tagName === "a" &&
+      node.properties?.href
+    ) {
+      const href = node.properties.href;
+      if (
+        typeof href === "string" &&
+        !href.startsWith("/") &&
+        !href.startsWith(SITE.website)
+      ) {
+        // Add target="_blank" (open in new tab)
+        // and rel="noopener noreferrer" (security and privacy)
+        node.properties = {
+          ...node.properties,
+          target: "_blank",
+          rel: "noopener noreferrer",
+        };
+      }
+    }
   },
 };
 
