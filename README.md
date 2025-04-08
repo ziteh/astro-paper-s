@@ -71,6 +71,10 @@ Please replace your shortname in [`Disqus.astro`](./src/components/Disqus.astro)
 })();
 ```
 
+### `_redirects` File
+
+If you need a `_redirects` file for [Netlify](https://docs.netlify.com/routing/redirects/) or [Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/redirects/), you can put it in the [`public`](./public/) folder, files in this folder will be copied into the build folder (ie `dist/`) untouched.
+
 ### Static i18n
 
 Look at [`lang.ts`](./src/lang/lang.ts)
