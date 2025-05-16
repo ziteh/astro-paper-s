@@ -12,6 +12,8 @@ import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
+import IconCategory from "@/assets/icons/IconCategory.svg";
+import IconTag from "@/assets/icons/IconTag.svg";
 import { SITE } from "@/config";
 
 export interface Props {
@@ -32,6 +34,7 @@ const {
   updated,
   timezone,
   tags,
+  categories,
   hideEditPost,
 } = post.data;
 
@@ -92,13 +95,51 @@ const nextPost =
     ]}
     data-pagefind-body
   >
+    <ul class="my-1 flex flex-col flex-wrap space-y-2 md:flex-row md:space-y-0">
+      <!-- categories -->
+      {
+        categories.length > 0 && (
+          <li class="mr-4 flex items-center space-x-0.5 opacity-80">
+            <IconCategory class="mt-0.5 h-4 w-4" />
+            {categories.map((cat: string) => (
+              <ul>
+                <li>
+                  <a
+                    href={`/categories/${slugifyStr(cat)}`}
+                    class="hover:text-skin-accent text-sm"
+                  >
+                    {cat}
+                  </a>
+                </li>
+              </ul>
+            ))}
+          </li>
+        )
+      }
+      <!-- Tags -->
+      {
+        tags.length > 0 && (
+          <li class="flex items-center space-x-0.5">
+            <IconTag class="mt-0.5 h-4 w-4" />
+            <ul>
+              {tags.map((tag: string) => (
+                <Tag tag={slugifyStr(tag)} tagName={tag} />
+              ))}
+            </ul>
+          </li>
+        )
+      }
+    </ul>
+
+    <!-- Title -->
     <h1
       transition:name={slugifyStr(title)}
-      class="mt-2 mb-4 inline-block text-3xl font-bold text-accent sm:text-4xl"
+      class="mt-8 mb-4 inline-block text-3xl font-bold text-accent sm:text-4xl"
     >
       {title}
     </h1>
-    {subtitle && <h2 class="text-xl">{subtitle}</h2>}
+    {subtitle && <h2 class="text-xl opacity-70">{subtitle}</h2>}
+
     <div class="flex items-center gap-4">
       <Datetime
         pubDatetime={date}
@@ -109,6 +150,7 @@ const nextPost =
       />
       <EditPost class="max-sm:hidden" {hideEditPost} {post} />
     </div>
+
     <article id="article" class="mx-auto prose mt-8 max-w-3xl">
       <Content />
     </article>
@@ -117,9 +159,9 @@ const nextPost =
 
     <EditPost class="sm:hidden" {hideEditPost} {post} />
 
-    <ul class="mt-4 mb-8 sm:my-8">
+    <!-- <ul class="mt-4 mb-8 sm:my-8">
       {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} />)}
-    </ul>
+    </ul> -->
 
     <!-- <div
       class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"
