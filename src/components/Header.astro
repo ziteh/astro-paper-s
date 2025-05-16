@@ -1,5 +1,5 @@
 ---
-import Hr from "./Hr.astro";
+// import Hr from "./Hr.astro";
 import IconX from "@/assets/icons/IconX.svg";
 import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
@@ -33,11 +33,11 @@ const isActive = (path: string) => {
   </a>
   <div
     id="nav-container"
-    class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"
+    class="mx-auto flex max-w-6xl flex-col items-center justify-between sm:flex-row"
   >
     <div
       id="top-nav-wrap"
-      class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"
+      class="relative flex w-full items-baseline justify-between bg-background p-2 sm:items-center sm:py-4"
     >
       <a
         href="/"
@@ -137,7 +137,10 @@ const isActive = (path: string) => {
       </nav>
     </div>
   </div>
-  <Hr />
+  <div class="mx-auto w-full">
+    <hr class="border-skin-line" aria-hidden={true} />
+  </div>
+  <!-- <Hr /> -->
 </header>
 
 <script>
