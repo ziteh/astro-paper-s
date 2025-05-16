@@ -1,0 +1,53 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPathsOptions } from "astro";
+import Main from "@/layouts/Main.astro";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Card from "@/components/Card.astro";
+import Pagination from "@/components/Pagination.astro";
+import getUniqueCategories from "@/utils/getUniqueCategories";
+import { SITE } from "@/config";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = await getCollection("blog");
+  const categories = getUniqueCategories(posts);
+
+  return categories.flatMap(({ category, categoryName }) => {
+    const categoryPosts = posts.filter(post =>
+      post.data.categories.includes(categoryName)
+    );
+
+    return paginate(categoryPosts, {
+      params: { category },
+      props: { categoryName },
+      pageSize: SITE.postPerPage,
+    });
+  });
+}
+
+const params = Astro.params;
+const { category } = params;
+const { page, categoryName } = Astro.props;
+---
+
+<Layout title={`Category: ${categoryName} | ${SITE.title}`}>
+  <Header />
+  <Main
+    pageTitle={[`Category:`, `${categoryName}`]}
+    titleTransition={category}
+    pageDesc={`All the articles in the category "${categoryName}".`}
+  >
+    <h1 slot="title">
+      {`Category:${categoryName}`}
+    </h1>
+    <ul>
+      {page.data.map(data => <Card {...data} />)}
+    </ul>
+  </Main>
+
+  <Pagination {page} />
+
+  <Footer noMarginTop={page.lastPage > 1} />
+</Layout>
