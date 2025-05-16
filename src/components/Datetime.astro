@@ -48,10 +48,8 @@ const title = `Published: ${dayjs(pubDatetime)
     ]}
   /> -->
   {
-    isModified && (
-      <span class:list={["text-sm", { "sm:text-base": size === "lg" }]}>
-        Updated:
-      </span>
+    isModified && size === "lg" && (
+      <span class:list={["text-sm", { "sm:text-base": true }]}>Updated:</span>
     )
   }
   <span class:list={["text-sm", { "sm:text-base": size === "lg" }]}>
