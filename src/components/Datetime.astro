@@ -2,7 +2,7 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import IconCalendar from "@/assets/icons/IconCalendar.svg";
+// import IconCalendar from "@/assets/icons/IconCalendar.svg";
 import { SITE } from "@/config";
 
 dayjs.extend(utc);
@@ -25,34 +25,39 @@ const {
 } = Astro.props;
 
 /* ========== Formatted Datetime ========== */
-const latestDatetime =
-  modDatetime && modDatetime > pubDatetime ? modDatetime : pubDatetime;
+const isModified = modDatetime && modDatetime > pubDatetime;
+const latestDatetime = isModified ? modDatetime : pubDatetime;
 const datetime = dayjs(latestDatetime).tz(postTimezone || SITE.timezone);
 
-const date = datetime.format("D MMM, YYYY"); // e.g., '22 Mar, 2025'
-const time = datetime.format("hh:mm A"); // e.g., '08:30 PM'
+const date = datetime.format("YYYY/MM/DD"); // e.g., '2025/03/22'
+// const time = datetime.format("hh:mm A"); // e.g., '08:30 PM'
+
+const title = `Published: ${dayjs(pubDatetime)
+  .tz(postTimezone || SITE.timezone)
+  .format("YYYY/MM/DD hh:mm A Z")}`;
 ---
 
-<div class:list={["flex items-end space-x-2 opacity-80", className]}>
-  <IconCalendar
+<div
+  class:list={["flex items-end space-x-1 opacity-80", className]}
+  title={title}
+>
+  <!-- <IconCalendar
     class:list={[
       "inline-block size-6 min-w-[1.375rem]",
       { "scale-90": size === "sm" },
     ]}
-  />
+  /> -->
   {
-    modDatetime && modDatetime > pubDatetime ? (
-      <span class:list={["text-sm italic", { "sm:text-base": size === "lg" }]}>
+    isModified && (
+      <span class:list={["text-sm", { "sm:text-base": size === "lg" }]}>
         Updated:
       </span>
-    ) : (
-      <span class="sr-only">Published:</span>
     )
   }
-  <span class:list={["text-sm italic", { "sm:text-base": size === "lg" }]}>
+  <span class:list={["text-sm", { "sm:text-base": size === "lg" }]}>
     <time datetime={datetime.toISOString()}>{date}</time>
-    <span aria-hidden="true"> | </span>
+    <!-- <span aria-hidden="true"> | </span>
     <span class="sr-only">&nbsp;at&nbsp;</span>
-    <span class="text-nowrap">{time}</span>
+    <span class="text-nowrap">{time}</span> -->
   </span>
 </div>
