@@ -1,5 +1,5 @@
 ---
-import Breadcrumb from "@/components/Breadcrumb.astro";
+// import Breadcrumb from "@/components/Breadcrumb.astro";
 import { SITE } from "@/config";
 
 interface StringTitleProp {
@@ -20,7 +20,7 @@ const { props } = Astro;
 const backUrl = SITE.showBackButton ? Astro.url.pathname : "/";
 ---
 
-<Breadcrumb />
+<!-- <Breadcrumb /> -->
 <main
   data-backUrl={backUrl}
   id="main-content"
