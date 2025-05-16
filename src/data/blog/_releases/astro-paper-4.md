@@ -62,7 +62,7 @@ Keep readers informed about the latest updates by displaying the modified dateti
 
 ![Last Modified Date feature in AstroPaper](https://github.com/satnaing/astro-paper/assets/53733092/cc89585e-148e-444d-9da1-0d496e867175)
 
-You can add a `modDatetime` to your blog post if you've made modifications. Now, the sorting behavior of the posts is slightly different. All posts are sorted by both `date` and `modDatetime`. If a post has both a `date` and `modDatetime`, its sorting position will be determined by the `modDatetime`. If not, only `date` will be considered to determine the post's sorting order.
+You can add a `updated` to your blog post if you've made modifications. Now, the sorting behavior of the posts is slightly different. All posts are sorted by both `date` and `updated`. If a post has both a `date` and `updated`, its sorting position will be determined by the `updated`. If not, only `date` will be considered to determine the post's sorting order.
 
 ### Implement Back-to-Top Button [#188](https://github.com/satnaing/astro-paper/pull/188)
 

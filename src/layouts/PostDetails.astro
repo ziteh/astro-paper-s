@@ -28,7 +28,7 @@ const {
   ogImage: initOgImage,
   canonicalURL,
   date,
-  modDatetime,
+  updated,
   timezone,
   tags,
   hideEditPost,
@@ -60,7 +60,7 @@ const layoutProps = {
   author,
   description,
   pubDatetime: date,
-  modDatetime,
+  modDatetime: updated,
   canonicalURL,
   ogImage,
   scrollSmooth: true,
@@ -100,7 +100,7 @@ const nextPost =
     <div class="flex items-center gap-4">
       <Datetime
         pubDatetime={date}
-        {modDatetime}
+        modDatetime={updated}
         {timezone}
         size="lg"
         class="my-2 ml-auto"
