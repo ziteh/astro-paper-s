@@ -15,7 +15,7 @@ export async function GET() {
       link: getPath(id, filePath),
       title: data.title,
       description: data.description,
-      pubDate: new Date(data.modDatetime ?? data.date),
+      pubDate: new Date(data.updated ?? data.date),
     })),
   });
 }
