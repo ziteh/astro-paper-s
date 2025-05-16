@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+  href?: string;
+  frontmatter: CollectionEntry<"blog">["data"];
+}
+
+function formatDate(date: string | Date) {
+  return new Date(date).toLocaleDateString("en-CA", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
+}
+
+const { href, frontmatter } = Astro.props;
+const { title, date, updated } = frontmatter;
+---
+
+<li class="my-2">
+  <a
+    href={href}
+    class="flex flex-col space-x-4 rounded-md p-2 hover:bg-foreground/5 sm:flex-row"
+  >
+    <span class="mr-4 text-accent/80">
+      {formatDate(updated ?? date)}
+    </span>
+    <span class="truncate overflow-hidden whitespace-nowrap">
+      {title}
+    </span>
+  </a>
+</li>
