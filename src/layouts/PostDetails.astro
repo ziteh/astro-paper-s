@@ -23,6 +23,7 @@ const { post, posts } = Astro.props;
 
 const {
   title,
+  subtitle,
   author,
   description,
   ogImage: initOgImage,
@@ -93,10 +94,11 @@ const nextPost =
   >
     <h1
       transition:name={slugifyStr(title)}
-      class="inline-block text-2xl font-bold text-accent sm:text-3xl"
+      class="mt-2 mb-4 inline-block text-3xl font-bold text-accent sm:text-4xl"
     >
       {title}
     </h1>
+    {subtitle && <h2 class="text-xl">{subtitle}</h2>}
     <div class="flex items-center gap-4">
       <Datetime
         pubDatetime={date}
