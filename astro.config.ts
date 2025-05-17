@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import fs from "node:fs";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import rehypeFigure from "@microflash/rehype-figure";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import expressiveCode, { ExpressiveCodeTheme } from "astro-expressive-code";
@@ -57,6 +58,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [],
     rehypePlugins: [
+      rehypeFigure,
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "append" }],
     ],

@@ -52,6 +52,9 @@ html[data-theme="dark"] {
   footer {
     @apply mx-auto max-w-2xl px-4 xl:max-w-3xl;
   }
+  figcaption {
+    @apply text-center;
+  }
 }
 
 .active-nav {
