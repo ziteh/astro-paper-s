@@ -3,6 +3,8 @@ import { defineConfig } from "astro/config";
 import fs from "node:fs";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap, { type SitemapOptions } from "@astrojs/sitemap";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import rehypeFigure from "@microflash/rehype-figure";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
@@ -120,8 +122,9 @@ export default defineConfig({
     compressor({ gzip: true, brotli: true }),
   ],
   markdown: {
-    remarkPlugins: [],
+    remarkPlugins: [remarkMath],
     rehypePlugins: [
+      rehypeKatex,
       rehypeFigure,
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "append" }],

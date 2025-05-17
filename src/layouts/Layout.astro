@@ -16,6 +16,7 @@ export interface Props {
   modDatetime?: Date | null;
   scrollSmooth?: boolean;
   toc?: boolean;
+  math?: boolean;
 }
 
 const {
@@ -29,6 +30,7 @@ const {
   modDatetime,
   scrollSmooth = false,
   toc = false,
+  math = false,
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.url);
@@ -138,6 +140,19 @@ const structuredData = {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.29.0/tocbot.min.css"
           integrity="sha512-4q0OX9NAYcRTFEfy9nTK0AV9N7MxM665neDXEW3CjAj1pXc6+8Bcd6ryXl6cY8mTBBXt0aXepnSDLLQZSuJRww=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+      )
+    }
+
+    <!-- Math -->
+    {
+      math && (
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"
+          integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g=="
           crossorigin="anonymous"
           referrerpolicy="no-referrer"
         />
