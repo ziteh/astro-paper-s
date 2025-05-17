@@ -16,6 +16,7 @@ import expressiveCode, {
 } from "astro-expressive-code";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import compressor from "astro-compressor";
+import { minify } from "@zokki/astro-minify";
 
 // Import custom theme
 const themeJsoncString = fs.readFileSync(
@@ -118,6 +119,7 @@ export default defineConfig({
   integrations: [
     sitemap(sitemapOption),
     expressiveCode(expressiveCodeOption),
+    minify(),
     compressor({ gzip: true, brotli: true }),
   ],
   markdown: {

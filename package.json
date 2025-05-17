@@ -20,6 +20,7 @@
     "@microflash/rehype-figure": "^2.1.4",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.0.14",
+    "@zokki/astro-minify": "^1.1.0",
     "astro": "^5.5.2",
     "astro-compressor": "^1.0.0",
     "astro-expressive-code": "^0.41.2",
