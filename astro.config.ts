@@ -13,6 +13,7 @@ import expressiveCode, {
   type AstroExpressiveCodeOptions,
 } from "astro-expressive-code";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
+import compressor from "astro-compressor";
 
 // Import custom theme
 const themeJsoncString = fs.readFileSync(
@@ -113,7 +114,11 @@ const sitemapOption: SitemapOptions = {
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
-  integrations: [sitemap(sitemapOption), expressiveCode(expressiveCodeOption)],
+  integrations: [
+    sitemap(sitemapOption),
+    expressiveCode(expressiveCodeOption),
+    compressor({ gzip: true, brotli: true }),
+  ],
   markdown: {
     remarkPlugins: [],
     rehypePlugins: [
@@ -137,6 +142,11 @@ export default defineConfig({
       exclude: ["@resvg/resvg-js"],
     },
   },
+  trailingSlash: "never",
+  build: {
+    format: "file", // generate `page.html` instead of `page/index.html`
+  },
+  compressHTML: true,
   prefetch: {
     prefetchAll: true,
   },

@@ -21,6 +21,7 @@
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.0.14",
     "astro": "^5.5.2",
+    "astro-compressor": "^1.0.0",
     "astro-expressive-code": "^0.41.2",
     "dayjs": "^1.11.13",
     "lodash.kebabcase": "^4.1.1",

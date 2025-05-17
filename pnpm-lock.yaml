@@ -29,6 +29,9 @@ importers:
       astro:
         specifier: ^5.5.2
         version: 5.5.2(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.7)(typescript@5.8.2)(yaml@2.7.0)
+      astro-compressor:
+        specifier: ^1.0.0
+        version: 1.0.0
       astro-expressive-code:
         specifier: ^0.41.2
         version: 0.41.2(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.34.7)(typescript@5.8.2)(yaml@2.7.0))
@@ -1071,6 +1074,9 @@ packages:
 
   array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
+
+  astro-compressor@1.0.0:
+    resolution: {integrity: sha512-MNGRmjIsb73BIJivbU/HnTbPu5CEFvXp1NCev0bpsuK/cp4cCPX6C1omUPXzw2oQbtKv0phTTTtEk+h20SrF1Q==}
 
   astro-eslint-parser@1.2.1:
     resolution: {integrity: sha512-3oqANMjrvJ+IE5pwlUWsH/4UztmYf/GTL0HPUkWnYBNAHiGVGrOh2EbegxS5niAwlO0w9dRYk0CkCPlJcu8c3Q==}
@@ -3727,6 +3733,8 @@ snapshots:
   aria-query@5.3.2: {}
 
   array-iterate@2.0.1: {}
+
+  astro-compressor@1.0.0: {}
 
   astro-eslint-parser@1.2.1:
     dependencies:
