@@ -70,6 +70,7 @@ const layoutProps = {
   canonicalURL,
   ogImage,
   scrollSmooth: true,
+  toc,
 };
 
 /* ========== Prev/Next Posts ========== */
@@ -153,7 +154,10 @@ const nextPost =
       <EditPost class="max-sm:hidden" {hideEditPost} {post} />
     </div>
 
-    <article id="article" class="mx-auto prose mt-8 max-w-2xl xl:max-w-3xl">
+    <article
+      id="article"
+      class="js-toc-content mx-auto prose mt-8 max-w-2xl xl:max-w-3xl"
+    >
       <Content />
     </article>
 
@@ -287,25 +291,54 @@ const nextPost =
 
   /** Attaches links to headings in the document,
    *  allowing sharing of sections easily */
-  function addHeadingLinks() {
-    const headings = Array.from(
-      document.querySelectorAll("h2, h3, h4, h5, h6")
-    );
-    for (const heading of headings) {
-      heading.classList.add("group");
-      const link = document.createElement("a");
-      link.className =
-        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
-      link.href = "#" + heading.id;
+  // function addHeadingLinks() {
+  //   const headings = Array.from(
+  //     document.querySelectorAll("h2, h3, h4, h5, h6")
+  //   );
+  //   for (const heading of headings) {
+  //     heading.classList.add("group");
+  //     const link = document.createElement("a");
+  //     link.className =
+  //       "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+  //     link.href = "#" + heading.id;
 
-      const span = document.createElement("span");
-      span.ariaHidden = "true";
-      span.innerText = "#";
-      link.appendChild(span);
-      heading.appendChild(link);
+  //     const span = document.createElement("span");
+  //     span.ariaHidden = "true";
+  //     span.innerText = "#";
+  //     link.appendChild(span);
+  //     heading.appendChild(link);
+  //   }
+  // }
+  //  addHeadingLinks();
+
+  function attachTocScript() {
+    const tocbotScript = document.createElement("script");
+    tocbotScript.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.29.0/tocbot.min.js";
+    tocbotScript.integrity =
+      "sha512-+9XzRSJjnUN2OI106uAbbVZ3f+z1ncIRZFOr56hEdaxbQeZ8i1+B7OVjdF8tG4YhgxM/rWP73K2SiG93x6UJoQ==";
+    tocbotScript.crossOrigin = "anonymous";
+    tocbotScript.referrerPolicy = "no-referrer";
+    tocbotScript.onload = () => {
+      tocbot.init({
+        tocSelector: ".js-toc",
+        contentSelector: ".js-toc-content",
+        headingSelector: "h2, h3, h4",
+        hasInnerContainers: true,
+      });
+    };
+
+    document.body.appendChild(tocbotScript);
+  }
+
+  /** Handle Tocbot */
+  if (document.getElementById("toc-container")) {
+    if (window.tocbot) {
+      tocbot.refresh();
+    } else {
+      attachTocScript();
     }
   }
-  addHeadingLinks();
 
   /** Attaches copy buttons to code blocks in the document,
    * allowing users to copy code easily. */

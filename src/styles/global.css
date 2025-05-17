@@ -57,3 +57,37 @@ html[data-theme="dark"] {
 .active-nav {
   @apply underline decoration-2 underline-offset-6;
 }
+
+@layer utilities {
+  /* tocbot */
+  .toc-list-item {
+    @apply truncate overflow-hidden whitespace-nowrap text-foreground/80;
+  }
+  .toc-link.is-active-link {
+    @apply text-accent!;
+  }
+  .toc-link::before {
+    display: none !important;
+    content: "";
+  }
+
+  /* rehype-autolink-headings */
+  .icon-link::before {
+    content: "#";
+    color: var(--accent, #006cac);
+    display: inline-block;
+    margin-left: 0.25em;
+    text-decoration: none !important;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  h1:hover .icon-link::before,
+  h2:hover .icon-link::before,
+  h3:hover .icon-link::before,
+  h4:hover .icon-link::before,
+  h5:hover .icon-link::before,
+  h6:hover .icon-link::before {
+    opacity: 1;
+  }
+}
