@@ -69,9 +69,6 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.0.14)
-      '@types/hast':
-        specifier: ^3.0.4
-        version: 3.0.4
       '@types/lodash.kebabcase':
         specifier: ^4.1.9
         version: 4.1.9
