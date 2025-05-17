@@ -1,4 +1,5 @@
 ---
+import { _t } from "@/i18n/lang";
 import { render, type CollectionEntry } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
@@ -252,11 +253,11 @@ const nextPost =
     >
       <button
         id="back-to-top"
-        aria-label="Back to top"
+        aria-label={_t.common.backToTop}
         class="focus-outline py-1 whitespace-nowrap hover:opacity-75"
       >
         <IconChevronUp class="inline-block" />
-        <span class="text-sm">Back to Top</span>
+        <span class="text-sm">{_t.common.backToTop}</span>
       </button>
     </div>
   </aside>

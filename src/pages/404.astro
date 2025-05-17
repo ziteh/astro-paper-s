@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import { SITE } from "@/config";
+import { _t } from "@/i18n/lang";
 ---
 
 <Layout title={`404 Not Found | ${SITE.title}`}>
@@ -15,19 +16,19 @@ import { SITE } from "@/config";
   >
     <div class="mb-14 flex flex-col items-center justify-center">
       <h1 class="font-mono text-9xl font-bold text-accent">404</h1>
-      <p class="mt-4 mb-32 text-xl sm:text-2xl">Page Not Found</p>
+      <p class="mt-4 mb-32 text-xl sm:text-2xl">{_t.notFoundPage.title}</p>
 
       <LinkButton
         href="/search"
         class="my-4 rounded-lg bg-foreground/10 px-4 py-2 text-lg hover:bg-foreground/20"
       >
-        Try searching
+        {_t.notFoundPage.toSearch}
       </LinkButton>
       <LinkButton
         href="/"
         class="my-4 text-lg underline-offset-4 hover:underline"
       >
-        Go back home
+        {_t.notFoundPage.toHome}
       </LinkButton>
     </div>
   </main>

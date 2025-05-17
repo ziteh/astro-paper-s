@@ -9,6 +9,7 @@ import Card from "@/components/Card.astro";
 import Pagination from "@/components/Pagination.astro";
 import getUniqueCategories from "@/utils/getUniqueCategories";
 import { SITE } from "@/config";
+import { _t } from "@/i18n/lang";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getCollection("blog");
@@ -32,12 +33,12 @@ const { category } = params;
 const { page, categoryName } = Astro.props;
 ---
 
-<Layout title={`Category: ${categoryName} | ${SITE.title}`}>
+<Layout title={`${_t.category.title}${categoryName} | ${SITE.title}`}>
   <Header />
   <Main
-    pageTitle={[`Category:`, `${categoryName}`]}
+    pageTitle={[_t.category.title, `${categoryName}`]}
     titleTransition={category}
-    pageDesc={`All the articles in the category "${categoryName}".`}
+    pageDesc={_t.category.desc(categoryName)}
   >
     <h1 slot="title">
       {`Category:${categoryName}`}

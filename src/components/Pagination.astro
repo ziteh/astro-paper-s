@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import IconArrowLeft from "@/assets/icons/IconArrowLeft.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import LinkButton from "./LinkButton.astro";
+import { _t } from "@/i18n/lang";
 
 export interface Props {
   page: Page<CollectionEntry<"blog">>;
@@ -22,7 +23,7 @@ const { page } = Astro.props;
         ariaLabel="Previous"
       >
         <IconArrowLeft class="inline-block" />
-        Prev
+        {_t.pagination.previous}
       </LinkButton>
       {page.currentPage} / {page.lastPage}
       <LinkButton
@@ -31,7 +32,7 @@ const { page } = Astro.props;
         class:list={["ml-4 select-none", { "opacity-50": !page.url.next }]}
         ariaLabel="Next"
       >
-        Next
+        {_t.pagination.next}
         <IconArrowRight class="inline-block" />
       </LinkButton>
     </nav>

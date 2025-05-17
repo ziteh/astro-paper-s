@@ -6,15 +6,16 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import getUniqueCategories from "@/utils/getUniqueCategories";
 import { SITE } from "@/config";
+import { _t } from "@/i18n/lang";
 
 const posts = await getCollection("blog");
 
 let categories = getUniqueCategories(posts);
 ---
 
-<Layout title={`Categories | ${SITE.title}`}>
+<Layout title={`${_t.categories.title} | ${SITE.title}`}>
   <Header />
-  <Main pageTitle="Categories" pageDesc="All the categories used in posts.">
+  <Main pageTitle={_t.categories.title} pageDesc={_t.categories.desc}>
     <ul class="flex flex-col space-y-6">
       {
         categories.map(({ category, categoryName, count }) => (

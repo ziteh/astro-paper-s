@@ -9,6 +9,7 @@ import { SITE } from "@/config";
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { getPath } from "@/utils/getPath";
+import { _t } from "@/i18n/lang";
 
 export interface Props {
   page: Page<CollectionEntry<"blog">>;
@@ -17,9 +18,9 @@ export interface Props {
 const { page } = Astro.props;
 ---
 
-<Layout title={`Archive | ${SITE.title}`}>
+<Layout title={`${_t.archives.title} | ${SITE.title}`}>
   <Header activeNav="posts" />
-  <Main pageTitle={`Archive`} pageDesc={`All posts in the archive.`}>
+  <Main pageTitle={_t.archives.title} pageDesc={_t.archives.desc}>
     <ul>
       {
         page.data.map(({ data, id, filePath }) => (
