@@ -14,12 +14,18 @@ import { SITE } from "@/config";
     class="mx-auto flex max-w-3xl flex-1 items-center justify-center"
   >
     <div class="mb-14 flex flex-col items-center justify-center">
-      <h1 class="text-9xl font-bold text-accent">404</h1>
-      <span aria-hidden="true">¯\_(ツ)_/¯</span>
-      <p class="mt-4 text-2xl sm:text-3xl">Page Not Found</p>
+      <h1 class="font-mono text-9xl font-bold text-accent">404</h1>
+      <p class="mt-4 mb-32 text-xl sm:text-2xl">Page Not Found</p>
+
+      <LinkButton
+        href="/search"
+        class="my-4 rounded-lg bg-foreground/10 px-4 py-2 text-lg hover:bg-foreground/20"
+      >
+        Try searching
+      </LinkButton>
       <LinkButton
         href="/"
-        class="my-6 text-lg underline decoration-dashed underline-offset-8"
+        class="my-4 text-lg underline-offset-4 hover:underline"
       >
         Go back home
       </LinkButton>
