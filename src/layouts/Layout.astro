@@ -73,6 +73,8 @@ const structuredData = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImageURL} />
+    <meta property="og:locale" content={SITE.langOg} />
+    <meta property="og:type" content="website" />
 
     <!-- Article Published/Modified time -->
     {
@@ -128,6 +130,14 @@ const structuredData = {
         />
       )
     }
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=Roboto+Mono:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
 
     <ClientRouter />
 

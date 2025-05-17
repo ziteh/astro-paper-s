@@ -42,9 +42,8 @@ const expressiveCodeOption: AstroExpressiveCodeOptions = {
     },
   },
   styleOverrides: {
-    codeFontFamily: "'Roboto Mono', 'Noto Sans TC', monospace",
-    uiFontFamily:
-      "'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+    codeFontFamily: "var(--font-mono), var(--font-emoji)",
+    uiFontFamily: "var(--font-sans), var(--font-emoji)",
     borderWidth: "0",
     textMarkers: {
       backgroundOpacity: "33%",
