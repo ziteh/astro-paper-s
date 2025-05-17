@@ -330,34 +330,82 @@ const nextPost =
   // }
   //  addHeadingLinks();
 
-  function attachTocScript() {
-    const tocbotScript = document.createElement("script");
-    tocbotScript.src =
-      "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.29.0/tocbot.min.js";
-    tocbotScript.integrity =
-      "sha512-+9XzRSJjnUN2OI106uAbbVZ3f+z1ncIRZFOr56hEdaxbQeZ8i1+B7OVjdF8tG4YhgxM/rWP73K2SiG93x6UJoQ==";
-    tocbotScript.crossOrigin = "anonymous";
-    tocbotScript.referrerPolicy = "no-referrer";
-    tocbotScript.onload = () => {
-      tocbot.init({
+  /* Tocbot */
+  (function () {
+    let domReady = false;
+    let tocbotReady = false;
+
+    function tryInitTocbot() {
+      if (!domReady || !tocbotReady) {
+        return;
+      }
+
+      if (!document.getElementById("toc-container")) {
+        return;
+      }
+
+      // console.log("Both DOM and CDN Tocbot ready. Initializing Tocbot...");
+
+      window.tocbot.init({
         tocSelector: ".js-toc",
         contentSelector: ".js-toc-content",
         headingSelector: "h2, h3, h4",
         hasInnerContainers: true,
       });
-    };
-
-    document.body.appendChild(tocbotScript);
-  }
-
-  /** Handle Tocbot */
-  if (document.getElementById("toc-container")) {
-    if (window.tocbot) {
-      tocbot.refresh();
-    } else {
-      attachTocScript();
     }
-  }
+
+    function loadTocbot() {
+      if (document.querySelector('script[src*="tocbot.min.js"]')) {
+        // console.log("Tocbot script tag already exists.");
+        tocbotReady = true;
+        tryInitTocbot();
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src =
+        "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.34.0/tocbot.min.js";
+      script.integrity =
+        "sha512-EMZRx2Hno6csUwgZoOMjyKDp1UdNRrCQH0R97VEPYynqgSUrRItJn73HnRUwqujCat2/Zg731UEw+7xDXAL1ag==";
+      script.crossOrigin = "anonymous";
+      script.referrerPolicy = "no-referrer";
+
+      script.onload = () => {
+        // console.log("Tocbot script loaded.");
+        tocbotReady = true;
+        tryInitTocbot();
+      };
+
+      // script.onerror = () => {
+      //   console.error("Failed to load Tocbot script.");
+      // };
+
+      document.head.appendChild(script);
+    }
+
+    function init() {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+          // console.log("DOM fully loaded.");
+          domReady = true;
+          tryInitTocbot();
+        });
+      } else {
+        // console.log("DOM already loaded.");
+        domReady = true;
+      }
+
+      if (window.tocbot) {
+        // console.log("Tocbot already loaded.");
+        tocbotReady = true;
+        tryInitTocbot();
+      } else {
+        loadTocbot();
+      }
+    }
+
+    init();
+  })();
 
   /** Attaches copy buttons to code blocks in the document,
    * allowing users to copy code easily. */
