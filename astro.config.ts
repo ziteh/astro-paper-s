@@ -6,14 +6,52 @@ import sitemap from "@astrojs/sitemap";
 import rehypeFigure from "@microflash/rehype-figure";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
+import remarkRewrite from "rehype-rewrite";
+import rehypeExternalLinks from "rehype-external-links";
 import expressiveCode, { ExpressiveCodeTheme } from "astro-expressive-code";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
+import type { Root, RootContent } from "hast";
 
 const jsoncString = fs.readFileSync(
   new URL(`./theme/mod-min-light.jsonc`, import.meta.url),
   "utf-8"
 );
 const modMinLight = ExpressiveCodeTheme.fromJSONString(jsoncString);
+
+const rehypeRewriteOption = {
+  rewrite: (node: Root | RootContent) => {
+    // Also look for Astro's Responsive Images
+    if (node.type === "element" && node.tagName === "img") {
+      node.properties = {
+        ...node.properties,
+        loading: "lazy",
+        decoding: "async",
+        fetchpriority: "auto",
+      };
+    }
+    // Use rehype-external-links instead
+    // if (
+    //   node.type === "element" &&
+    //   node.tagName === "a" &&
+    //   node.properties?.href
+    // ) {
+    //   const href = node.properties.href;
+    //   if (
+    //     typeof href === "string" &&
+    //     !href.startsWith("/") &&
+    //     !href.startsWith(SITE.website)
+    //   ) {
+    //     // Add target="_blank" (open in new tab)
+    //     // and rel="noopener noreferrer" (security and privacy)
+    //     node.properties = {
+    //       ...node.properties,
+    //       target: "_blank",
+    //       rel: "noopener noreferrer",
+    //     };
+    //   }
+    // }
+  },
+};
 
 // https://astro.build/config
 export default defineConfig({
@@ -61,6 +99,8 @@ export default defineConfig({
       rehypeFigure,
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "append" }],
+      [rehypeExternalLinks, { target: "_blank", rel: "noopener noreferrer" }],
+      [remarkRewrite, rehypeRewriteOption],
     ],
     // Use ExpressiveCode instead of shiki
     // shikiConfig: {
