@@ -269,20 +269,12 @@ const nextPost =
 <script is:inline data-astro-rerun>
   /* Tocbot */
   (function () {
-    let domReady = false;
-    let tocbotReady = false;
+    // If the toc-container is not present, do nothing
+    if (!document.getElementById("toc-container")) {
+      return;
+    }
 
-    function tryInitTocbot() {
-      if (!domReady || !tocbotReady) {
-        return;
-      }
-
-      if (!document.getElementById("toc-container")) {
-        return;
-      }
-
-      // console.log("Both DOM and CDN Tocbot ready. Initializing Tocbot...");
-
+    function initTocbot() {
       window.tocbot.init({
         tocSelector: ".js-toc",
         contentSelector: ".js-toc-content",
@@ -291,14 +283,11 @@ const nextPost =
       });
     }
 
-    function loadTocbot() {
-      if (document.querySelector('script[src*="tocbot.min.js"]')) {
-        // console.log("Tocbot script tag already exists.");
-        tocbotReady = true;
-        tryInitTocbot();
-        return;
-      }
-
+    if (window.tocbot) {
+      // Tocbot is already loaded
+      initTocbot();
+    } else {
+      // Load Tocbot from CDN
       const script = document.createElement("script");
       script.src =
         "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.34.0/tocbot.min.js";
@@ -307,44 +296,16 @@ const nextPost =
       script.crossOrigin = "anonymous";
       script.referrerPolicy = "no-referrer";
 
+      // Initialize Tocbot after the script is loaded
       script.onload = () => {
-        // console.log("Tocbot script loaded.");
-        tocbotReady = true;
-        tryInitTocbot();
+        initTocbot();
       };
 
-      // script.onerror = () => {
-      //   console.error("Failed to load Tocbot script.");
-      // };
-
-      document.head.appendChild(script);
+      document.body.appendChild(script);
     }
-
-    function init() {
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", () => {
-          // console.log("DOM fully loaded.");
-          domReady = true;
-          tryInitTocbot();
-        });
-      } else {
-        // console.log("DOM already loaded.");
-        domReady = true;
-      }
-
-      if (window.tocbot) {
-        // console.log("Tocbot already loaded.");
-        tocbotReady = true;
-        tryInitTocbot();
-      } else {
-        loadTocbot();
-      }
-    }
-
-    init();
   })();
 
-  /* Back to top */
+  /* Back to top button */
   (function () {
     // Scrolls the document to the top when the "Back to Top" button is clicked
     document.querySelector("#back-to-top")?.addEventListener("click", () => {
