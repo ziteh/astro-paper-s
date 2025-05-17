@@ -2,7 +2,7 @@ import { SITE } from "./src/config";
 import { defineConfig } from "astro/config";
 import fs from "node:fs";
 import tailwindcss from "@tailwindcss/vite";
-import sitemap from "@astrojs/sitemap";
+import sitemap, { type SitemapItem } from "@astrojs/sitemap";
 import rehypeFigure from "@microflash/rehype-figure";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
@@ -53,13 +53,30 @@ const rehypeRewriteOption = {
   },
 };
 
+// https://docs.astro.build/en/guides/integrations-guide/sitemap/
+const sitemapOption = {
+  serialize(item: SitemapItem) {
+    if (/\/(tags|categories|archives|page|search)/.test(item.url)) {
+      item.priority = 0.2;
+    } else if (/\/posts\/\d+\/?$/.test(item.url)) {
+      item.priority = 0.3;
+    } else if (/\/posts\//.test(item.url)) {
+      // Main blog page
+      item.priority = 0.8;
+    } else {
+      // Default priority for all other pages
+      item.priority = 0.5;
+    }
+
+    return item;
+  },
+};
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
   integrations: [
-    sitemap({
-      filter: page => SITE.showArchives || !page.endsWith("/archives"),
-    }),
+    sitemap(sitemapOption),
     expressiveCode({
       plugins: [pluginLineNumbers()],
       themes: ["one-dark-pro", modMinLight],
@@ -73,7 +90,7 @@ export default defineConfig({
         wrap: false,
         showLineNumbers: false,
         overridesByLang: {
-          "bash,cmd,powershell,ps,sh,shell,zsh": { frame: false },
+          "bash,cmd,powershell,ps,sh,shell,zsh": { frame: "none" },
         },
       },
       styleOverrides: {
