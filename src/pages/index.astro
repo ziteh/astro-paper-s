@@ -13,6 +13,7 @@ import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
 import { _t } from "@/i18n/lang";
+import getDescription from "@/utils/getDescription";
 
 const posts = await getCollection("blog");
 
@@ -80,7 +81,11 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
             </h2>
             <ul>
               {featuredPosts.map(data => (
-                <Card variant="h3" {...data} />
+                <Card
+                  variant="h3"
+                  {...data}
+                  fallbackDesc={getDescription(data.body || "")}
+                />
               ))}
             </ul>
           </section>
@@ -98,7 +103,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
           <ul>
             {recentPosts.map(
               (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
+                index < SITE.postPerIndex && (
+                  <Card
+                    variant="h3"
+                    {...data}
+                    fallbackDesc={getDescription(data.body || "")}
+                  />
+                )
             )}
           </ul>
         </section>

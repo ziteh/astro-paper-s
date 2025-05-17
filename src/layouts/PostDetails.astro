@@ -17,6 +17,7 @@ import IconChevronUp from "@/assets/icons/IconChevronUp.svg";
 import IconCategory from "@/assets/icons/IconCategory.svg";
 import IconTag from "@/assets/icons/IconTag.svg";
 import { SITE } from "@/config";
+import getDescription from "@/utils/getDescription";
 import DisqusComment from "@/components/DisqusComment.astro";
 
 export interface Props {
@@ -69,7 +70,7 @@ const ogImage = ogImageUrl
 const layoutProps = {
   title: `${title} | ${SITE.title}`,
   author,
-  description,
+  description: description || getDescription(post.body || ""),
   pubDatetime: date,
   modDatetime: updated,
   canonicalURL,

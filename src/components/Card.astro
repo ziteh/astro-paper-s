@@ -9,9 +9,10 @@ import IconTag from "@/assets/icons/IconTag.svg";
 
 export interface Props extends CollectionEntry<"blog"> {
   variant?: "h2" | "h3";
+  fallbackDesc?: string;
 }
 
-const { variant = "h2", data, id, filePath } = Astro.props;
+const { variant = "h2", data, id, filePath, fallbackDesc } = Astro.props;
 
 const {
   title,
@@ -45,7 +46,7 @@ const headerProps = {
     </div>
     {subtitle && <h4 class="text-md mb-3">{subtitle}</h4>}
 
-    <p class="mb-1 text-sm">{description}</p>
+    <p class="mb-1 text-sm">{description || fallbackDesc}</p>
 
     <div class="flex flex-col flex-wrap space-y-2 md:flex-row md:space-y-0">
       <div class="mr-4 flex items-center space-x-0.5">

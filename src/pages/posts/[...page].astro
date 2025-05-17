@@ -10,6 +10,7 @@ import Pagination from "@/components/Pagination.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { SITE } from "@/config";
 import { _t } from "@/i18n/lang";
+import getDescription from "@/utils/getDescription";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -23,7 +24,11 @@ const { page } = Astro.props;
   <Header />
   <Main pageTitle={_t.posts.title} pageDesc={_t.posts.desc}>
     <ul>
-      {page.data.map(data => <Card {...data} />)}
+      {
+        page.data.map(data => (
+          <Card {...data} fallbackDesc={getDescription(data.body || "")} />
+        ))
+      }
     </ul>
   </Main>
 

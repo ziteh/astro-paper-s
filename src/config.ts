@@ -9,6 +9,8 @@ export const SITE = {
   postPerIndex: 4,
   postPerPage: 4,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
+  genDescriptionMaxLines: 30, // Max number of lines to process
+  genDescriptionCount: 200, // If 'more' tag is not found, use this count of characters
   showArchives: true,
   showBackButton: false, // show back button in post detail
   editPost: {

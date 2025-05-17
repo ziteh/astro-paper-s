@@ -11,7 +11,7 @@ const blog = defineCollection({
       author: z.string().default(SITE.author),
       title: z.string(),
       subtitle: z.string().optional().nullable(),
-      description: z.string(),
+      description: z.string().optional(),
 
       date: z.date(), // publish date, original `pubDatetime`
       updated: z.date().optional().nullable(), // last modified date, original `modPubDatetime`

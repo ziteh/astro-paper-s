@@ -10,6 +10,7 @@ import Pagination from "@/components/Pagination.astro";
 import getUniqueCategories from "@/utils/getUniqueCategories";
 import { SITE } from "@/config";
 import { _t } from "@/i18n/lang";
+import getDescription from "@/utils/getDescription";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getCollection("blog");
@@ -44,7 +45,11 @@ const { page, categoryName } = Astro.props;
       {`Category:${categoryName}`}
     </h1>
     <ul>
-      {page.data.map(data => <Card {...data} />)}
+      {
+        page.data.map(data => (
+          <Card {...data} fallbackDesc={getDescription(data.body || "")} />
+        ))
+      }
     </ul>
   </Main>
 
