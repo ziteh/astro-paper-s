@@ -1,0 +1,63 @@
+<!--
+  Src:
+    Artur Sopelnik
+    https://webdesign-sopelnik.de/en/blog/adding-comments-to-your-astro-blog-with-disqus/
+
+  Usage:
+    import DisqusComment from "@components/DisqusComment.astro";
+    <DisqusComment slug={slug} title={title} />
+ -->
+<div id="disqus_thread"></div>
+
+<script is:inline>
+  function lazyLoadDisqus() {
+    if (window.__disqusLoaded) return;
+    window.__disqusLoaded = true;
+
+    window.DisqusWidget = {
+      overwriteGlobalSelectors: function () {
+        window.$disqus = document.querySelector("#disqus_thread");
+      },
+      init: function () {
+        this.overwriteGlobalSelectors();
+        this.addListeners();
+        this.initDisqus();
+      },
+      addListeners: function () {
+        document.addEventListener("astro:after-swap", () => {
+          this.overwriteGlobalSelectors();
+          this.initDisqus();
+        });
+      },
+      initDisqus: () => {
+        if (window.$disqus === null) return;
+        if (window.DISQUS) {
+          window.DISQUS.reset({ reload: true });
+          return;
+        }
+        (function () {
+          const d = document,
+            s = d.createElement("script");
+
+          // Replace YOUR_SHORTNAME with your Disqus shortname
+          s.src = "https://YOUR_SHORTNAME.disqus.com/embed.js";
+          s.setAttribute("data-timestamp", String(+new Date()));
+          (d.head || d.body).appendChild(s);
+        })();
+      },
+    };
+    window.DisqusWidget.init();
+  }
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        lazyLoadDisqus();
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.getElementById("disqus_thread"));
+  } else {
+    lazyLoadDisqus();
+  }
+</script>

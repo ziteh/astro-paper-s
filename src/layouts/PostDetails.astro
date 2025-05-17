@@ -16,12 +16,14 @@ import IconChevronUp from "@/assets/icons/IconChevronUp.svg";
 import IconCategory from "@/assets/icons/IconCategory.svg";
 import IconTag from "@/assets/icons/IconTag.svg";
 import { SITE } from "@/config";
+import DisqusComment from "@/components/DisqusComment.astro";
 
 export interface Props {
   post: CollectionEntry<"blog">;
   posts: CollectionEntry<"blog">[];
 }
 
+const { slug } = Astro.params;
 const { post, posts } = Astro.props;
 
 const {
@@ -39,6 +41,7 @@ const {
   hideEditPost,
   toc,
   math,
+  comments,
 } = post.data;
 
 const { Content } = await render(post);
@@ -218,6 +221,18 @@ const nextPost =
         )
       }
     </div>
+
+    <!-- Comments -->
+    {
+      comments && (
+        <div class="comments my-8">
+          {/* <p class="mb-6 text-center text-sm">Additional info</p> */}
+          <DisqusComment slug={slug} title={title} />
+        </div>
+        // If you want to use Giscus instead, please refer to
+        // https://astro-paper.pages.dev/posts/how-to-integrate-giscus-comments/
+      )
+    }
   </main>
 
   <!-- Sidebar -->
