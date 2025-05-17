@@ -26,31 +26,31 @@
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
-  pre:has(code) {
+  /* pre:has(code) {
     @apply border border-border;
-  }
+  } */
 
-  .prose code,
+  /* .prose code,
   .prose blockquote {
     @apply break-words;
-  }
+  } */
 
-  .prose table code {
-    /* add line breaks whenever necessary for codes under table */
+  /* add line breaks whenever necessary for codes under table */
+  /* .prose table code {
     @apply break-all sm:break-normal;
-  }
+  } */
 
-  pre > code {
+  /* pre > code {
     white-space: pre;
-  }
+  } */
 
   /* Apply Dark Theme (if multi-theme specified) */
-  html[data-theme="dark"] pre:has(code),
+  /* html[data-theme="dark"] pre:has(code),
   html[data-theme="dark"] pre:has(code) span {
     color: var(--shiki-dark) !important;
     background-color: var(--shiki-dark-bg) !important;
     font-style: var(--shiki-dark-font-style) !important;
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
-  }
+  } */
 }
