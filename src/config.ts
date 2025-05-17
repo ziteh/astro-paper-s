@@ -13,6 +13,7 @@ export const SITE = {
   genDescriptionCount: 200, // If 'more' tag is not found, use this count of characters
   showArchives: true,
   showBackButton: false, // show back button in post detail
+  showPageDesc: false, // show page description in post detail
   editPost: {
     enabled: false,
     text: "Suggest Changes",
