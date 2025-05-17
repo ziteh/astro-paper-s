@@ -15,6 +15,7 @@ import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import IconChevronUp from "@/assets/icons/IconChevronUp.svg";
 import IconCategory from "@/assets/icons/IconCategory.svg";
+import IconMenuSidebar from "@/assets/icons/IconMenuSidebar.svg";
 import IconTag from "@/assets/icons/IconTag.svg";
 import { SITE } from "@/config";
 import getDescription from "@/utils/getDescription";
@@ -239,7 +240,8 @@ const nextPost =
 
   <!-- Sidebar -->
   <aside
-    class="sidebar fixed top-32 right-10 m-2 hidden max-h-[clac(100vh-12rem)] w-32 overflow-y-auto text-sm lg:block xl:right-24 2xl:w-64"
+    id="sidebar"
+    class="sidebar fixed z-40 translate-x-full transform transition-transform duration-300 ease-in-out lg:translate-x-0"
   >
     {
       toc && (
@@ -263,16 +265,41 @@ const nextPost =
     </div>
   </aside>
 
+  {
+    toc && (
+      <div class="lg:hidden">
+        {/* Mobile sidebar toggle button */}
+        <button
+          id="mobile-toc-toggle"
+          aria-label="Show table of contents"
+          aria-expanded="false"
+          class="fixed right-4 bottom-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-foreground/85 text-background shadow-lg"
+        >
+          <IconMenuSidebar class="h-6 w-6" />
+        </button>
+
+        {/* Background backdrop */}
+        <div
+          id="sidebar-backdrop"
+          class="pointer-events-none fixed inset-0 z-30 bg-foreground/30 opacity-0 transition-opacity duration-300 ease-in-out"
+        />
+      </div>
+    )
+  }
+
   <Footer />
 </Layout>
 
 <script is:inline data-astro-rerun>
   /* Tocbot */
   (function () {
-    // If the toc-container is not present, do nothing
     if (!document.getElementById("toc-container")) {
       return;
     }
+
+    const scrollSmoothOffset = -40;
+    const mobileWidth = 1024;
+    const isMobileDevice = () => window.innerWidth < mobileWidth;
 
     function initTocbot() {
       window.tocbot.init({
@@ -280,42 +307,163 @@ const nextPost =
         contentSelector: ".js-toc-content",
         headingSelector: "h2, h3, h4",
         hasInnerContainers: true,
+        scrollSmoothDuration: 300,
+        scrollSmoothOffset,
       });
     }
 
     if (window.tocbot) {
-      // Tocbot is already loaded
       initTocbot();
     } else {
-      // Load Tocbot from CDN
       const script = document.createElement("script");
       script.src =
         "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.34.0/tocbot.min.js";
-      script.integrity =
-        "sha512-EMZRx2Hno6csUwgZoOMjyKDp1UdNRrCQH0R97VEPYynqgSUrRItJn73HnRUwqujCat2/Zg731UEw+7xDXAL1ag==";
       script.crossOrigin = "anonymous";
       script.referrerPolicy = "no-referrer";
-
-      // Initialize Tocbot after the script is loaded
-      script.onload = () => {
-        initTocbot();
-      };
-
+      script.onload = initTocbot;
       document.body.appendChild(script);
     }
-  })();
 
-  /* Back to top button */
-  (function () {
-    // Scrolls the document to the top when the "Back to Top" button is clicked
+    // Handle mobile sidebar
+    const sidebar = document.getElementById("sidebar");
+    const mobileToggleBtn = document.getElementById("mobile-toc-toggle");
+    const backdrop = document.getElementById("sidebar-backdrop");
+
+    if (sidebar && mobileToggleBtn && backdrop) {
+      const handleOpenSidebar = () => {
+        sidebar.classList.remove("translate-x-full");
+        backdrop.classList.add("opacity-100");
+        backdrop.classList.remove("pointer-events-none");
+        mobileToggleBtn.setAttribute("aria-expanded", "true");
+      };
+
+      const handleCloseSidebar = () => {
+        if (isMobileDevice()) {
+          sidebar.classList.add("translate-x-full");
+          backdrop.classList.remove("opacity-100");
+          backdrop.classList.add("pointer-events-none");
+          mobileToggleBtn.setAttribute("aria-expanded", "false");
+        }
+      };
+
+      // Toc click event
+      sidebar.addEventListener("click", e => {
+        const link = e.target.closest("a");
+        if (link && isMobileDevice()) {
+          e.preventDefault();
+
+          // Get the target element
+          const targetId = link.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            // Scroll to the target element
+            window.scrollTo({
+              top: targetElement.offsetTop + scrollSmoothOffset,
+              behavior: "smooth",
+            });
+
+            // handleCloseSidebar();
+          }
+        }
+      });
+
+      mobileToggleBtn.addEventListener("click", handleOpenSidebar);
+      backdrop.addEventListener("click", handleCloseSidebar);
+
+      // Window resize event
+      window.addEventListener("resize", () => {
+        if (isMobileDevice()) {
+          handleCloseSidebar();
+        } else {
+          // Desktop view
+          sidebar.classList.remove("translate-x-full");
+          backdrop.classList.remove("opacity-100");
+          backdrop.classList.add("pointer-events-none");
+        }
+      });
+
+      // Initial check
+      if (!isMobileDevice()) {
+        sidebar.classList.remove("translate-x-full");
+      }
+    }
+
+    // Back to Top button
     document.querySelector("#back-to-top")?.addEventListener("click", () => {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+      if (isMobileDevice()) {
+        // Close sidebar
+        sidebar.classList.add("translate-x-full");
+        backdrop.classList.remove("opacity-100");
+        backdrop.classList.add("pointer-events-none");
+      }
     });
   })();
 
-  /* Go to page start after page swap */
-  document.addEventListener("astro:after-swap", () =>
-    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
-  );
+  // Astro View Transitions
+  document.addEventListener("astro:after-swap", () => {
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" });
+
+    // if (window.tocbot) {
+    //   window.tocbot.refresh();
+    // }
+  });
 </script>
+
+<style>
+  #sidebar {
+    overflow-y: auto;
+    font-size: 0.875rem; /* text-sm */
+    background-color: var(--background);
+  }
+
+  /* Mobile styles */
+  @media (max-width: 1023px) {
+    #sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: auto;
+      width: 80%;
+      max-width: 320px;
+      height: 100%;
+      max-height: none;
+      border-radius: 0;
+      padding: 1.5rem;
+      padding-top: 32px;
+      /* box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15); */
+    }
+  }
+
+  /* Desktop styles */
+  @media (min-width: 1024px) {
+    #sidebar {
+      top: 8rem; /* top-32 */
+      right: 2.5rem; /* right-10 */
+      max-height: calc(100vh - 12rem);
+      width: 8rem; /* w-32 */
+      margin: 0.5rem; /* m-2 */
+      box-shadow: none;
+      border-radius: 0;
+      background-color: transparent;
+      padding: 0;
+    }
+
+    /* xl breakpoint */
+    @media (min-width: 1280px) {
+      #sidebar {
+        right: 6rem; /* xl:right-24 */
+      }
+    }
+
+    /* 2xl breakpoint */
+    @media (min-width: 1536px) {
+      #sidebar {
+        width: 16rem; /* 2xl:w-64 */
+      }
+    }
+  }
+</style>

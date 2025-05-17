@@ -80,6 +80,12 @@ html[data-theme="dark"] {
     content: "";
   }
 
+  @media (max-width: 1023px) {
+    .toc-list-item {
+      @apply my-2;
+    }
+  }
+
   /* rehype-autolink-headings */
   .icon-link::before {
     content: "#";
