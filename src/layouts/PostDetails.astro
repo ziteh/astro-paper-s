@@ -12,6 +12,7 @@ import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
+import IconChevronUp from "@/assets/icons/IconChevronUp.svg";
 import IconCategory from "@/assets/icons/IconCategory.svg";
 import IconTag from "@/assets/icons/IconTag.svg";
 import { SITE } from "@/config";
@@ -36,6 +37,7 @@ const {
   tags,
   categories,
   hideEditPost,
+  toc,
 } = post.data;
 
 const { Content } = await render(post);
@@ -211,6 +213,33 @@ const nextPost =
       }
     </div>
   </main>
+
+  <!-- Sidebar -->
+  <aside
+    class="sidebar fixed top-32 right-10 m-2 hidden max-h-[clac(100vh-12rem)] w-32 overflow-y-auto text-sm lg:block xl:right-24 2xl:w-64"
+  >
+    {
+      toc && (
+        <>
+          <div id="toc-container" class="js-toc" />
+          <hr class="my-4 opacity-80" aria-hidden={true} />
+        </>
+      )
+    }
+    <div
+      class="flex flex-col items-start space-y-0 truncate overflow-hidden whitespace-nowrap opacity-80"
+    >
+      <button
+        id="back-to-top"
+        aria-label="Back to top"
+        class="focus-outline py-1 whitespace-nowrap hover:opacity-75"
+      >
+        <IconChevronUp class="inline-block" />
+        <span class="text-sm">Back to Top</span>
+      </button>
+    </div>
+  </aside>
+
   <Footer />
 </Layout>
 
