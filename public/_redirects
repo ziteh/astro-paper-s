@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects config
+# https://developers.cloudflare.com/pages/configuration/redirects/
+/posts/*/  /posts/:splat  301
