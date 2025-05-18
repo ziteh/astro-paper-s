@@ -1,0 +1,46 @@
+version: "0.2"
+ignorePaths:
+  - cspell.yaml
+  - pnpm-lock.yaml
+  - node_modules/**
+  - dist/**
+  - .astro/**
+  - .vscode/**
+  - "*.svg"
+  - public/pagefind/**
+  - src/data/**
+words:
+  - Akara
+  - Artur
+  - astropaper
+  - backurl
+  - commitizen
+  - Disqus
+  - fetchpriority
+  - frontmatter
+  - Giscus
+  - ignorefiles
+  - jampack
+  - Katex
+  - kebabcase
+  - KHTML
+  - microflash
+  - Mingalaba
+  - Naing
+  - noopener
+  - noreferrer
+  - oveflow
+  - pagefind
+  - Pinterest
+  - Praam
+  - rehype
+  - resvg
+  - satnaing
+  - shiki
+  - slugified
+  - Sopelnik
+  - Stackframe
+  - Tablers
+  - Tocbot
+  - unslugified
+  - zokki

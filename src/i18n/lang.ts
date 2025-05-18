@@ -213,6 +213,7 @@ const ja: typeof en = {
   },
 };
 
+// cspell:disable
 // Español (machine translation)
 const es: typeof en = {
   archives: {
@@ -282,6 +283,7 @@ const es: typeof en = {
     recentPosts: "Artículos recientes",
   },
 };
+// cspell:enable
 
 // Select the language you want to use
 // export const _t = zhHant;

@@ -11,7 +11,8 @@
     "astro": "astro",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "spell": "pnpm dlx cspell --config cspell.yaml ."
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",
