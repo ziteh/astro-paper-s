@@ -2,6 +2,9 @@
 
 import type dayjs from "dayjs";
 
+// Datetime format
+// https://day.js.org/docs/en/display/format
+
 // English
 const en = {
   archives: {
