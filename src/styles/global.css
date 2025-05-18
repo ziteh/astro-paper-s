@@ -68,6 +68,60 @@ html[data-theme="dark"] {
 }
 
 @layer utilities {
+  #sidebar {
+    overflow-y: auto;
+    font-size: 0.875rem; /* text-sm */
+    background-color: var(--background);
+  }
+
+  /* Mobile styles */
+  @media (max-width: 1023px) {
+    #sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: auto;
+      width: 80%;
+      max-width: 320px;
+      height: 100%;
+      max-height: none;
+      border-radius: 0;
+      padding: 1.5rem;
+      padding-top: 32px;
+      /* box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15); */
+    }
+  }
+
+  /* Desktop styles */
+  @media (min-width: 1024px) {
+    #sidebar {
+      top: 8rem; /* top-32 */
+      right: 2.5rem; /* right-10 */
+      max-height: calc(100vh - 12rem);
+      width: 8rem; /* w-32 */
+      margin: 0.5rem; /* m-2 */
+      box-shadow: none;
+      border-radius: 0;
+      background-color: transparent;
+      padding: 0;
+    }
+
+    /* xl breakpoint */
+    @media (min-width: 1280px) {
+      #sidebar {
+        right: 6rem; /* xl:right-24 */
+      }
+    }
+
+    /* 2xl breakpoint */
+    @media (min-width: 1536px) {
+      #sidebar {
+        width: 16rem; /* 2xl:w-64 */
+      }
+    }
+  }
+
   /* tocbot */
   .toc-list-item {
     @apply truncate overflow-hidden whitespace-nowrap text-foreground/80;
