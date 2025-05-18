@@ -39,7 +39,7 @@ pnpm run build
 
 ## Documentation
 
-Refer to the [guide](/src/data/blog/astro-paper-s/how-to-config-astro-paper-s.md).
+Refer to the [guide](https://astro-paper-s.ziteh.dev/posts/astro-paper-s/how-to-config-astro-paper-s).
 
 Also see the original [AstroPaper documentation](https://github.com/satnaing/astro-paper?tab=readme-ov-file#-documentation).
 
