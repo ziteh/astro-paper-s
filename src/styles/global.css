@@ -69,7 +69,7 @@ html[data-theme="dark"] {
 
 @layer utilities {
   #sidebar {
-    @apply overflow-y-auto bg-background text-sm;
+    @apply fixed z-40 transform overflow-y-auto bg-background text-sm;
   }
 
   /* Mobile styles */
