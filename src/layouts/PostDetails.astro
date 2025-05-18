@@ -293,12 +293,13 @@ const nextPost =
 <script is:inline data-astro-rerun>
   /* Tocbot */
   (function () {
+    // If tocbot is not enabled, return early
     if (!document.getElementById("toc-container")) {
       return;
     }
 
     const scrollSmoothOffset = 0;
-    const mobileWidth = 1024;
+    const mobileWidth = 1024; // lg breakpoint
     const isMobileDevice = () => window.innerWidth < mobileWidth;
 
     function initTocbot() {
@@ -372,17 +373,29 @@ const nextPost =
       mobileToggleBtn.addEventListener("click", handleOpenSidebar);
       backdrop.addEventListener("click", handleCloseSidebar);
 
+      let resizeTimer;
+      const handleResize = () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          const isMobile = isMobileDevice();
+
+          // Only execute DOM operations when the device type changes
+          const wasMobile = sidebar.classList.contains("translate-x-full");
+          const switchingFromMobileToDesktop = wasMobile && !isMobile;
+          const switchingFromDesktopToMobile = !wasMobile && isMobile;
+
+          if (switchingFromMobileToDesktop) {
+            sidebar.classList.remove("translate-x-full");
+            backdrop.classList.remove("opacity-100");
+            backdrop.classList.add("pointer-events-none");
+          } else if (switchingFromDesktopToMobile) {
+            handleCloseSidebar();
+          }
+        }, 150); // 150ms debounce
+      };
+
       // Window resize event
-      window.addEventListener("resize", () => {
-        if (isMobileDevice()) {
-          handleCloseSidebar();
-        } else {
-          // Desktop view
-          sidebar.classList.remove("translate-x-full");
-          backdrop.classList.remove("opacity-100");
-          backdrop.classList.add("pointer-events-none");
-        }
-      });
+      window.addEventListener("resize", handleResize);
 
       // Initial check
       if (!isMobileDevice()) {
