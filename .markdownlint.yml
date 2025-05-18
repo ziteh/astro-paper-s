@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/DavidAnson/markdownlint/refs/heads/main/schema/markdownlint-config-schema-strict.json
+
+# markdownlint config
+# https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+# Default state for all rules
+default: true
+
+# Rules
+no-alt-text: false
+no-inline-html: false
+single-h1:
+  front_matter_title: ^\s*title\s*[:=]
+line-length: false
+no-duplicate-heading: false
+ul-indent:
+  indent: 4
+  start_indented: false
+ul-style:
+  style: dash
+ol-prefix:
+  style: one_or_ordered
+no-trailing-spaces:
+  br_spaces: 2
+  list_item_empty_lines: false
+  strict: true
+no-hard-tabs:
+  code_blocks: true
+  spaces_per_tab: 4
+table-pipe-style:
+  style: leading_and_trailing
+no-emphasis-as-heading: false
+no-blanks-blockquote: false
+descriptive-link-text: false

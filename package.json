@@ -12,7 +12,9 @@
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "spell": "pnpm dlx cspell --config cspell.yaml ."
+    "spell": "pnpm dlx cspell --config cspell.yaml .",
+    "md:check": "pnpm dlx markdownlint-cli2 ./src/data/blog/**",
+    "md:fix": "pnpm dlx markdownlint-cli2 --fix ./src/data/blog/**"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",
