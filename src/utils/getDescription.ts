@@ -60,24 +60,24 @@ const getDescription = (markdownContent: string): string => {
   const lines = markdownContent
     .split(/\r?\n/)
     .slice(0, SITE.genDescriptionMaxLines);
-  let processedContent = lines.join("");
-
-  // Remove Markdown syntax
-  for (const patternKey in regexReplacers) {
-    const [pattern, replacement] = regexReplacers[patternKey];
-    processedContent = processedContent.replace(pattern, replacement);
-  }
+  const processedContent = lines.join("");
 
   // Find the first occurrence of the 'more' tag
   const moreTagMatch = processedContent.match(tagMoreRegex);
 
   // If the 'more' tag is found, use the content before it
   // Otherwise, use the first `SITE.genDescriptionCount` characters
-  const desc = moreTagMatch
+  let short = moreTagMatch
     ? moreTagMatch[1]
     : processedContent.substring(0, SITE.genDescriptionCount) + " ...";
 
-  return desc;
+  // Remove Markdown syntax
+  for (const patternKey in regexReplacers) {
+    const [pattern, replacement] = regexReplacers[patternKey];
+    short = short.replace(pattern, replacement);
+  }
+
+  return short;
 };
 
 export default getDescription;
