@@ -38,9 +38,9 @@ Heading:
 
 **This is bold text**
 
-*This is italic text*
+_This is italic text_
 
-***bold + italic***
+**_bold + italic_**
 
 ~~Strikethrough~~
 
@@ -63,7 +63,7 @@ Unordered
 
 - Create a list by starting a line with `+`, `-`, or `*`
 - Sub-lists are made by indenting 2 spaces:
-    - Marker character change forces new list start:
+  - Marker character change forces new list start:
     1. Ac tristique libero volutpat at
     2. Facilisis in pretium nisl aliquet
     3. Nulla volutpat aliquam velit
@@ -210,7 +210,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget sollicitu
 
 [^fn1]: Phasellus volutpat nulla sapien.
 
-Pellentesque eu eros est. Donec ac quam sed felis eleifend egestas ac non orci. Curabitur metus enim, rutrum et nunc vel, volutpat iaculis turpis. *Vivamus* ornare sollicitudin dui non posuere. Curabitur at dui vel urna `scelerisque` rutrum ut ac augue. Ut bibendum urna quis urna fringilla ultrices.
+Pellentesque eu eros est. Donec ac quam sed felis eleifend egestas ac non orci. Curabitur metus enim, rutrum et nunc vel, volutpat iaculis turpis. _Vivamus_ ornare sollicitudin dui non posuere. Curabitur at dui vel urna `scelerisque` rutrum ut ac augue. Ut bibendum urna quis urna fringilla ultrices.
 
 ## Vestibulum
 
@@ -218,7 +218,7 @@ Morbi interdum ipsum magna, et ullamcorper tortor dapibus eu. Donec commodo tris
 
 ## Mauris
 
-Nulla interdum, augue nec lobortis scelerisque, est nunc malesuada augue, at consectetur neque turpis nec tellus. Donec quis ligula in tellus tempor ***porttitor eu quis lorem***. Vivamus ac interdum purus, eget congue ex. Curabitur at placerat nisl (Etiam nec metus feugiat), eget semper sapien.
+Nulla interdum, augue nec lobortis scelerisque, est nunc malesuada augue, at consectetur neque turpis nec tellus. Donec quis ligula in tellus tempor **_porttitor eu quis lorem_**. Vivamus ac interdum purus, eget congue ex. Curabitur at placerat nisl (Etiam nec metus feugiat), eget semper sapien.
 
 Cras placerat augue eu nunc ~~scelerisque~~, ac sagittis justo euismod. Vestibulum nec magna in erat interdum sagittis et eget dui. [Aliquam placerat][gh], orci sed sollicitudin commodo, eros libero mollis sapien, a egestas turpis mauris nec sem. Curabitur non sodales massa.
 

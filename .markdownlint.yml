@@ -14,7 +14,7 @@ single-h1:
 line-length: false
 no-duplicate-heading: false
 ul-indent:
-  indent: 4
+  indent: 2
   start_indented: false
 ul-style:
   style: dash
@@ -26,7 +26,7 @@ no-trailing-spaces:
   strict: true
 no-hard-tabs:
   code_blocks: true
-  spaces_per_tab: 4
+  spaces_per_tab: 2
 table-pipe-style:
   style: leading_and_trailing
 no-emphasis-as-heading: false

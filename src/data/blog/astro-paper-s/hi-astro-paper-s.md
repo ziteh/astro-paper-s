@@ -12,7 +12,7 @@ toc: true
 comments: false
 ---
 
-**_AstroPaper-S_** is a fork of [AstroPaper](https://github.com/satnaing/astro-paper) `v5.2.0`, based on [Astro](https://astro.build/).
+***AstroPaper-S*** is a fork of [AstroPaper](https://github.com/satnaing/astro-paper) `v5.2.0`, based on [Astro](https://astro.build/).
 
 <!-- more -->
 

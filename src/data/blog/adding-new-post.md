@@ -61,8 +61,8 @@ Here is the list of frontmatter property for each post.
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **_title_**        | Title of the post. (h1)                                                                                                               | required<sup>\*</sup>                          |
 | **_description_**  | Description of the post. Used in post excerpt and site description of the post.                                                       | required<sup>\*</sup>                          |
-| **_date_**  | Published datetime in ISO 8601 format.                                                                                                | required<sup>\*</sup>                          |
-| **_updated_**  | Modified datetime in ISO 8601 format. (only add this property when a blog post is modified)                                           | optional                                       |
+| **_date_**         | Published datetime in ISO 8601 format.                                                                                                | required<sup>\*</sup>                          |
+| **_updated_**      | Modified datetime in ISO 8601 format. (only add this property when a blog post is modified)                                           | optional                                       |
 | **_author_**       | Author of the post.                                                                                                                   | default = SITE.author                          |
 | **_slug_**         | Slug for the post. This field is optional.                                                                                            | default = slugified file name                  |
 | **_featured_**     | Whether or not display this post in featured section of home page                                                                     | default = false                                |

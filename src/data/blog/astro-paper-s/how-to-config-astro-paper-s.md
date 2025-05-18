@@ -49,7 +49,7 @@ Here are the `SITE` configuration options defined in `src/config.ts`.
 
 To use Disqus, replace `YOUR_SHORTNAME` in `/src/components/DisqusComment.astro`:
 
-```js /\/(YOUR_SHORTNAME)/
+```js //(YOUR_SHORTNAME)/
 // file: /src/components/DisqusComment.astro
 (function () {
   const d = document,
@@ -158,7 +158,7 @@ const expressiveCodeOption: AstroExpressiveCodeOptions = {
     return "[data-theme='light']";
   },
   // ...
-}
+};
 ```
 
 Currently, the light theme uses a custom theme from **min-ling**, formatted as a VS Code `.jsonc` file.

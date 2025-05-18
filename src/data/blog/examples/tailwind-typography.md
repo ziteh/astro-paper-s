@@ -152,18 +152,18 @@ The most annoying thing about lists in Markdown is that `<li>` elements aren't g
 
   But this time with a second paragraph.
 
-    - These list items won't have `<p>` tags
-    - Because they are only one line each
+  - These list items won't have `<p>` tags
+  - Because they are only one line each
 
 - **But in this second top-level list item, they will.**
 
   This is especially annoying because of the spacing on this paragraph.
 
-    - As you can see here, because I've added a second line, this list item now has a `<p>` tag.
+  - As you can see here, because I've added a second line, this list item now has a `<p>` tag.
 
-    This is the second line I'm talking about by the way.
+  This is the second line I'm talking about by the way.
 
-    - Finally here's another list item so it's more like a list.
+  - Finally here's another list item so it's more like a list.
 
 - A closing list item, but with no nested list, because why not?
 

@@ -49,10 +49,10 @@ In the older version of AstroPaper, when someone search some article, the search
 
 The following frontmatter properties are renamed.
 
-| Old Names | New Names   |
-| --------- | ----------- |
-| datetime  | date |
-| slug      | postSlug    |
+| Old Names | New Names |
+| --------- | --------- |
+| datetime  | date      |
+| slug      | postSlug  |
 
 ### Default Tag for blog post
 
