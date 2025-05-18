@@ -18,23 +18,23 @@ comments: false
 
 This fork extends AstroPaper with additional features:
 
-- **Auto-generate post description** based on word count or up to the `<!-- more -->` tag.  
-- Sidebar with auto-expanding & collapsing **table of contents** (powered by [Tocbot](https://tscanlin.github.io/tocbot/)), and a back-to-top button.  
-- Basic [Hexo](https://github.com/hexojs/hexo) compatibility, including Markdown frontmatter and support for Categories.  
-- [Expressive Code](https://expressive-code.com/) for syntax highlighting, same as Astro's Starlight theme.  
-- Image optimizations: `loading="lazy"`, `decoding="async"`, and `fetchpriority="auto"` (via [rehype-rewrite](https://github.com/jaywcjlove/rehype-rewrite)).  
-- Auto-generate `<figcaption>` using image alt text ([rehype-figure](https://github.com/Microflash/rehype-figure)).  
-- External links open in new tab with `target="_blank"` and `rel="noopener noreferrer"` ([rehype-external-links](https://github.com/rehypejs/rehype-external-links)).  
-- Static i18n (internationalization) support with customizable locale and date formats.  
-- Sitemap generation adjusted to prioritize post pages.  
-- Lazy loading [Disqus](https://disqus.com/) comment component added.  
-- Add KaTeX support ([remark-math](https://github.com/remarkjs/remark-math)).  
-- Heading anchors generated at build time ([rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings)).  
-- Minify HTML, CSS, and SVG ([astro-minify](https://www.npmjs.com/package/@zokki/astro-minify)).  
-- Enable Gzip and Brotli compression ([astro-compressor](https://github.com/sondr3/astro-compressor)).  
-- URLs without trailing slashes.  
+- **Auto-generate post description** based on word count or up to the `<!-- more -->` tag.
+- Sidebar with auto-expanding & collapsing **table of contents** (powered by [Tocbot](https://tscanlin.github.io/tocbot/)), and a back-to-top button.
+- Basic [Hexo](https://github.com/hexojs/hexo) compatibility, including Markdown frontmatter and support for Categories.
+- [Expressive Code](https://expressive-code.com/) for syntax highlighting, same as Astro's Starlight theme.
+- Image optimizations: `loading="lazy"`, `decoding="async"`, and `fetchpriority="auto"` (via [rehype-rewrite](https://github.com/jaywcjlove/rehype-rewrite)).
+- Auto-generate `<figcaption>` using image alt text ([rehype-figure](https://github.com/Microflash/rehype-figure)).
+- External links open in new tab with `target="_blank"` and `rel="noopener noreferrer"` ([rehype-external-links](https://github.com/rehypejs/rehype-external-links)).
+- Static i18n (internationalization) support with customizable locale and date formats.
+- Sitemap generation adjusted to prioritize post pages.
+- Lazy loading [Disqus](https://disqus.com/) comment component added.
+- Add KaTeX support ([remark-math](https://github.com/remarkjs/remark-math)).
+- Heading anchors generated at build time ([rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings)).
+- Minify HTML, CSS, and SVG ([astro-minify](https://www.npmjs.com/package/@zokki/astro-minify)).
+- Enable Gzip and Brotli compression ([astro-compressor](https://github.com/sondr3/astro-compressor)).
+- URLs without trailing slashes.
 - Adjust visual weight for bold text for better readability.
-- Style and layout adjustments, with some components (e.g., breadcrumb, scroll progress bar) disabled.  
+- Style and layout adjustments, with some components (e.g., breadcrumb, scroll progress bar) disabled.
 
 Most of the other features, such as light/dark mode, fuzzy search, sitemap generation, and more, remain largely unchanged.
 

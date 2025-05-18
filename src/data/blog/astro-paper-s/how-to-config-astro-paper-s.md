@@ -47,7 +47,7 @@ Here are the `SITE` configuration options defined in `src/config.ts`.
 
 ### Disqus
 
-To use Disqus, replace _YOUR_SHORTNAME_ in `/src/components/DisqusComment.astro`:
+To use Disqus, replace `YOUR_SHORTNAME` in `/src/components/DisqusComment.astro`:
 
 ```js /\/(YOUR_SHORTNAME)/
 // file: /src/components/DisqusComment.astro
@@ -144,7 +144,7 @@ date: {
 
 ### Syntax Highlighting
 
-To change the code theme, modify the `themes` and `themeCssSelector` settings in `astro.config.ts`. Refer to [Themes | Expressive Code](https://expressive-code.com/guides/themes/) for more details.  
+To change the code theme, modify the `themes` and `themeCssSelector` settings in `astro.config.ts`. Refer to [Themes | Expressive Code](https://expressive-code.com/guides/themes/) for more details.
 
 ```ts {4} 'theme.name === "one-dark-pro"'
 // file: astro.config.ts
@@ -161,7 +161,7 @@ const expressiveCodeOption: AstroExpressiveCodeOptions = {
 }
 ```
 
-Currently, the light theme uses a custom theme from **min-ling**, formatted as a VS Code `.jsonc` file.  
+Currently, the light theme uses a custom theme from **min-ling**, formatted as a VS Code `.jsonc` file.
 
 ```ts '"./theme/mod-min-light.jsonc"' "modMinLightTheme"
 // file: astro.config.ts
@@ -175,7 +175,7 @@ const modMinLightTheme = ExpressiveCodeTheme.fromJSONString(themeJsoncString);
 
 ### Visual Weight
 
-To balance _visual weight_ and maintain readability, the bold font weight is adjusted differently for the light and dark themes.  
+To balance _visual weight_ and maintain readability, the bold font weight is adjusted differently for the light and dark themes.
 
 ```css {9, 18}
 /* file: global.css */
@@ -201,7 +201,7 @@ html[data-theme="dark"] {
 
 ## `_redirects` File
 
-If you need to set up redirects for [Netlify](https://docs.netlify.com/routing/redirects/) or [Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/redirects/), you can create a `_redirects` file in the `public` folder.  
+If you need to set up redirects for [Netlify](https://docs.netlify.com/routing/redirects/) or [Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/redirects/), you can create a `_redirects` file in the `public` folder.
 
 Files in the `public` folder will be copied directly to the build output (`dist/`) without any modifications.
 

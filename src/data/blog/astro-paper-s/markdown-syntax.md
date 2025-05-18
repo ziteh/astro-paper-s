@@ -38,9 +38,9 @@ Heading:
 
 **This is bold text**
 
-_This is italic text_
+*This is italic text*
 
-**_bold + italic_**
+***bold + italic***
 
 ~~Strikethrough~~
 
@@ -49,9 +49,9 @@ _This is italic text_
 > **bold text**  
 > ~~strikethrough~~  
 > `code`  
-> [link](https://github.com/ziteh/astro-paper-s)  
+> [link](https://github.com/ziteh/astro-paper-s)
 >
-> Blockquotes can also be nested...  
+> Blockquotes can also be nested...
 >
 > > ...by using additional greater-than signs right next to each other...
 > >
@@ -210,7 +210,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget sollicitu
 
 [^fn1]: Phasellus volutpat nulla sapien.
 
-Pellentesque eu eros est. Donec ac quam sed felis eleifend egestas ac non orci. Curabitur metus enim, rutrum et nunc vel, volutpat iaculis turpis. _Vivamus_ ornare sollicitudin dui non posuere. Curabitur at dui vel urna `scelerisque` rutrum ut ac augue. Ut bibendum urna quis urna fringilla ultrices.
+Pellentesque eu eros est. Donec ac quam sed felis eleifend egestas ac non orci. Curabitur metus enim, rutrum et nunc vel, volutpat iaculis turpis. *Vivamus* ornare sollicitudin dui non posuere. Curabitur at dui vel urna `scelerisque` rutrum ut ac augue. Ut bibendum urna quis urna fringilla ultrices.
 
 ## Vestibulum
 
@@ -218,7 +218,7 @@ Morbi interdum ipsum magna, et ullamcorper tortor dapibus eu. Donec commodo tris
 
 ## Mauris
 
-Nulla interdum, augue nec lobortis scelerisque, est nunc malesuada augue, at consectetur neque turpis nec tellus. Donec quis ligula in tellus tempor **_porttitor eu quis lorem_**. Vivamus ac interdum purus, eget congue ex. Curabitur at placerat nisl (Etiam nec metus feugiat), eget semper sapien.
+Nulla interdum, augue nec lobortis scelerisque, est nunc malesuada augue, at consectetur neque turpis nec tellus. Donec quis ligula in tellus tempor ***porttitor eu quis lorem***. Vivamus ac interdum purus, eget congue ex. Curabitur at placerat nisl (Etiam nec metus feugiat), eget semper sapien.
 
 Cras placerat augue eu nunc ~~scelerisque~~, ac sagittis justo euismod. Vestibulum nec magna in erat interdum sagittis et eget dui. [Aliquam placerat][gh], orci sed sollicitudin commodo, eros libero mollis sapien, a egestas turpis mauris nec sem. Curabitur non sodales massa.
 
