@@ -241,7 +241,7 @@ const nextPost =
   <!-- Sidebar -->
   <aside
     id="sidebar"
-    class="sidebar fixed z-40 translate-x-full transform transition-transform duration-300 ease-in-out lg:translate-x-0"
+    class="sidebar fixed z-40 transform transition-transform duration-300 ease-in-out"
   >
     {
       toc && (
@@ -334,7 +334,7 @@ const nextPost =
 
     if (sidebar && mobileToggleBtn && backdrop) {
       const handleOpenSidebar = () => {
-        sidebar.classList.remove("translate-x-full");
+        sidebar.classList.add("mobile-open");
         backdrop.classList.add("opacity-100");
         backdrop.classList.remove("pointer-events-none");
         mobileToggleBtn.setAttribute("aria-expanded", "true");
@@ -342,7 +342,7 @@ const nextPost =
 
       const handleCloseSidebar = () => {
         if (isMobileDevice()) {
-          sidebar.classList.add("translate-x-full");
+          sidebar.classList.remove("mobile-open");
           backdrop.classList.remove("opacity-100");
           backdrop.classList.add("pointer-events-none");
           mobileToggleBtn.setAttribute("aria-expanded", "false");
@@ -373,30 +373,6 @@ const nextPost =
       mobileToggleBtn.addEventListener("click", handleOpenSidebar);
       backdrop.addEventListener("click", handleCloseSidebar);
 
-      let resizeTimer;
-      const handleResize = () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          const isMobile = isMobileDevice();
-
-          // Only execute DOM operations when the device type changes
-          const wasMobile = sidebar.classList.contains("translate-x-full");
-          const switchingFromMobileToDesktop = wasMobile && !isMobile;
-          const switchingFromDesktopToMobile = !wasMobile && isMobile;
-
-          if (switchingFromMobileToDesktop) {
-            sidebar.classList.remove("translate-x-full");
-            backdrop.classList.remove("opacity-100");
-            backdrop.classList.add("pointer-events-none");
-          } else if (switchingFromDesktopToMobile) {
-            handleCloseSidebar();
-          }
-        }, 150); // 150ms debounce
-      };
-
-      // Window resize event
-      window.addEventListener("resize", handleResize);
-
       // Initial check
       if (!isMobileDevice()) {
         sidebar.classList.remove("translate-x-full");
@@ -410,7 +386,7 @@ const nextPost =
 
       if (isMobileDevice()) {
         // Close sidebar
-        sidebar.classList.add("translate-x-full");
+        sidebar.classList.remove("mobile-open");
         backdrop.classList.remove("opacity-100");
         backdrop.classList.add("pointer-events-none");
       }

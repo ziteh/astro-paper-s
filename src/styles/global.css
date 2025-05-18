@@ -75,14 +75,18 @@ html[data-theme="dark"] {
   /* Mobile styles */
   @media (max-width: 1023px) {
     #sidebar {
-      @apply fixed top-0 right-0 bottom-0 left-auto h-full max-h-none w-4/5 max-w-80 rounded-none p-6 pt-8;
+      @apply fixed top-0 right-0 bottom-0 left-auto h-full max-h-none w-4/5 max-w-80 translate-x-full rounded-none p-6 pt-8;
+    }
+
+    #sidebar.mobile-open {
+      @apply translate-x-0;
     }
   }
 
   /* Desktop styles */
   @media (min-width: 1024px) {
     #sidebar {
-      @apply top-32 right-10 m-2 w-32 rounded-none bg-transparent p-0 shadow-none;
+      @apply top-32 right-10 m-2 w-32 translate-x-0 rounded-none bg-transparent p-0 shadow-none;
       max-height: calc(100vh - 12rem);
     }
 
