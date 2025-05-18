@@ -86,8 +86,7 @@ html[data-theme="dark"] {
   /* Desktop styles */
   @media (min-width: 1024px) {
     #sidebar {
-      @apply top-32 right-10 m-2 w-32 translate-x-0 rounded-none bg-transparent p-0 shadow-none;
-      max-height: calc(100vh - 12rem);
+      @apply top-32 right-10 m-2 max-h-[calc(100vh-12rem)] w-32 translate-x-0 rounded-none bg-transparent p-0 shadow-none;
     }
 
     /* xl breakpoint */
