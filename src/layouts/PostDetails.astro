@@ -297,7 +297,7 @@ const nextPost =
       return;
     }
 
-    const scrollSmoothOffset = -40;
+    const scrollSmoothOffset = 0;
     const mobileWidth = 1024;
     const isMobileDevice = () => window.innerWidth < mobileWidth;
 
@@ -317,7 +317,9 @@ const nextPost =
     } else {
       const script = document.createElement("script");
       script.src =
-        "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.34.0/tocbot.min.js";
+        "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.29.0/tocbot.min.js";
+      script.integrity =
+        "sha512-+9XzRSJjnUN2OI106uAbbVZ3f+z1ncIRZFOr56hEdaxbQeZ8i1+B7OVjdF8tG4YhgxM/rWP73K2SiG93x6UJoQ==";
       script.crossOrigin = "anonymous";
       script.referrerPolicy = "no-referrer";
       script.onload = initTocbot;
