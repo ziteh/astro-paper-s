@@ -239,10 +239,7 @@ const nextPost =
   </main>
 
   <!-- Sidebar -->
-  <aside
-    id="sidebar"
-    class="sidebar fixed z-40 transform transition-transform duration-300 ease-in-out"
-  >
+  <aside id="sidebar" class="sidebar fixed z-40 transform">
     {
       toc && (
         <>
@@ -334,6 +331,11 @@ const nextPost =
 
     if (sidebar && mobileToggleBtn && backdrop) {
       const handleOpenSidebar = () => {
+        sidebar.classList.add(
+          "transition-transform",
+          "duration-300",
+          "ease-in-out"
+        );
         sidebar.classList.add("mobile-open");
         backdrop.classList.add("opacity-100");
         backdrop.classList.remove("pointer-events-none");
@@ -342,10 +344,28 @@ const nextPost =
 
       const handleCloseSidebar = () => {
         if (isMobileDevice()) {
+          sidebar.classList.add(
+            "transition-transform",
+            "duration-300",
+            "ease-in-out"
+          );
           sidebar.classList.remove("mobile-open");
           backdrop.classList.remove("opacity-100");
           backdrop.classList.add("pointer-events-none");
           mobileToggleBtn.setAttribute("aria-expanded", "false");
+
+          // Remove transition classes after the transition ends
+          sidebar.addEventListener(
+            "transitionend",
+            function removeTransition() {
+              sidebar.classList.remove(
+                "transition-transform",
+                "duration-300",
+                "ease-in-out"
+              );
+              sidebar.removeEventListener("transitionend", removeTransition);
+            }
+          );
         }
       };
 
