@@ -136,4 +136,9 @@ html[data-theme="dark"] {
   h6:hover .icon-link::before {
     @apply opacity-100;
   }
+
+  /* Code blocks */
+  .expressive-code {
+    @apply mt-2 mb-4;
+  }
 }

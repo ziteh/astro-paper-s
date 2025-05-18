@@ -21,6 +21,9 @@
   .prose blockquote {
     @apply !font-normal;
   }
+  .prose blockquote p::before {
+    content: "" !important;
+  }
 
   /* .prose h2#table-of-contents {
     @apply mb-2;
