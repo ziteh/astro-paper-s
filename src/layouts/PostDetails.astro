@@ -369,6 +369,15 @@ const nextPost =
         }
       };
 
+      const toggleSidebar = () => {
+        const isOpen = sidebar.classList.contains("mobile-open");
+        if (isOpen) {
+          handleCloseSidebar();
+        } else {
+          handleOpenSidebar();
+        }
+      };
+
       // Toc click event
       sidebar.addEventListener("click", e => {
         const link = e.target.closest("a");
@@ -390,7 +399,7 @@ const nextPost =
         }
       });
 
-      mobileToggleBtn.addEventListener("click", handleOpenSidebar);
+      mobileToggleBtn.addEventListener("click", toggleSidebar);
       backdrop.addEventListener("click", handleCloseSidebar);
 
       // Initial check
