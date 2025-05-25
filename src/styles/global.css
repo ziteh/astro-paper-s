@@ -75,7 +75,7 @@ html[data-theme="dark"] {
   /* Mobile styles */
   @media (max-width: 1023px) {
     #sidebar {
-      @apply fixed top-0 right-0 bottom-0 left-auto h-full max-h-none w-4/5 max-w-80 translate-x-full rounded-none p-6 pt-8;
+      @apply fixed top-0 right-0 bottom-0 left-auto flex h-full max-h-none w-4/5 max-w-70 translate-x-full flex-col justify-end rounded-none p-6 pb-8;
     }
 
     #sidebar.mobile-open {
