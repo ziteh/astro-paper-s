@@ -86,20 +86,20 @@ html[data-theme="dark"] {
   /* Desktop styles */
   @media (min-width: 1024px) {
     #sidebar {
-      @apply top-32 right-10 m-2 max-h-[calc(100vh-12rem)] w-32 translate-x-0 rounded-none bg-transparent p-0 shadow-none;
+      @apply top-36 right-10 m-2 max-h-[calc(100vh-12rem)] w-32 translate-x-0 rounded-none bg-transparent p-0 shadow-none;
     }
 
     /* xl breakpoint */
     @media (min-width: 1280px) {
       #sidebar {
-        @apply right-24;
+        @apply right-12;
       }
     }
 
     /* 2xl breakpoint */
     @media (min-width: 1536px) {
       #sidebar {
-        @apply w-64;
+        @apply right-24 w-64;
       }
     }
   }
