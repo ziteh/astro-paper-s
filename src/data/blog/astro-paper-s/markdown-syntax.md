@@ -32,19 +32,19 @@ Heading:
 
 ###### h6 Heading
 
-# Emphasis
+## Emphasis
 
 🚧❌🌐🖥️✔️🛒
 
 **This is bold text**
 
-_This is italic text_
+*This is italic text*
 
-**_bold + italic_**
+***bold + italic***
 
 ~~Strikethrough~~
 
-# Blockquotes
+## Blockquotes
 
 > **bold text**  
 > ~~strikethrough~~  
@@ -57,7 +57,7 @@ _This is italic text_
 > >
 > > > ...or with spaces between arrows.
 
-# Lists
+## Lists
 
 Unordered
 
@@ -107,7 +107,7 @@ Indent
    pnpm run dev
    ```
 
-# Code
+## Code
 
 Inline `code`
 
@@ -147,7 +147,7 @@ fn main() {
 this is a very looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong command
 ```
 
-# Tables
+## Tables
 
 | Option | Description                                                               |
 | ------ | ------------------------------------------------------------------------- |
@@ -155,7 +155,7 @@ this is a very loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 | engine | engine to be used for processing templates. Handlebars is the default.    |
 | ext    | extension to be used for dest files.                                      |
 
-# Links
+## Links
 
 [link text](https://github.com/ziteh/astro-paper-s)
 
@@ -163,7 +163,7 @@ this is a very loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
 [link1]: https://github.com/ziteh/astro-paper-s
 
-# Images
+## Images
 
 ![ErgoSNM Keyboard](https://imgur.com/hzSMu2A.jpg)
 
@@ -175,7 +175,7 @@ With a reference later in the document defining the URL location:
 
 [myimg]: https://imgur.com/0LeJ65r.jpg
 
-# Footnotes
+## Footnotes
 
 Footnote 1 link[^first].
 
@@ -187,7 +187,7 @@ Duplicated footnote reference[^second].
 
 [^second]: Footnote text
 
-# KaTex
+## KaTex
 
 Inline: $2^{16} \times \frac{2}{\beta}$
 
@@ -204,33 +204,33 @@ $$
 
 ---
 
-# Typography
+## Typography
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget sollicitudin eros, non malesuada dolor. Duis bibendum eros ac tellus imperdiet semper. Aenean **sodales mauris** sed vulputate tempus. Morbi eget diam eleifend ipsum sollicitudin consectetur ac nec turpis. [Nam luctus][gh] mi faucibus, tincidunt nisi a, maximus neque.[^fn1]
 
 [^fn1]: Phasellus volutpat nulla sapien.
 
-Pellentesque eu eros est. Donec ac quam sed felis eleifend egestas ac non orci. Curabitur metus enim, rutrum et nunc vel, volutpat iaculis turpis. _Vivamus_ ornare sollicitudin dui non posuere. Curabitur at dui vel urna `scelerisque` rutrum ut ac augue. Ut bibendum urna quis urna fringilla ultrices.
+Pellentesque eu eros est. Donec ac quam sed felis eleifend egestas ac non orci. Curabitur metus enim, rutrum et nunc vel, volutpat iaculis turpis. *Vivamus* ornare sollicitudin dui non posuere. Curabitur at dui vel urna `scelerisque` rutrum ut ac augue. Ut bibendum urna quis urna fringilla ultrices.
 
-## Vestibulum
+### Vestibulum
 
 Morbi interdum ipsum magna, et ullamcorper tortor dapibus eu. Donec commodo tristique felis non luctus. Donec vel tempor diam. Phasellus ac nulla et erat [vehicula pulvinar][gh]. Curabitur ac nunc iaculis augue pellentesque consequat id eget justo. Fusce tempor fermentum tellus et dignissim.
 
-## Mauris
+### Mauris
 
-Nulla interdum, augue nec lobortis scelerisque, est nunc malesuada augue, at consectetur neque turpis nec tellus. Donec quis ligula in tellus tempor **_porttitor eu quis lorem_**. Vivamus ac interdum purus, eget congue ex. Curabitur at placerat nisl (Etiam nec metus feugiat), eget semper sapien.
+Nulla interdum, augue nec lobortis scelerisque, est nunc malesuada augue, at consectetur neque turpis nec tellus. Donec quis ligula in tellus tempor ***porttitor eu quis lorem***. Vivamus ac interdum purus, eget congue ex. Curabitur at placerat nisl (Etiam nec metus feugiat), eget semper sapien.
 
 Cras placerat augue eu nunc ~~scelerisque~~, ac sagittis justo euismod. Vestibulum nec magna in erat interdum sagittis et eget dui. [Aliquam placerat][gh], orci sed sollicitudin commodo, eros libero mollis sapien, a egestas turpis mauris nec sem. Curabitur non sodales massa.
 
-### Morbi Rutrum Libero
+#### Morbi Rutrum Libero
 
 Morbi ultrices nunc ipsum, ut gravida odio laoreet vitae. Quisque ut ornare libero, ut iaculis magna. Nulla in arcu bibendum, faucibus turpis in, egestas nisl. Fusce a accumsan ligula, ut suscipit velit. Duis auctor egestas dui eget efficitur. Proin egestas porttitor leo, eu varius felis consequat in. In congue mauris non tellus pretium posuere.
 
-## Vestibulum
+### Vestibulum Quisque
 
 Ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In gravida, nunc sit amet suscipit viverra, turpis massa porttitor quam, in fringilla erat ante ut turpis.
 
-### Nunc Et Pretium Velit
+#### Nunc Et Pretium Velit
 
 Ut aliquet fringilla dolor eu vehicula. Phasellus vel dui finibus, euismod augue eu, mollis magna. Sed ullamcorper dictum nunc sit amet lacinia. Nullam in est orci. Mauris hendrerit mauris sit amet volutpat aliquam. Vivamus in ante ut ligula fermentum mattis id tempor purus. Duis euismod porttitor elit, eu hendrerit est vehicula a. Sed ac quam tincidunt, commodo eros non, laoreet diam. Nulla in pulvinar justo. Praesent et purus orci.
 

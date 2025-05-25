@@ -98,7 +98,7 @@ export const _t = en;
 
 If you want to add more languages, copy the `en` object and modify its values. To ensure type safety, use `typeof en` for static field checking.
 
-This setup _does not fallback_ — _it fails fast_, allowing you to catch errors during build time.
+This setup *does not fallback* — *it fails fast*, allowing you to catch errors during build time.
 
 ```ts "zhHant" "typeof en" title="example"
 // 繁體中文
@@ -175,7 +175,7 @@ const modMinLightTheme = ExpressiveCodeTheme.fromJSONString(themeJsoncString);
 
 ### Visual Weight
 
-To balance _visual weight_ and maintain readability, the bold font weight is adjusted differently for the light and dark themes.
+To balance *visual weight* and maintain readability, the bold font weight is adjusted differently for the light and dark themes.
 
 ```css {9, 18}
 /* file: global.css */
