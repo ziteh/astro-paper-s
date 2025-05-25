@@ -8,7 +8,7 @@ This fork extends AstroPaper with additional features:
 - Sidebar with auto-expanding & collapsing **table of contents** (powered by [Tocbot](https://tscanlin.github.io/tocbot/)), and a back-to-top button.
 - Basic [Hexo](https://github.com/hexojs/hexo) compatibility, including Markdown frontmatter and support for Categories.
 - [Expressive Code](https://expressive-code.com/) for syntax highlighting, same as Astro's Starlight theme.
-- Image optimizations: `loading="lazy"`, `decoding="async"`, and `fetchpriority="auto"` (via [rehype-rewrite](https://github.com/jaywcjlove/rehype-rewrite)).
+- Image optimizations: `loading="lazy"` and `decoding="async"` (via [rehype-rewrite](https://github.com/jaywcjlove/rehype-rewrite)).
 - Auto-generate `<figcaption>` using image alt text ([rehype-figure](https://github.com/Microflash/rehype-figure)).
 - External links open in new tab with `target="_blank"` and `rel="noopener noreferrer"` ([rehype-external-links](https://github.com/rehypejs/rehype-external-links)).
 - Static i18n (internationalization) support with customizable locale and date formats.

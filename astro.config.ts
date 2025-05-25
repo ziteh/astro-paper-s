@@ -67,7 +67,7 @@ const rehypeRewriteOption: RehypeRewriteOptions = {
         ...node.properties,
         loading: "lazy",
         decoding: "async",
-        fetchpriority: "auto",
+        // fetchpriority: "auto",
       };
     }
     // Use rehype-external-links instead
