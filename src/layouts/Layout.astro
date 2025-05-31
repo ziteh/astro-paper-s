@@ -1,5 +1,5 @@
 ---
-// import { ClientRouter } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config";
 import "@/styles/global.css";
 
@@ -65,7 +65,7 @@ const structuredData = {
 
     <!-- CSP -->
     <!-- 'unsafe-inline' is dangerous! but it's difficult to avoid using it at the moment, see also Astro-Shield -->
-    <meta
+    <!-- <meta
       http-equiv="Content-Security-Policy"
       content=`
   default-src 'none';
@@ -82,7 +82,7 @@ const structuredData = {
   upgrade-insecure-requests;
   block-all-mixed-content;
 `
-    />
+    /> -->
 
     <!-- General Meta Tags -->
     <title>{title}</title>
@@ -163,7 +163,7 @@ const structuredData = {
     />
 
     <!-- View transitions: https://docs.astro.build/en/guides/view-transitions/ -->
-    <!-- <ClientRouter /> -->
+    <ClientRouter />
 
     <script is:inline src="/toggle-theme.js"></script>
 
