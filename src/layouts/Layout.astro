@@ -32,7 +32,7 @@ const {
   scrollSmooth = false,
   toc = false,
   math = false,
-  comments = false,
+  // comments = false,
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.url);
@@ -190,13 +190,6 @@ const structuredData = {
           crossorigin="anonymous"
           referrerpolicy="no-referrer"
         />
-      )
-    }
-
-    <!-- Comments -->
-    {
-      comments && SITE.wontonCommentUrl && (
-        <link rel="stylesheet" href="/wonton-comment.css" />
       )
     }
   </head>
