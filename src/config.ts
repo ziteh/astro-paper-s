@@ -24,5 +24,5 @@ export const SITE = {
   lang: "en", // html lang code. Set this empty and default will be "en"
   langOg: "en_US", // Open Graph locale tag, format 'language_TERRITORY' https://ogp.me/#optional
   timezone: "Asia/Taipei", // Default global timezone (IANA format) https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  wontonCommentUrl: "http://localhost:8787/", // Wonton comment server URL, set to empty string to disable comment
+  wontonCommentUrl: "", // Wonton comment server URL, set to empty string to disable comment
 } as const;
