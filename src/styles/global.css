@@ -7,6 +7,10 @@
   --font-sans: "Noto Sans", "Noto Sans TC", sans-serif;
   --font-mono: "Roboto Mono", "Noto Sans TC", monospace;
   --font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+
+  --wtc-primary-color: var(--color-accent);
+  --wtc-background-color: var(--color-background);
+  --wtc-text-color: var(--color-foreground);
 }
 
 :root,

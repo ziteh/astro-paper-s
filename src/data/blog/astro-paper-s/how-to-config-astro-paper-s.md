@@ -8,7 +8,7 @@ tags:
   - configuration
 categories: ["AstroPaper-S"]
 toc: true
-comments: false
+comments: true
 ---
 
 You are free to adjust your settings.

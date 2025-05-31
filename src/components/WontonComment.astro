@@ -1,0 +1,39 @@
+---
+import { SITE } from "@/config";
+
+export interface Props {
+  post: string;
+}
+
+const { post } = Astro.props;
+---
+
+<div
+  id="wtc-app"
+  class="mt-12"
+  data-post={post}
+  data-api={SITE.wontonCommentUrl}
+>
+</div>
+
+<script is:inline type="module">
+  import { initWontonComment } from "/wonton-comment.es.js";
+
+  (function () {
+    const app = document.getElementById("wtc-app");
+    if (!app) {
+      return;
+    }
+
+    const post = app.dataset.post;
+    const apiUrl = app.dataset.api;
+    if (!post || !apiUrl) {
+      return;
+    }
+
+    initWontonComment("wtc-app", {
+      post,
+      apiUrl,
+    });
+  })();
+</script>
