@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import type dayjs from "dayjs";
 
 // Datetime format
