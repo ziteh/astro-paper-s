@@ -51,7 +51,7 @@ Here are the `SITE` configuration options defined in `src/config.ts`.
 To use Disqus, replace `YOUR_SHORTNAME` in `/src/components/DisqusComment.astro`:
 
 ```js //(YOUR_SHORTNAME)/
-// file: /src/components/DisqusComment.astro
+// file: src/components/DisqusComment.astro
 (function () {
   const d = document,
     s = d.createElement("script");
