@@ -76,6 +76,7 @@ const en = {
 };
 
 // 繁體中文
+/*
 const zhHant: typeof en = {
   archives: {
     title: "歸檔",
@@ -143,8 +144,10 @@ const zhHant: typeof en = {
     recentPosts: "最新文章",
   },
 };
+*/
 
 // 日本語 (machine translation)
+/*
 const ja: typeof en = {
   archives: {
     title: "アーカイブ",
@@ -212,9 +215,11 @@ const ja: typeof en = {
     recentPosts: "最新記事",
   },
 };
+*/
 
 // cspell:disable
 // Español (machine translation)
+/*
 const es: typeof en = {
   archives: {
     title: "Archivos",
@@ -283,6 +288,7 @@ const es: typeof en = {
     recentPosts: "Artículos recientes",
   },
 };
+*/
 // cspell:enable
 
 // Select the language you want to use
