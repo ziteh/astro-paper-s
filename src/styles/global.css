@@ -96,14 +96,14 @@ html[data-theme="dark"] {
     /* xl breakpoint */
     @media (min-width: 1280px) {
       #sidebar {
-        @apply right-12;
+        @apply right-10;
       }
     }
 
     /* 2xl breakpoint */
     @media (min-width: 1536px) {
       #sidebar {
-        @apply right-24 w-64;
+        @apply right-12 w-64;
       }
     }
   }
