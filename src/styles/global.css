@@ -8,6 +8,7 @@
   --font-mono: "Roboto Mono", "Noto Sans TC", monospace;
   --font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
 
+  /* Wonton comment */
   --wtc-primary-color: var(--color-accent);
   --wtc-background-color: var(--color-background);
   --wtc-text-color: var(--color-foreground);
@@ -17,18 +18,18 @@
 html[data-theme="light"] {
   --background: #fdfdfd;
   --foreground: #282728;
-  --accent: #006cac;
+  --accent: #4a8bbd;
   --muted: #e6e6e6;
-  --border: #ece9e9;
+  --border: #e5e9f0;
   --strong-font-weight: 700; /* Compensating visual weight */
 }
 
 html[data-theme="dark"] {
-  --background: #212737;
+  --background: #23272e;
   --foreground: #eaedf3;
-  --accent: #ff6b01;
+  --accent: #d19a66;
   --muted: #343f60bf;
-  --border: #ab4b08;
+  --border: #4d4844;
   --strong-font-weight: 800; /* Compensating visual weight */
 }
 
