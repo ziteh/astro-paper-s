@@ -230,7 +230,7 @@ const nextPost =
 
     <!-- Comments -->
     {
-      comments && (
+      comments && SITE.wontonCommentUrl && (
         <WontonComment post={slug || ""} />
 
         // <div class="comments my-8">
