@@ -71,6 +71,7 @@ const ogImage = ogImageUrl
 
 const layoutProps = {
   title: `${title} | ${SITE.title}`,
+  subtitle: subtitle || undefined,
   author,
   description: description || getDescription(post.body || ""),
   pubDatetime: date,

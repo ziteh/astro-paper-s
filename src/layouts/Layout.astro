@@ -7,6 +7,7 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export interface Props {
   title?: string;
+  subtitle?: string;
   author?: string;
   profile?: string;
   description?: string;
@@ -22,6 +23,7 @@ export interface Props {
 
 const {
   title = SITE.title,
+  subtitle,
   author = SITE.author,
   profile = SITE.profile,
   description = SITE.desc,
@@ -35,6 +37,7 @@ const {
   // comments = false,
 } = Astro.props;
 
+const fullDescription = subtitle ? `${subtitle}. ${description}` : description;
 const socialImageURL = new URL(ogImage, Astro.url);
 
 const structuredData = {
@@ -87,13 +90,13 @@ const structuredData = {
     <!-- General Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
-    <meta name="description" content={description} />
+    <meta name="description" content={fullDescription} />
     <meta name="author" content={author} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={fullDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImageURL} />
     <meta property="og:locale" content={SITE.langOg} />
@@ -121,7 +124,7 @@ const structuredData = {
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <meta property="twitter:description" content={fullDescription} />
     <meta property="twitter:image" content={socialImageURL} />
 
     <!-- Google JSON-LD Structured data -->
