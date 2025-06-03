@@ -293,6 +293,9 @@ const nextPost =
 </Layout>
 
 <script is:inline data-astro-rerun type="module">
+  const mobileWidth = 1024; // lg breakpoint
+  const isMobileDevice = () => window.innerWidth < mobileWidth;
+
   /* Tocbot */
   (function () {
     // If tocbot is not enabled, return early
@@ -301,8 +304,6 @@ const nextPost =
     }
 
     const scrollSmoothOffset = 0;
-    const mobileWidth = 1024; // lg breakpoint
-    const isMobileDevice = () => window.innerWidth < mobileWidth;
 
     function initTocbot() {
       window.tocbot.init({
@@ -412,20 +413,21 @@ const nextPost =
         sidebar.classList.remove("translate-x-full");
       }
     }
-
-    // Back to Top button
-    document.querySelector("#back-to-top")?.addEventListener("click", () => {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-
-      if (isMobileDevice()) {
-        // Close sidebar
-        sidebar.classList.remove("mobile-open");
-        backdrop.classList.remove("opacity-100");
-        backdrop.classList.add("pointer-events-none");
-      }
-    });
   })();
+
+  // Back to Top button
+  document.querySelector("#back-to-top")?.addEventListener("click", () => {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+    const sidebar = document.getElementById("sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    if (isMobileDevice() && sidebar && backdrop) {
+      sidebar.classList.remove("mobile-open");
+      backdrop.classList.remove("opacity-100");
+      backdrop.classList.add("pointer-events-none");
+    }
+  });
 
   // Astro View Transitions
   document.addEventListener("astro:after-swap", () => {
