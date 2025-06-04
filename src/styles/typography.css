@@ -55,6 +55,10 @@
     @apply w-full min-w-full table-auto;
   }
 
+  .prose iframe {
+    @apply aspect-video w-full max-w-full;
+  }
+
   .prose .katex-display {
     @apply text-foreground;
   }
