@@ -28,7 +28,7 @@ const {
   profile = SITE.profile,
   description = SITE.desc,
   ogImage = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png",
-  canonicalURL = new URL(Astro.url.pathname, Astro.url),
+  canonicalURL = new URL(Astro.url.pathname.replace(/\.html?$/, ""), Astro.url), // remove .html extension
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
