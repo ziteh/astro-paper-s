@@ -45,7 +45,12 @@ html[data-theme="dark"] {
   * {
     @apply border-border outline-accent/75;
     scrollbar-width: auto;
-    scrollbar-color: var(--color-muted) transparent;
+    scrollbar-color: color-mix(
+        in srgb,
+        var(--color-muted) 80%,
+        var(--color-foreground) 20%
+      )
+      transparent;
   }
   html {
     @apply overflow-y-scroll scroll-smooth;
