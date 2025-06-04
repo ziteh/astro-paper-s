@@ -9,6 +9,7 @@ import rehypeFigure from "@microflash/rehype-figure";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeRewrite, { type RehypeRewriteOptions } from "rehype-rewrite";
+import rehypeWrapAll from "rehype-wrap-all";
 import rehypeExternalLinks from "rehype-external-links";
 import expressiveCode, {
   ExpressiveCodeTheme,
@@ -130,6 +131,13 @@ export default defineConfig({
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "append" }],
       [rehypeExternalLinks, { target: "_blank", rel: "noopener noreferrer" }],
+      [
+        rehypeWrapAll,
+        {
+          selector: "table",
+          wrapper: "div.responsive-table",
+        },
+      ],
       [rehypeRewrite, rehypeRewriteOption],
     ],
     // Use ExpressiveCode instead of shiki

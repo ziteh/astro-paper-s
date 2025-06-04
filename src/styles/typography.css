@@ -46,6 +46,15 @@
     @apply rounded border-1 border-border bg-muted text-foreground!;
   }
 
+  .responsive-table {
+    @apply overflow-x-auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .responsive-table table {
+    @apply w-full min-w-full table-auto;
+  }
+
   .prose .katex-display {
     @apply text-foreground;
   }

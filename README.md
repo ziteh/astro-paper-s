@@ -11,6 +11,7 @@ This fork extends AstroPaper with additional features:
 - Image optimizations: `loading="lazy"` and `decoding="async"` (via [rehype-rewrite](https://github.com/jaywcjlove/rehype-rewrite)).
 - Auto-generate `<figcaption>` using image alt text ([rehype-figure](https://github.com/Microflash/rehype-figure)).
 - External links open in new tab with `target="_blank"` and `rel="noopener noreferrer"` ([rehype-external-links](https://github.com/rehypejs/rehype-external-links)).
+- Responsive table ([rehype-wrap-all](https://github.com/florentb/rehype-wrap-all))
 - Static i18n (internationalization) support with customizable locale and date formats.
 - Sitemap generation adjusted to prioritize post pages.
 - Lazy loading [Disqus](https://disqus.com/) comment component added.
