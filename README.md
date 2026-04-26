@@ -2,6 +2,8 @@
 
 ***AstroPaper-S*** is a fork of [AstroPaper](https://github.com/satnaing/astro-paper), based on [Astro](https://astro.build/).
 
+> See also [Astro Jing](https://astro-theme-jing.ziteh.dev/), a calm Astro blog theme.
+
 This fork extends AstroPaper with additional features:
 
 - **Auto-generate post description** based on word count or up to the `<!-- more -->` tag.
