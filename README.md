@@ -84,6 +84,10 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 All blog posts are stored in `src/data/blog` directory.
 
+> [!IMPORTANT]
+> Demo Site Notice
+> `public/_headers` sets `X-Robots-Tag: noindex` to keep the demo site out of search engine indexing. **Delete this file before deploying to production.**
+
 ## Google Site Verification (optional)
 
 You can easily add your [Google Site Verification HTML tag](https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag) in AstroPaper using an environment variable. This step is optional. If you don't add the following environment variable, the google-site-verification tag won't appear in the HTML `<head>` section.
